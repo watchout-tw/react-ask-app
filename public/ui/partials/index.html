@@ -1,0 +1,15 @@
+<div ng-include="'partials/nav.html'"></div>
+
+<div id="content">
+
+<div class="wrapper">
+
+    <div ng-repeat="p in policy" class="md-whiteframe-z1 c_item l_inline v_top" ng-click="go('policy/'+p.id)">
+        <div class="c_indexTitle">{{p.indexTitle}}</div>
+        <div class="c_title">{{p.title}}</div>
+
+    </div>
+
+
+</div>
+</div>

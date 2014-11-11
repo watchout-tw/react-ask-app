@@ -1,2 +1,4 @@
 node_modules/
-public/
+public/assets
+public/index.html
+*.log
