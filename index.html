@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <!--<base href="/">-->
+    <!-- Standard Meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Site Properities -->
+    <title></title>
+    <meta content="" property="og:site_name" />
+    <meta content="" property="og:title" />
+    <meta content=""/>
+
+    <!-- jQuery -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- AngularJS -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+
+    <!-- SemanticUI -->
+    <!-- <script src="packaged/javascript/semantic.js"></script> -->
+
+    <script type='text/javascript' src="app.js"></script>
+
+    <!-- SemanticUI -->
+    <!-- 
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="packaged/css/semantic.css"> -->
+
+    <link type="text/css" rel="stylesheet" href="css/doc.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+</head>
+<body class="body">
+    <!--
+    <div id="navigation">
+        <div class="nav" ng-controller="NavCtrl">
+            <div class="nav_item" ng-click="go('/')">Home</div>
+        </div>
+    </div>
+    -->
+
+    <div ng-view></div>
+
+</body>
+</html>
