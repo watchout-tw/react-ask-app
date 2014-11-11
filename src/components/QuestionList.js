@@ -7,6 +7,7 @@ module.exports = React.createClass({
 
   getInitialState () {
     return {
+      showIndex: -1
     };
   },
 
@@ -16,7 +17,7 @@ module.exports = React.createClass({
 
   _render (props, state) {
     var {items} = props;
-    var result = items.map((item) => {
+    var result = items.map((item, index) => {
       return <Question />;
     });
     return <div>
