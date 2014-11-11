@@ -69,6 +69,27 @@ app.factory('DataService', function ($http, $q){
   return DataService;
 })
 
+
+app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
+
+  $scope.go = function(path){
+      $("body").scrollTop(0);
+      $location.path(path);
+  };
+  DataService.getData('policy').then(function(data){
+      $scope.policy = data;
+  });
+  $scope.showsidebar = function(value){
+      if(value === 'toggle'){
+          $scope.sidebar = !$scope.sidebar;
+      }else{
+          $scope.sidebar = value;
+      }
+
+  }
+
+
+}]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
 
   $scope.go = function(path){

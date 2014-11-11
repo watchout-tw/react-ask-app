@@ -1,4 +1,4 @@
-<div ng-include="'partials/nav.html'"></div>
+<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
 <div id="content" ng-click="resetFocus()">
 
@@ -20,6 +20,7 @@
           </div>
           <div class="l_center"><span class="p_seeall" ng-click="togglePolicy()" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i> 摺疊</span></div>
      </div>
+     <div class="ask_item"><i class="fa fa-plus ask_icon"></i></div>
   </div>
 
 
@@ -46,6 +47,7 @@
     </div>
 
     <div class="q_content" ng-if="showQuestion(q.id)">
+        <div class="q_title_mobile_inner">{{q.title}}</div>
         <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
         <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
         <div class="q_action">

@@ -1,5 +1,14 @@
+
+<div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}">
+	 <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/">首頁</a>
+    <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/policy/{{p.id}}" ng-repeat="p in policy">{{p.indexTitle}} {{p.title}}</a>
+
+
+</div>
+
 <header class="md-whiteframe-z1 ">
-  <div class="nav_item l_inline" ng-click="go('/')"><i class="fa fa-align-justify"></i></div>
-  <div class="nav_item l_inline" ng-click="go('/policy')">政策</div>
-  <input class="fs" ng-model="query"><i class="fa fa-search"></i>
+
+  <div class="tri-up" ng-show="sidebar"></div>
+  <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
+  <!-- <input class="fs" ng-model="query"><i class="fa fa-search"></i>-->
 </header>
