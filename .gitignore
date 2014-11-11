@@ -1,3 +1,6 @@
 web-server.js
 .DS_Store
-
+node_modules/
+public/assets
+public/index.html
+*.log

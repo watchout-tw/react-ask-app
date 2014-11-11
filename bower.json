@@ -1,0 +1,15 @@
+{
+  "name": "react-google-maps",
+  "main": "index.js",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "webpack.config.js"
+  ]
+}

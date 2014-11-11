@@ -1,0 +1,353 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
+body {
+  /* font-family: "Open Sans","Helvetica Neue", "Helvetica", "Arial", sans-serif; */
+  font-family: "Source Han Sans TC", "Noto Sans", "微軟正黑體", Helvetica, Arial, sans-serif;
+  background: rgb;
+  margin: 0px;
+  padding: 0px;
+  text-rendering: optimizeLegibility;
+  min-width: 320px;
+  background: rgb(236,236,236);
+  color: rgb(55,53,54);
+  font-size: 16px;
+
+}
+a {
+  text-decoration: none;
+  color: rgb(0,191,198);
+}
+@media screen and (min-width: 1000px){
+  .wrapper{
+     width: 1000px;
+  }
+  .nav{
+    max-width:1000px;
+    margin:0 auto;
+  }
+}
+@media screen and (max-width: 1000px){
+  .nav{
+     width: 100%;
+  }
+}
+@media (max-width: 400px){
+  .wrapper{
+     width: 100%;
+  }
+  .nav{
+     width: 100%;
+  }
+}
+.page_wrapper {
+   background: white;
+}
+.wrapper {
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  padding:8px;
+  box-sizing: border-box;
+  position: relative;
+  background: rgb(236,236,236);
+
+}
+
+#content {
+	margin-top: 50px;
+}
+
+
+/* ------------------------------------------------------------ */
+/* material test
+/* ------------------------------------------------------------ */
+
+header {
+  z-index: 100;
+  background: #009688;
+  color: white;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  box-sizing: border-box;
+  padding: 6px;
+
+}
+.fs {
+  background: #4DB6AC;
+  border: none;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 1.2em;
+  height: 36px;
+  width: 180px;
+  border-radius: 5px;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+input{
+  outline: none;
+}
+
+.l_inline {
+  display: inline-block;
+}
+.l_center {
+  text-align: center;
+}
+.v_top {
+  vertical-align: top;
+}
+.q_title{
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  width: 100%;
+  overflow: hidden;
+
+  text-align: left;
+  background: white;
+  padding-top: 6px;
+  cursor: pointer;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  padding-right: 60px;
+
+}
+.q_function {
+  display: none;
+}
+.q_item:hover .q_function{
+  display: inline-block;
+  position: absolute;
+  top:0px;
+  right: 10px;
+
+  z-index: 99;
+
+  text-align: right;
+  height: 40px;
+  background: white;
+
+  box-sizing: border-box;
+
+  padding-top: 10px;
+
+}
+.q_order {
+  font-weight: 500;
+  width: 20px;
+  margin-left: 10px;
+}
+.q_vote {
+  width: 70px;
+  padding-right: 15px;
+  color: rgb(214,90,90);
+  text-align: right;
+  border-right: 1px solid rgb(220,220,220);
+  margin-right: 5px;
+}
+.q_postmeta {
+  width: 100%;
+  padding-left: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+
+}
+.q_action {
+  margin: 20px 10px;
+}
+.q_title_active {
+  border-bottom: 1px solid rgb(220,220,220);
+  padding-bottom: 15px;
+  width: 100%;
+}
+.q_fixTitle {
+  display: none;
+}
+.q_title_fixed {
+  position: fixed;
+  display: inline-block;
+  top: 42px;
+
+  /* center the element */
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+
+  z-index: 90;
+  height: 40px;
+
+  background: transparent;
+
+}
+.q_title_fixed_inner {
+  background: white;
+  margin: 0px 1px;
+  padding: 15px;
+  border-bottom: 1px solid rgb(220,220,220);
+
+  font-size: 18px;
+  font-weight: 700;
+
+}
+.q_item {
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  margin-bottom: 1px;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+
+  padding: 10px;
+  width: 100%;
+  position: relative;
+
+  background: white;
+}
+.q_item_active {
+  margin: 10px auto;
+  box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+}
+.q_text {
+  padding: 0px 20px 0px 10px;
+}
+.q_content {
+  position: relative;
+  padding-left: 15px;
+}
+.q_pending_candidates {
+  margin: 20px auto;
+}
+.l_vtop {
+  vertical-align: top;
+}
+.nav_item {
+  cursor: pointer;
+  padding: 0px 10px;
+  margin-top: 5px;
+}
+
+a.button {
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  background: #26A69A;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px rgba(0,0,0,.2);
+  color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  min-width: 70px;
+  text-align: center;
+}
+a.button.facebook{
+  background: #0277BD;
+}
+/* ------------------------------------------------------------ */
+/* Policy
+/* ------------------------------------------------------------ */
+.p_item {
+  background: white;
+  padding: 20px;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: .5s;
+}
+.p_title {
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 1px solid rgb(220,220,220);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.p_actionicon {
+  display: none;
+}
+.p_title:hover .p_actionicon{
+  display: inline-block;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: 1.5s;
+}
+.p_seeall {
+  margin-left: 10px;
+  color: #03A9F4;
+  cursor: pointer;
+}
+.p_seeall:hover {
+  border-bottom: 1px solid #03A9F4;
+  opacity: 0.8;
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+.p_preview {
+  margin-top: 10px;
+
+}
+.p_preview_hide {
+  height: 0px;
+  overflow: hidden;
+
+}
+.p_fullcontent_hide{
+  height: 10px;
+  overflow: hidden;
+
+  -moz-transition: .2s;
+  -ms-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  transition-duration: 1.5s;
+
+}
+.pa_totalq {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+/* ------------------------------------------------------------ */
+/* index / policy list
+/* ------------------------------------------------------------ */
+.c_item {
+  background: white;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  margin: 5px;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+@media screen and (max-width: 440px){
+  .c_item {
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+  }
+}
+.c_title {
+  font-size: 22px;
+  font-weight: 600;
+}
