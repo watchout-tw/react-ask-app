@@ -1,9 +1,0 @@
-.menu {
-  float: right;
-}
-ul.candidates {
-  list-style-type: none;
-}
-ul.candidates li {
-  display: inline;
-}

@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 "use strict";
-require("../styles/index.css");
+require("../styles/doc.css");
+require("../styles/font-awesome.min.css");
+require("../styles/style.css");
 var React = require('react/addons');
 
 var {App} = require('../../src');
@@ -37,6 +39,6 @@ var questions = {
   };
 
 React.renderComponent(
-  <App questions={questions} />,
+  <App />,
   document.getElementById("react-root")
 );

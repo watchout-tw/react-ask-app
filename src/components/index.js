@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 "use strict";
-exports.Question = require("./Question");
-exports.QuestionMenu = require("./QuestionMenu");
+exports.Policy = require("./Policy");
+exports.PolicyBox = require("./PolicyBox");
+exports.PolicyList = require("./PolicyList");
+exports.Navigation = require("./Navigation");
 exports.QuestionList = require("./QuestionList");
-exports.CandidateList = require("./CandidateList");

@@ -1,9 +1,9 @@
 "use strict";
 var React = require("react/addons");
-var Question = require("./Question");
+var PolicyBox = require('./PolicyBox');
 
 module.exports = React.createClass({
-  displayName: "QuestionList",
+  displayName: "PolicyList",
 
   getInitialState () {
     return {
@@ -15,13 +15,15 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var {items} = props;
-    var result = items.map((item) => {
-      return <Question />;
+    var { data } = props;
+    var result = data.map( (p) => {
+      console.log(p);
+      return <PolicyBox item={p} />;
     });
-    return <div>
-      <div className='pa_totalq'>{'共有 37 題'}</div>
+    console.log(result);
+    return <div className='wrapper'>
       {result}
     </div>;
   }
+
 });
