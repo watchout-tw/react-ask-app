@@ -43,6 +43,16 @@ module.exports = React.createClass({
     });
   },
 
+  _handleDrop () {
+    this.setState({
+      hideComposer: !this.state.hideComposer,
+      new_question: {
+        title: null,
+        content: null
+      }
+    });
+  },
+
   _handleComposerChange (event) {
     var {target} = event;
     var {new_question} = this.state;
@@ -74,7 +84,10 @@ module.exports = React.createClass({
     var {questions} = state;
     var items = Object.keys(questions).map( (question)=> { return questions[question]; });
 
-    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer} _handleComposerChange={this._handleComposerChange} question={state.new_question}/>);
+    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer}
+                                                                 _handleComposerChange={this._handleComposerChange}
+                                                                 _handleDrop={this._handleDrop}
+                                                                 question={state.new_question}/>);
     return <div>
       <Navigation />
       <div id='content'>

@@ -512,11 +512,16 @@ a.nav_item_sidebar:hover {
   border: 0px;
   resize: none;
 }
-.ask_from_functions {
+.ask_form_functions {
   padding: 10px;
 }
-.ask_from_functions .button {
+.ask_form_functions .button {
   background: #2196F3;
+}
+.ask_form_functions .ask_form_trash {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
 }
 @media screen and (max-width: 600px){
   .ask_form {
