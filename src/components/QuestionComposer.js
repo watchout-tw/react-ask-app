@@ -45,8 +45,9 @@ module.exports = React.createClass({
       <div className='ask_form_content'>
         <textarea placeholder="問題說明：您可以在此進一步說明您的問題" value={content} onChange={props._handleComposerChange} />
       </div>
-      <div className="ask_from_functions">
+      <div className="ask_form_functions">
          <Button icon='fa-bullhorn' name=' 送出' _handleClick={this._handleCreateQuestion} />
+         <span className="ask_form_trash" onClick={props._handleDrop}><i className='fa fa-trash-o' ></i></span>
       </div>
     </div>;
   }
