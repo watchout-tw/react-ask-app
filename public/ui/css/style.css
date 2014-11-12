@@ -475,22 +475,13 @@ a.nav_item_sidebar:hover {
   right: 10px;
   bottom: 0px;
 }
-@media screen and (max-width: 600px){
-  .ask_form {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-  }
-}
+
 .ask_form_title {
   background: #2196F3;
   color: white;
   padding: 10px;
   box-sizing: border-box;
   font-weight: 700;
-
 }
 .ask_form_remove {
   position: absolute;
@@ -527,6 +518,39 @@ a.nav_item_sidebar:hover {
 }
 .ask_from_functions .button {
   background: #2196F3;
+}
+@media screen and (max-width: 600px){
+  .ask_form {
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    right: 0px;
+    overflow: hidden;
+    background: white;
+    position: fixed;
+
+  }
+  .ask_form_listitem input {
+    width: 100%;
+    border: 0;
+  }
+  .ask_form_subtitle {
+    display: block;
+  }
+  .ask_form_content textarea {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 0px;
+    resize: none;
+  }
+  .ask_from_functions {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: #EEEEEE;
+  }
 }
 /* ------------------------------------------------------------ */
 /* index
