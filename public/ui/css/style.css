@@ -296,11 +296,11 @@ a.button.facebook{
 }
 .p_seeall {
   margin-left: 10px;
-  color: #03A9F4;
+  color: #616161;
   cursor: pointer;
 }
 .p_seeall:hover {
-  border-bottom: 1px solid #03A9F4;
+
   opacity: 0.8;
   /* IE 8 */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
@@ -434,9 +434,11 @@ a.nav_item_sidebar:hover {
 }
 
 /* ------------------------------------------------------------ */
-/* compose
+/* compose / ask question
 /* ------------------------------------------------------------ */
+#policy {
 
+}
 .ask_item {
   background-color: #db4437;
   height: 56px;
@@ -450,13 +452,81 @@ a.nav_item_sidebar:hover {
   box-sizing: content-box;
   cursor: pointer;
   padding: 0;
-  z-index: 100;
+  z-index: 90;
   text-align: center;
+
+}
+.ask_item:hover {
+   box-shadow: 0 6px 6px rgba(0,0,0,.14),0 6px 16px rgba(0,0,0,.28);
+
 }
 .ask_icon {
   color: white;
   font-size: 30px;
   padding-top: 20px;
+}
+.ask_form {
+  box-shadow: 0 0 4px rgba(0,0,0,.28),0 4px 8px rgba(0,0,0,.28);
+  background: white;
+  width: 500px;
+  height: 80%;
+  z-index: 99;
+  position: fixed;
+  right: 10px;
+  bottom: 0px;
+}
+@media screen and (max-width: 600px){
+  .ask_form {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+}
+.ask_form_title {
+  background: #2196F3;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  font-weight: 700;
+
+}
+.ask_form_remove {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.ask_form_listitem {
+  padding: 10px;
+  border-bottom: 1px solid rgb(220,220,220);
+}
+.ask_form_subtitle {
+  color: #2196F3;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.ask_form_listitem input {
+  width: 400px;
+  border: 0;
+}
+.ask_form_content {
+  background: #EEEEEE;
+  height: 100%;
+}
+.ask_form_content textarea {
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+  border: 0px;
+  resize: none;
+}
+.ask_from_functions {
+  padding: 10px;
+}
+.ask_from_functions .button {
+  background: #2196F3;
 }
 /* ------------------------------------------------------------ */
 /* index

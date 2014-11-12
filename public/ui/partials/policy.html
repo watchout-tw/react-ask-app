@@ -3,15 +3,17 @@
 <div id="content" ng-click="resetFocus()">
 
 
-  <div class="wrapper">
-     <div class="md-whiteframe-z1 p_item" ng-if="policy" ng-click="$event.stopPropagation()">
+  <div class="wrapper" id="policy">
+
+      <!-- POLICY -->
+      <div class="md-whiteframe-z1 p_item" ng-if="policy" ng-click="$event.stopPropagation()">
           <div class="p_title" ng-click="togglePolicy()">
             {{policy.title}}
             <div class="p_actionicon l_inline" ng-if="!showPolicy()"><i class="fa fa-angle-double-down"></i></div>
             <div class="p_actionicon l_inline" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i></div>
 
           </div>
-          <div ng-class="{'p_preview':!showPolicy(),'p_preview_hide':showPolicy()}">{{policy.content | htmlToPlaintext| limitTo:200}}{{(policy.content | htmlToPlaintext).length>200?'...':''}}
+          <div ng-class="{'p_preview':!showPolicy(),'p_preview_hide':showPolicy()}">{{policy.content | htmlToPlaintext| limitTo:200}}{{(policy.content | htmlToPlaintext).length>200?'...':''}}<span class="p_seeall" ng-click="togglePolicy()">（繼續閱讀）</span>
           </div>
 
           <div ng-class="{'p_fullcontent_hide':!showPolicy()}">
@@ -19,8 +21,34 @@
 
           </div>
           <div class="l_center"><span class="p_seeall" ng-click="togglePolicy()" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i> 摺疊</span></div>
-     </div>
-     <div class="ask_item"><i class="fa fa-plus ask_icon"></i></div>
+      </div>
+
+      <!-- ASK QUESTION -->
+      <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
+
+      <!-- ASK QUESTION FORM -->
+      <div class="ask_form" ng-if="showAskQuestionForm">
+          <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i>  對連勝文的政策提問：
+              <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-times"></i></div>
+          </div>
+          <div class="ask_form_listitem"><span class="ask_form_subtitle">提問政策</span>{{policy.title}}</div>
+          <div class="ask_form_listitem">
+            <span class="ask_form_subtitle">問題簡述</span>
+            <input placeholder="請在此輸入簡短清楚的問題簡述">
+          </div>
+
+          <div class="ask_form_content">
+              <textarea placeholder="問題說明：您可以在此進一步說明您的問題"></textarea>
+              <div class="ask_from_functions">
+                <a class="button"><i class="fa fa-bullhorn"></i> 送出</a>
+              </div>
+          </div>
+
+      </div>
+
+
+
+
   </div>
 
 
