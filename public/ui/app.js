@@ -207,6 +207,7 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   };
   $scope.nextPolicy = function(){
+    console.log($scope.policyLength);
     var pid = parseInt($routeParams.pid)+1;
     if(pid > $scope.policyLength)
        pid = 1;
@@ -225,11 +226,13 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       $location.path(path);
   };
 
-  DataService.getData('parsed_questions').then(function(data){
+  DataService.getData('questions').then(function(data){
       $scope.questions = [];
-      $scope.questionsObj = data;
-      for(var key in data){
-          $scope.questions.push(data[key]);
+      var cid = $routeParams.cid;
+      var pid = $routeParams.pid;
+      $scope.questionsObj = data[cid][pid];
+      for(var key in $scope.questionsObj){
+          $scope.questions.push($scope.questionsObj[key]);
       }
   });
 
@@ -240,6 +243,7 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       if($routeParams.pid){
          if(validID.indexOf($routeParams.cid)!== -1){
             $scope.policy = data[cid];
+            $scope.policyLength = Object.keys(data[cid]).length;
             $scope.currentPolicy = data[cid][$routeParams.pid];
          }else{
            $location.path('/');
@@ -254,11 +258,7 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
     return $scope.focusQuestion === qid;
   };
 
-
-
   $scope.toggleQuestion = function(qid){
-
-
     if($scope.focusQuestion === qid){
         $scope.focusQuestion = false;
         $scope.focusQuestionTitle = null;
