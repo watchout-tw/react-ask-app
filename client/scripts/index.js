@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 "use strict";
 require("../styles/doc.css");
-require("../styles/font-awesome.min.css");
 require("../styles/style.css");
+require("../styles/font-awesome.min.css");
 var React = require('react/addons');
 
 var {App} = require('../../src');
@@ -38,7 +38,7 @@ var questions = {
     ]
   };
 
-React.renderComponent(
+React.render(
   <App />,
   document.getElementById("react-root")
 );

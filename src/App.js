@@ -1,19 +1,37 @@
 /** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
-var { PolicyList, Navigation, Policy, QuestionList } = require("./components");
+var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("./components");
 
 module.exports = React.createClass({
   displayName: "App",
 
   getInitialState () {
     return {
-      app: null
+      new_question: {
+        title: null,
+        content: null
+      },
+      hideComposer: true
     };
   },
 
-  _onMenuIconClick () {
+  _toggleComposer () {
+    this.setState({
+      hideComposer: !this.state.hideComposer
+    });
+  },
 
+  _handleComposerChange (event) {
+    var {target} = event;
+    var {new_question} = this.state;
+    if ( 'INPUT' === target.tagName) {
+      new_question.title = target.value;
+    }
+    if ( 'TEXTAREA' === target.tagName) {
+      new_question.content = target.value;
+    }
+    this.setState({ new_question });
   },
 
   render () {
@@ -47,11 +65,19 @@ module.exports = React.createClass({
         author: 'facebook:123123123'
       }
     ];
+    // var boundClick = this._handleClick.bind(this);
 
+    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer} _handleComposerChange={this._handleComposerChange} question={state.new_question}/>);
     return <div>
       <Navigation />
       <div id='content'>
-        <div className='wrapper'><Policy /></div>
+        <div className='wrapper' id='policy'>
+          <Policy />
+          <div className='ask_item' onClick={this._toggleComposer}>
+            <i className='fa fa-plus ask_icon'></i>
+          </div>
+          {composer}
+        </div>
         <div className='wrapper'><QuestionList items={items} /></div>
       </div>
     </div>;

@@ -28,12 +28,14 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = props;
     var result = items.map((item, index) => {
-      return <Question index={index}
+      return <Question key={index}
+                       index={index}
                        question={item} />;
     });
     return <div >
       <div className='pa_totalq'>{'共有 ' + items.length + ' 題'} </div>
       {result}
+
     </div>;
   }
 });

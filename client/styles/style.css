@@ -116,7 +116,8 @@ input{
   font-size: 16px;
   font-weight: 700;
 
-  padding-right: 60px;
+  /* padding-right: 60px; */
+  /* This only needed for functional buttons */
 
 }
 .q_function {
@@ -124,25 +125,28 @@ input{
 }
 .q_item:hover .q_function{
   display: inline-block;
-  position: absolute;
-  top:0px;
-  right: 10px;
-
   z-index: 99;
-
-  text-align: right;
-  height: 40px;
-  background: white;
-
-  box-sizing: border-box;
-
-  padding-top: 10px;
 
 }
 .q_order {
   font-weight: 500;
   width: 20px;
   margin-left: 10px;
+}
+.q_title_mobile_inner {
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  display: none;
+
+}
+@media screen and (max-width: 600px){
+  .q_order {
+    display: none;
+  }
+  .q_title_mobile_inner {
+    display: block;
+  }
 }
 .q_vote {
   width: 70px;
@@ -292,11 +296,11 @@ a.button.facebook{
 }
 .p_seeall {
   margin-left: 10px;
-  color: #03A9F4;
+  color: #616161;
   cursor: pointer;
 }
 .p_seeall:hover {
-  border-bottom: 1px solid #03A9F4;
+
   opacity: 0.8;
   /* IE 8 */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
@@ -350,4 +354,214 @@ a.button.facebook{
 .c_title {
   font-size: 22px;
   font-weight: 600;
+}
+/* ------------------------------------------------------------ */
+/* sidebar
+/* ------------------------------------------------------------ */
+
+#sidebar-container{
+  z-index: 400;
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  background: white;
+  position: absolute;
+  text-align: center;
+}
+#sidebar-container.show{
+  top: 50px;
+  height: 100%;
+
+}
+a.nav_item_sidebar {
+  display: block;
+  padding: 10px;
+  color: #009688;
+  border-bottom: 1px solid rgb(240,240,240);
+
+}
+a.nav_item_sidebar:hover {
+  background: rgb(220,220,220);
+}
+
+
+/* Stroke */
+.tri-up:before {
+  top: 43px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  }
+/* Fill */
+.tri-up:after {
+  top: 42px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+.nav_list_toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 14px;
+  right: 20px;
+}
+@media screen and (min-width: 600px){
+  .nav_list_toggle {
+    left: 20px;
+  }
+  #sidebar-container{
+    z-index: 99;
+    width: 300px;
+    height: 100%;
+    background: white;
+    position: absolute;
+    top: 50px;
+    left: -300px;
+    box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+    text-align: left;
+
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  #sidebar-container.show{
+    top: 50px;
+    left:0px;
+    overflow: auto;
+
+  }
+
+}
+
+/* ------------------------------------------------------------ */
+/* compose / ask question
+/* ------------------------------------------------------------ */
+#policy {
+
+}
+.ask_item {
+  background-color: #db4437;
+  height: 56px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 56px;
+
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  box-sizing: content-box;
+  cursor: pointer;
+  padding: 0;
+  z-index: 90;
+  text-align: center;
+
+}
+.ask_item:hover {
+   box-shadow: 0 6px 6px rgba(0,0,0,.14),0 6px 16px rgba(0,0,0,.28);
+
+}
+.ask_icon {
+  color: white;
+  font-size: 30px;
+  padding-top: 20px;
+}
+.ask_form {
+  box-shadow: 0 0 4px rgba(0,0,0,.28),0 4px 8px rgba(0,0,0,.28);
+  background: white;
+  width: 500px;
+  height: 80%;
+  z-index: 99;
+  position: fixed;
+  right: 10px;
+  bottom: 0px;
+}
+
+.ask_form_title {
+  background: #2196F3;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  font-weight: 700;
+}
+.ask_form_remove {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.ask_form_listitem {
+  padding: 10px;
+  border-bottom: 1px solid rgb(220,220,220);
+}
+.ask_form_subtitle {
+  color: #2196F3;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.ask_form_listitem input {
+  width: 400px;
+  border: 0;
+}
+.ask_form_content {
+  background: #EEEEEE;
+  height: 100%;
+}
+.ask_form_content textarea {
+  width: 100%;
+  height: 300px;
+  padding: 10px;
+  border: 0px;
+  resize: none;
+}
+.ask_from_functions {
+  padding: 10px;
+}
+.ask_from_functions .button {
+  background: #2196F3;
+}
+@media screen and (max-width: 600px){
+  .ask_form {
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    right: 0px;
+    overflow: hidden;
+    background: white;
+    position: fixed;
+
+  }
+  .ask_form_listitem input {
+    width: 100%;
+    border: 0;
+  }
+  .ask_form_subtitle {
+    display: block;
+  }
+  .ask_form_content textarea {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 0px;
+    resize: none;
+  }
+  .ask_from_functions {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: #EEEEEE;
+  }
+}
+/* ------------------------------------------------------------ */
+/* index
+/* ------------------------------------------------------------ */
+.index_cover {
+  width: 100%;
+}
+.color_yellow {
+  background: #FFEB3B;
+}
+.index_title {
+  font-size: 20px;
+  font-weight: 700;
 }
