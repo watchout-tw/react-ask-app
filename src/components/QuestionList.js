@@ -11,13 +11,11 @@ module.exports = React.createClass({
     };
   },
 
-  _handleClick (event) {
-    var {target} = event;
-    var index =  Array.prototype.indexOf.call(target.parentNode.children, target);
-    if (this.state.selectedIndex !== index) {
-      this.setState({selectedIndex: index});
+  _handleClick (i, event) {
+    if (i !== this.state.selectedIndex) {
+      this.setState({ selectedIndex: i });
     } else {
-      this.setState({selectedIndex: -1});
+      this.setState({ selectedIndex: -1 });
     }
   },
 
@@ -28,11 +26,18 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = props;
     var result = items.map((item, index) => {
+      var boundClick = this._handleClick.bind(this, index);
       var selected = (index === state.selectedIndex)? true: false;
-      return <Question selected={selected} />;
+      return <Question key={item.id}
+                       selected={selected}
+                       index={index}
+                       _handleClick={boundClick}
+                       question={item} />;
     });
-    return <div onClick={this._handleClick}>
+    return <div >
+      <div className='pa_totalq'>{'共有 ' + items.length + ' 題'} </div>
       {result}
+
     </div>;
   }
 });
