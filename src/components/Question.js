@@ -15,19 +15,13 @@ module.exports = React.createClass({
     };
   },
 
-  // shouldComponentUpdate (nextProps, nextState) {
-  //   return (JSON.stringify(nextProps) !== JSON.stringify(this.props));
-  // },
+  shouldComponentUpdate (nextProps, nextState) {
+    return (JSON.stringify(nextState) !== JSON.stringify(this.state));
+  },
 
-  // componentWillReceiveProps (nextProps) {
-  //   var {selected} = nextProps;
-  //   this.setState({ hideContent: !selected });
-  // },
-
-  _handleClick (event) {
-    this.setState({
-      hideContent: !this.state.hideContent
-    });
+  componentWillReceiveProps (nextProps) {
+    var {selected} = nextProps;
+    this.setState({ hideContent: !selected });
   },
 
   _handleSignClick (event) {
@@ -70,7 +64,7 @@ module.exports = React.createClass({
     var toggleIcon = (state.hideContent)? 'fa fa-angle-double-down': 'fa fa-angle-double-up';
 
     return <div className={itemClass}>
-      <div className={titleClass} onClick={this._handleClick}>
+      <div className={titleClass} onClick={props._handleClick}>
         <div className='q_order l_inline'>{index + 1}</div>
         <div className='q_vote l_inline'>{signatures.length}</div>
         {title}

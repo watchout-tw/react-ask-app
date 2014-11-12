@@ -11,14 +11,12 @@ module.exports = React.createClass({
     };
   },
 
-  _findNode(node, className) {
-    while (node.parentNode) {
-      node = node.parentNode;
-      if(node.className.match(className)) {
-        return node;
-      }
+  _handleClick (i, event) {
+    if (i !== this.state.selectedIndex) {
+      this.setState({ selectedIndex: i });
+    } else {
+      this.setState({ selectedIndex: -1 });
     }
-    return null;
   },
 
   render () {
@@ -28,8 +26,12 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = props;
     var result = items.map((item, index) => {
-      return <Question key={index}
+      var boundClick = this._handleClick.bind(this, index);
+      var selected = (index === state.selectedIndex)? true: false;
+      return <Question key={item.id}
+                       selected={selected}
                        index={index}
+                       _handleClick={boundClick}
                        question={item} />;
     });
     return <div >
