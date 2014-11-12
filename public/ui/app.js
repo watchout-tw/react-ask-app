@@ -181,6 +181,11 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
 
+  $scope.toogleAskQuestionForm = function(){
+      $scope.showAskQuestionForm = !$scope.showAskQuestionForm;
+  };
+
+
 
 }]);
 
