@@ -7,8 +7,18 @@ module.exports = React.createClass({
 
   getInitialState () {
     return {
-      showIndex: -1
+      selectedIndex: -1
     };
+  },
+
+  _handleClick (event) {
+    var {target} = event;
+    var index =  Array.prototype.indexOf.call(target.parentNode.children, target);
+    if (this.state.selectedIndex !== index) {
+      this.setState({selectedIndex: index});
+    } else {
+      this.setState({selectedIndex: -1});
+    }
   },
 
   render () {
@@ -18,10 +28,10 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = props;
     var result = items.map((item, index) => {
-      return <Question />;
+      var selected = (index === state.selectedIndex)? true: false;
+      return <Question selected={selected} />;
     });
-    return <div>
-      <div className='pa_totalq'>{'共有 37 題'}</div>
+    return <div onClick={this._handleClick}>
       {result}
     </div>;
   }
