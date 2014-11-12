@@ -27,9 +27,11 @@
     "url-loader": "^0.5.5"
   },
   "dependencies": {
+    "events": "^1.0.2",
     "express": "^4.10.2",
     "flux": "^2.0.1",
     "moment": "^2.8.3",
+    "object-assign": "^1.0.0",
     "react": "^0.12.0"
   }
 }
