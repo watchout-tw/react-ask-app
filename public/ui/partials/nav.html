@@ -11,6 +11,19 @@
 
   <div class="tri-up" ng-show="sidebar"></div>
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
+  <div class="nav_list_function">
+
+    <div class="nav_list_function_item l_inline" ng-click="toggleCandidateMenu()" >
+        <div class="nav_list_function_item_select"><i class="fa fa-cog"></i> 候選人</div>
+
+        <div class="nav_list_function_item_inner" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}" ng-repeat="c in candidates"><img src="images/candidates_avatar/{{c.id}}.jpg" ng-click="chooseCandidate(c.id)"></div>
+    </div>
+    <div class="nav_list_function_item l_inline">
+        <div class="nav_list_function_item_select"><i class="fa fa-user"></i> 登入</div>
+    </div>
+
+
+  </div>
   <!-- <input class="fs" ng-model="query"><i class="fa fa-search"></i>-->
 </header>
 

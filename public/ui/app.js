@@ -87,8 +87,20 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       }else{
           $scope.sidebar = value;
       }
-
   }
+
+  $scope.toggleCandidateMenu = function(){
+    $scope.showCandidateMenu = !$scope.showCandidateMenu;
+  };
+
+  DataService.getData('candidate').then(function(data){
+      $scope.candidates = data;
+  });
+  $scope.chooseCandidate = function(cid){
+     $location.path('/policy/'+cid);
+  };
+
+
 
 
 }]);
