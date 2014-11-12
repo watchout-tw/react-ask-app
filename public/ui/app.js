@@ -80,9 +80,6 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       $("body").scrollTop(0);
       $location.path(path);
   };
-  DataService.getData('policy').then(function(data){
-      $scope.policy = data;
-  });
 
   $scope.showsidebar = function(value){
       if(value === 'toggle'){
@@ -115,7 +112,15 @@ app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '
 
 
   DataService.getData('policy').then(function(data){
-      $scope.policy = data;
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+      if(validID.indexOf($routeParams.cid)!== -1){
+        $scope.policy = data[cid];
+      }else{
+        $location.path('/');
+      }
+
   });
 
 
@@ -156,9 +161,6 @@ app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '
 
 app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
 
-  DataService.getData('parsed_issues').then(function(data){
-      $scope.issues = data;
-  });
 
   DataService.getData('candidate').then(function(data){
       var validID = ["5","6","7"];
@@ -208,12 +210,19 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       }
   });
 
-
   DataService.getData('policy').then(function(data){
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
       if($routeParams.pid){
-          $scope.policyLength = Object.keys(data).length;
-          $scope.policy = data[$routeParams.pid];
+         if(validID.indexOf($routeParams.cid)!== -1){
+            $scope.policy = data[cid];
+            $scope.currentPolicy = data[cid][$routeParams.pid];
+         }else{
+           $location.path('/');
+         }
       }
+
   });
 
 

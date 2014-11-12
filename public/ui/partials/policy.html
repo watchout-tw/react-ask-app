@@ -13,16 +13,16 @@
       <!-- POLICY -->
       <div class="md-whiteframe-z1 p_item" ng-if="policy" ng-click="$event.stopPropagation()">
           <div class="p_title" ng-click="togglePolicy()">
-            {{policy.title}}
+            {{currentPolicy.title}}
             <div class="p_actionicon l_inline" ng-if="!showPolicy()"><i class="fa fa-angle-double-down"></i></div>
             <div class="p_actionicon l_inline" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i></div>
 
           </div>
-          <div ng-class="{'p_preview':!showPolicy(),'p_preview_hide':showPolicy()}">{{policy.content | htmlToPlaintext| limitTo:200}}{{(policy.content | htmlToPlaintext).length>200?'...':''}}<span class="p_seeall" ng-click="togglePolicy()">（繼續閱讀）</span>
+          <div ng-class="{'p_preview':!showPolicy(),'p_preview_hide':showPolicy()}">{{currentPolicy.content | htmlToPlaintext| limitTo:200}}{{(currentPolicy.content | htmlToPlaintext).length>200?'...':''}}<span class="p_seeall" ng-click="togglePolicy()">（繼續閱讀）</span>
           </div>
 
           <div ng-class="{'p_fullcontent_hide':!showPolicy()}">
-              <div ng-bind-html="toTrusted(policy.content)"></div>
+              <div ng-bind-html="toTrusted(currentPolicy.content)"></div>
 
           </div>
           <div class="l_center"><span class="p_seeall" ng-click="togglePolicy()" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i> 摺疊</span></div>
