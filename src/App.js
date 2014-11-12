@@ -2,6 +2,7 @@
 "use strict";
 var React = require("react/addons");
 var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("./components");
+var QuestionStore = require("./stores/QuestionStore");
 
 module.exports = React.createClass({
   displayName: "App",
@@ -12,8 +13,28 @@ module.exports = React.createClass({
         title: null,
         content: null
       },
+      questions: QuestionStore.getAll(),
       hideComposer: true
     };
+  },
+
+  componentDidMount () {
+    QuestionStore.addChangeListener(this._onChange);
+    // console.log(this.state);
+  },
+
+  componentWillUnmount () {
+    QuestionStore.addChangeListener(this._onChange);
+  },
+
+  _onChange () {
+    this.setState({
+      questions: QuestionStore.getAll(),
+      new_question: {
+        title: null,
+        content: null
+      }
+    });
   },
 
   _toggleComposer () {
@@ -49,25 +70,9 @@ module.exports = React.createClass({
         title: '推動「台北安居」＆「創藝飛翔」計畫 讓原民在北市快樂生活'
       }
     ];
-    var items = [
-       {
-        id: 1,
-        title: '你如何理解年輕人在台北市工作生活的巨大經濟壓力感?',
-        content: '台北市淪為富豪炒房天堂, 每個認真的年輕人的經濟地獄,請問您的看法與解決方案',
-        signatures: ['facebook:1123','facebook:11221312313'],
-        createdAt: 1415774421035,
-        author: 'facebook:123123123'
-      },
-      {
-        id: 2,
-        title: '您是否願意公開所有競選的收入以及支出提供民眾檢視？',
-        content: '選舉經費來源以及支出往往後續造成選後的貪腐以及酬庸。您是否願意將選舉相關財務，無論是收入或是支出部分接受民眾公開檢視？',
-        signatures: ['facebook:1123','facebook:11221312313'],
-        createdAt: 1415774421035,
-        author: 'facebook:123123123'
-      }
-    ];
-    // var boundClick = this._handleClick.bind(this);
+
+    var {questions} = state;
+    var items = Object.keys(questions).map( (question)=> { return questions[question]; });
 
     var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer} _handleComposerChange={this._handleComposerChange} question={state.new_question}/>);
     return <div>
