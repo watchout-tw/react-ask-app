@@ -1,0 +1,21 @@
+<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
+
+<!-- LEFT & RIGHT BUTTON -->
+<div class="page_button page_left" ng-click="previousCandidate()"><i class="fa fa-chevron-left"></i></div>
+<div class="page_button page_right" ng-click="nextCandidate()"><i class="fa fa-chevron-right"></i></div>
+<!-- . . . . . . . . . . . . -->
+
+
+<div id="content">
+
+<div class="wrapper">
+    <div><h2>{{candidate.name}}的政見</h2></div>
+    <div ng-repeat="p in policy" class="md-whiteframe-z1 c_item l_inline v_top" ng-click="go('policy/'+candidate.id+'/'+p.id)">
+        <div class="c_indexTitle">{{p.indexTitle}}</div>
+        <div class="c_title">{{p.title}}</div>
+
+    </div>
+
+
+</div>
+</div>

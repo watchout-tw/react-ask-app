@@ -1,10 +1,15 @@
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
+<!-- LEFT & RIGHT BUTTON -->
+<div class="page_button page_left" ng-click="previousPolicy()"><i class="fa fa-chevron-left"></i></div>
+<div class="page_button page_right" ng-click="nextPolicy()"><i class="fa fa-chevron-right"></i></div>
+<!-- . . . . . . . . . . . . -->
+
 <div id="content" ng-click="resetFocus()">
 
 
   <div class="wrapper" id="policy">
-
+      <div><h2>{{candidate.name}}的政見</h2></div>
       <!-- POLICY -->
       <div class="md-whiteframe-z1 p_item" ng-if="policy" ng-click="$event.stopPropagation()">
           <div class="p_title" ng-click="togglePolicy()">
@@ -28,7 +33,7 @@
 
       <!-- ASK QUESTION FORM -->
       <div class="ask_form" ng-if="showAskQuestionForm">
-          <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i>  對連勝文的政策提問：
+          <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}的政策提問：
               <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-times"></i></div>
           </div>
           <div class="ask_form_listitem"><span class="ask_form_subtitle">提問政策</span>{{policy.title}}</div>

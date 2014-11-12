@@ -35,9 +35,13 @@ app.directive('errSrc', function() {
 app.config(['$routeProvider','$locationProvider',
   function($routeProvider,$locationProvider){
     $routeProvider.
-      when('/policy/:pid',{
+      when('/policy/:cid/:pid',{
       templateUrl: 'partials/policy.html',
       controller: 'PolicyCtrl'
+    }).
+      when('/policy/:cid',{
+      templateUrl: 'partials/candidate.html',
+      controller: 'CandidateCtrl'
     }).
       otherwise({
       redirectTo:'/',
@@ -79,6 +83,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
   DataService.getData('policy').then(function(data){
       $scope.policy = data;
   });
+
   $scope.showsidebar = function(value){
       if(value === 'toggle'){
           $scope.sidebar = !$scope.sidebar;
@@ -96,11 +101,55 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $("body").scrollTop(0);
       $location.path(path);
   };
+  DataService.getData('candidate').then(function(data){
+      $scope.candidate = data;
+  });
+
+}]);
+app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
+
+  $scope.go = function(path){
+      $("body").scrollTop(0);
+      $location.path(path);
+  };
 
 
   DataService.getData('policy').then(function(data){
       $scope.policy = data;
   });
+
+
+  DataService.getData('candidate').then(function(data){
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+      if(validID.indexOf($routeParams.cid)!== -1){
+        $scope.candidate = data[cid];
+      }else{
+        $location.path('/');
+      }
+
+  });
+
+
+  $scope.previousCandidate = function(){
+    //console.log("pre"+$routeParams.cid);
+    var cid = parseInt($routeParams.cid)-1;
+    if(cid < 5)
+       cid = (cid % 3) + 6;
+    $location.path('/policy/'+cid);
+
+  };
+  $scope.nextCandidate = function(){
+    //console.log("next"+$routeParams.cid);
+    var cid = parseInt($routeParams.cid)+1;
+
+    if(cid > 7)
+       cid = (cid % 3) + 3;
+
+    $location.path('/policy/'+cid);
+
+  };
 
 
 }]);
@@ -110,6 +159,36 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   DataService.getData('parsed_issues').then(function(data){
       $scope.issues = data;
   });
+
+  DataService.getData('candidate').then(function(data){
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+      if(validID.indexOf($routeParams.cid)!== -1){
+        $scope.candidate = data[cid];
+
+      }else{
+        $location.path('/');
+      }
+
+  });
+
+  $scope.previousPolicy = function(){
+    var pid = parseInt($routeParams.pid)-1;
+    if(pid < 1)
+       pid = $scope.policyLength;
+
+    $location.path('/policy/'+$routeParams.cid+'/'+pid);
+
+  };
+  $scope.nextPolicy = function(){
+    var pid = parseInt($routeParams.pid)+1;
+    if(pid > $scope.policyLength)
+       pid = 1;
+
+    $location.path('/policy/'+$routeParams.cid+'/'+pid);
+
+  };
 
   $scope.candidateFilter = function(n){
       if(n.state === 'responded')
@@ -128,12 +207,11 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
           $scope.questions.push(data[key]);
       }
   });
-  DataService.getData('parsed_candidates').then(function(data){
-      $scope.candidates = data;
-  });
+
 
   DataService.getData('policy').then(function(data){
       if($routeParams.pid){
+          $scope.policyLength = Object.keys(data).length;
           $scope.policy = data[$routeParams.pid];
       }
   });
