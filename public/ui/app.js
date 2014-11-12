@@ -92,6 +92,17 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
   $scope.toggleCandidateMenu = function(){
     $scope.showCandidateMenu = !$scope.showCandidateMenu;
   };
+  $scope.toggleUserMenu = function(){
+    $scope.showUserMenu = !$scope.showUserMenu;
+
+  };
+  $scope.login = function(){
+    $scope.user = {"name" : "username"};
+
+  };
+  $scope.logout = function(){
+    $scope.user = null;
+  };
 
   DataService.getData('candidate').then(function(data){
       $scope.candidates = data;

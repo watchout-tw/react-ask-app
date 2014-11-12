@@ -384,7 +384,18 @@ a.nav_item_sidebar:hover {
   background: rgb(220,220,220);
 }
 
-
+/* Required for Triangle */
+.tri-up:before, .tri-up:after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom: 0;
+  z-index: 420;
+}
 /* Stroke */
 .tri-up:before {
   top: 43px;
@@ -449,10 +460,23 @@ a.nav_item_sidebar:hover {
 .nav_list_function_item_inner {
   margin-left: 25px;
   margin-top: 5px;
-
+  color: black;
   transition-property: all;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.nav_list_function_item_tooltip {
+  height: 40px;
+  color: black;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  background: white;
+  box-shadow: 0 0 4px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.16);
 }
 .nav_list_function_item_inner img {
   border-radius: 100%;
@@ -461,6 +485,9 @@ a.nav_item_sidebar:hover {
   cursor: pointer;
   box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
 
+}
+.nav_list_function_item_inner:hover img {
+  box-shadow: 0 4px 10px rgba(0,0,0,.16),0 8px 14px rgba(0,0,0,.32);
 }
 .nav_list_function_item_select {
   cursor: pointer;
@@ -472,9 +499,7 @@ a.nav_item_sidebar:hover {
 /* ------------------------------------------------------------ */
 /* compose / ask question
 /* ------------------------------------------------------------ */
-#policy {
 
-}
 .ask_item {
   background-color: #db4437;
   height: 56px;
@@ -538,7 +563,6 @@ a.nav_item_sidebar:hover {
   border: 0;
 }
 .ask_form_content {
-  background: #EEEEEE;
   height: 100%;
 
 }
@@ -582,12 +606,12 @@ a.nav_item_sidebar:hover {
     border: 0px;
     resize: none;
   }
-  .ask_from_functions {
+  .ask_form_functions {
     position: absolute;
     bottom: 0px;
     left: 0px;
     width: 100%;
-    background: #EEEEEE;
+
   }
 }
 /* ------------------------------------------------------------ */
