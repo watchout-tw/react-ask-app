@@ -31,8 +31,8 @@ module.exports = React.createClass({
       return <Question key={item.id}
                        selected={selected}
                        index={index}
-                       _handleClick={boundClick}
-                       question={item} />;
+                       qid={item.id}
+                       _handleClick={boundClick} />;
     });
     return <div >
       <div className='pa_totalq'>{'共有 ' + items.length + ' 題'} </div>
