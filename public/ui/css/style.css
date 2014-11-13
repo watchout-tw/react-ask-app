@@ -558,6 +558,20 @@ a.nav_item_sidebar:hover {
 /* ------------------------------------------------------------ */
 /* compose / ask question
 /* ------------------------------------------------------------ */
+.ask_prompt {
+  background: #212121;
+  color: white;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  padding: 10px;
+  
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  box-sizing: content-box;
+  z-index: 90;
+  text-align: center;
+
+}
 
 .ask_item {
   background-color: #db4437;
@@ -578,13 +592,13 @@ a.nav_item_sidebar:hover {
 }
 .ask_item:hover {
    box-shadow: 0 6px 6px rgba(0,0,0,.14),0 6px 16px rgba(0,0,0,.28);
-
 }
 .ask_icon {
   color: white;
   font-size: 30px;
   padding-top: 20px;
 }
+
 .ask_form {
   box-shadow: 0 0 4px rgba(0,0,0,.28),0 4px 8px rgba(0,0,0,.28);
   background: white;

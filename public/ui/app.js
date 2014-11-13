@@ -77,7 +77,16 @@ app.factory('DataService', function ($http, $q){
   return DataService;
 })
 
+app.controller('AuthCtrl',['$scope', function($scope){
+  $scope.login = function(){
+    $scope.user = {"name" : "username tool ongcanno tshowall"};
 
+  };
+  $scope.logout = function(){
+    $scope.user = null;
+  };
+
+}]);
 app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
 
   $scope.go = function(path){
@@ -100,13 +109,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
     $scope.showUserMenu = !$scope.showUserMenu;
 
   };
-  $scope.login = function(){
-    $scope.user = {"name" : "username tool ongcanno tshowall"};
-
-  };
-  $scope.logout = function(){
-    $scope.user = null;
-  };
+  
 
   DataService.getData('candidate').then(function(data){
       $scope.candidates = data;

@@ -1,3 +1,4 @@
+<div ng-controller="AuthCtrl">
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
 <!-- LEFT & RIGHT BUTTON -->
@@ -29,7 +30,9 @@
       </div>
 
       <!-- ASK QUESTION -->
-      <div class="ask_item" ng-click="toogleAskQuestionForm()"><i class="fa fa-plus ask_icon"></i></div>
+      <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user"><i class="fa fa-plus ask_icon"></i></div>
+
+      <div class="ask_prompt" ng-if="!user">登入後即可對政策提問</div>
 
       <!-- ASK QUESTION FORM -->
       <div class="ask_form" ng-if="showAskQuestionForm">
@@ -97,5 +100,6 @@
 
 
 
+</div>
 </div>
 </div>
