@@ -513,8 +513,37 @@ a.nav_item_sidebar:hover {
   text-overflow: ellipsis;
 
 }
-@media screen and (max-width: 400px){
+@media screen and (max-width: 500px){
   #candidateTopMenu {
+     display: none;
+  }
+}
+.nav_search {
+  position: absolute;
+  width: 100%;
+  padding-left: 260px;
+  padding-right: 300px;
+  text-decoration: center;
+  pointer-events: none;
+}
+.nav_search_inner {
+  width: 100%;
+  position: relative;
+}
+.nav_search_inner input {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  padding-left: 30px;
+  pointer-events: auto;
+}
+.nav_search_inner i{
+  position: absolute;
+  left: 10px;
+  top:10px;
+}
+@media screen and (max-width: 500px){
+  .nav_search {
      display: none;
   }
 }
