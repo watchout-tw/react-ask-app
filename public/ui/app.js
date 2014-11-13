@@ -143,7 +143,7 @@ app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '
       var cid = $routeParams.cid;
 
       if(validID.indexOf($routeParams.cid)!== -1){
-        $scope.policy = data[cid];
+        $scope.policy = Object.keys(data[cid]).map(function(o){ return data[cid][o];});
       }else{
         $location.path('/');
       }
