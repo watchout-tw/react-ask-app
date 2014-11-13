@@ -1,6 +1,7 @@
 "use strict";
 var React = require("react/addons");
 var PolicyBox = require('./PolicyBox');
+var {Link} = require("react-router");
 
 module.exports = React.createClass({
   displayName: "PolicyList",
@@ -17,13 +18,11 @@ module.exports = React.createClass({
   _render (props, state) {
     var { data } = props;
     var result = data.map( (p) => {
-      console.log(p);
-      return <PolicyBox item={p} />;
+      return <Link to="policy" params={{candidateId: 5, policyId: 1}} className='policy' >
+        <PolicyBox item={p} />
+      </Link>;
     });
-    console.log(result);
-    return <div className='wrapper'>
-      {result}
-    </div>;
+    return <span>{result}</span>;
   }
 
 });

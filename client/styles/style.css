@@ -40,20 +40,19 @@ a {
   }
 }
 .page_wrapper {
-   background: white;
+  background: white;
+  height: 100%;
 }
 .wrapper {
   padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 15px;
   padding:8px;
   box-sizing: border-box;
   position: relative;
   background: rgb(236,236,236);
 
 }
-
 #content {
 	margin-top: 50px;
 }
@@ -74,6 +73,9 @@ header {
   box-sizing: border-box;
   padding: 6px;
 
+}
+header a {
+  color: white;
 }
 .fs {
   background: #4DB6AC;
@@ -334,6 +336,9 @@ a.button.facebook{
 /* ------------------------------------------------------------ */
 /* index / policy list
 /* ------------------------------------------------------------ */
+.policy {
+  color: black;
+}
 .c_item {
   background: white;
   width: 200px;
@@ -384,7 +389,18 @@ a.nav_item_sidebar:hover {
   background: rgb(220,220,220);
 }
 
-
+/* Required for Triangle */
+.tri-up:before, .tri-up:after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom: 0;
+  z-index: 420;
+}
 /* Stroke */
 .tri-up:before {
   top: 43px;
@@ -403,12 +419,17 @@ a.nav_item_sidebar:hover {
   position: absolute;
   cursor: pointer;
   top: 14px;
-  right: 20px;
+  left: 20px;
+}
+.nav_list_logo {
+  position: absolute;
+  cursor: pointer;
+  top: 14px;
+  left: 60px;
+  font-weight: 700;
 }
 @media screen and (min-width: 600px){
-  .nav_list_toggle {
-    left: 20px;
-  }
+
   #sidebar-container{
     z-index: 99;
     width: 300px;
@@ -432,13 +453,65 @@ a.nav_item_sidebar:hover {
   }
 
 }
+.nav_list_function {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+
+}
+.nav_list_function_item {
+  height: 50px;
+  box-sizing: border-box;
+  vertical-align: top;
+
+}
+.nav_list_function_item_hide {
+  height: 80%;
+  opacity: 0;
+}
+.nav_list_function_item_inner {
+  margin-left: 25px;
+  margin-top: 5px;
+  color: black;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.nav_list_function_item_tooltip {
+  height: 40px;
+  color: black;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  background: white;
+  box-shadow: 0 0 4px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.16);
+}
+.nav_list_function_item_inner img {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+
+}
+.nav_list_function_item_inner:hover img {
+  box-shadow: 0 4px 10px rgba(0,0,0,.16),0 8px 14px rgba(0,0,0,.32);
+}
+.nav_list_function_item_select {
+  cursor: pointer;
+  padding: 15px 15px;
+  height: 50px;
+
+}
 
 /* ------------------------------------------------------------ */
 /* compose / ask question
 /* ------------------------------------------------------------ */
-#policy {
 
-}
 .ask_item {
   background-color: #db4437;
   height: 56px;
@@ -473,8 +546,8 @@ a.nav_item_sidebar:hover {
   position: fixed;
   right: 10px;
   bottom: 0px;
-}
 
+}
 .ask_form_title {
   background: #2196F3;
   color: white;
@@ -502,18 +575,20 @@ a.nav_item_sidebar:hover {
   border: 0;
 }
 .ask_form_content {
-  background: #EEEEEE;
   height: 100%;
+
 }
 .ask_form_content textarea {
   width: 100%;
-  height: 300px;
+  min-height: 280px;
   padding: 10px;
   border: 0px;
   resize: none;
+  box-sizing: border-box;
 }
 .ask_form_functions {
   padding: 10px;
+
 }
 .ask_form_functions .button {
   background: #2196F3;
@@ -548,12 +623,12 @@ a.nav_item_sidebar:hover {
     border: 0px;
     resize: none;
   }
-  .ask_from_functions {
-    position: fixed;
+  .ask_form_functions {
+    position: absolute;
     bottom: 0px;
     left: 0px;
     width: 100%;
-    background: #EEEEEE;
+
   }
 }
 /* ------------------------------------------------------------ */
@@ -565,7 +640,33 @@ a.nav_item_sidebar:hover {
 .color_yellow {
   background: #FFEB3B;
 }
+.color_white {
+  background: white;
+}
 .index_title {
   font-size: 20px;
   font-weight: 700;
+}
+.index_c_item {
+  background: white;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+/* ------------------------------------------------------------ */
+/* page button left & right
+/* ------------------------------------------------------------ */
+.page_button {
+  cursor: pointer;
+  position: fixed;
+  top: 48%;
+  font-size: 30px;
+  /* z-index: 99; if mobile*/
+}
+.page_right {
+  right: 10px;
+}
+.page_left {
+  left: 10px;
 }
