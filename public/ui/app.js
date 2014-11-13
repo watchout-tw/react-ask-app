@@ -262,11 +262,11 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   $scope.toggleQuestion = function(qid){
     if($scope.focusQuestion === qid){
         $scope.focusQuestion = false;
-        $scope.focusQuestionTitle = null;
+        //$scope.focusQuestionTitle = null;
 
     }else{
         $scope.focusQuestion = qid;
-        $scope.focusQuestionTitle = $scope.questionsObj[qid].title;
+        //$scope.focusQuestionTitle = $scope.questionsObj[qid].title;
     }
 
   };
@@ -284,16 +284,20 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   };
 
   $scope.resetFocus = function(){
-      console.log("RESET");
-
+      //console.log("RESET");
       $scope.policyShowState = false;
       $scope.focusQuestion = false;
-      $scope.focusQuestionTitle = null;
+      
   };
 
 
   $scope.toogleAskQuestionForm = function(){
+      if(!$scope.liveAskQuestionForm)
+         $scope.liveAskQuestionForm = true;
       $scope.showAskQuestionForm = !$scope.showAskQuestionForm;
+  };
+  $scope.deleteAskQuestionForm = function(){
+      $scope.liveAskQuestionForm = false;
   };
 
 }]);

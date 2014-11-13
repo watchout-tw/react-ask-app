@@ -609,6 +609,9 @@ a.nav_item_sidebar:hover {
   bottom: 0px;
 
 }
+.ask_form_minimize {
+  height: 40px;
+}
 .ask_form_title {
   background: #2196F3;
   color: white;

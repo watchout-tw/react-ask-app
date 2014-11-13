@@ -30,16 +30,16 @@
       </div>
 
       <!-- ASK QUESTION -->
-      <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user"><i class="fa fa-plus ask_icon"></i></div>
+      <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user&&!liveAskQuestionForm"><i class="fa fa-plus ask_icon"></i></div>
 
       <div class="ask_prompt" ng-if="!user">登入後即可對政策提問</div>
 
       <!-- ASK QUESTION FORM -->
-      <div class="ask_form" ng-if="showAskQuestionForm">
+      <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="liveAskQuestionForm">
           <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}的政策提問：
-              <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-times"></i></div>
+              <div class="ask_form_remove" ng-click="toogleAskQuestionForm()"><i class="fa fa-minus"></i></div>
           </div>
-          <div class="ask_form_listitem"><span class="ask_form_subtitle">提問政策</span>{{policy.title}}</div>
+          <div class="ask_form_listitem"><span class="ask_form_subtitle">提問政策</span>{{currentPolicy.title}}</div>
           <div class="ask_form_listitem">
             <span class="ask_form_subtitle">問題簡述</span>
             <input placeholder="請在此輸入簡短清楚的問題簡述">
@@ -49,7 +49,7 @@
               <textarea placeholder="問題說明：您可以在此進一步說明您的問題"></textarea>
               <div class="ask_form_functions">
                 <a class="button"><i class="fa fa-bullhorn"></i> 送出</a>
-                <span class="ask_form_trash"><i class='fa fa-trash-o'></i></span>
+                <span class="ask_form_trash" ng-click="deleteAskQuestionForm()"><i class='fa fa-trash-o'></i></span>
               </div>
 
 
