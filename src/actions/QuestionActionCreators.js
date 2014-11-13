@@ -12,11 +12,10 @@ module.exports = {
     });
   },
 
-  signQuestion (questionId, signer) {
+  signQuestion (signInfo) {
     AppDispatcher.handleViewAction({
       type: ActionTypes.SIGN_QUESTION,
-      questionId: questionId,
-      signer: signer
+      signInfo: signInfo
     });
   }
 

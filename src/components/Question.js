@@ -1,6 +1,7 @@
 "use strict";
 var React = require("react/addons");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
+var QuestionStore = require("../stores/QuestionStore");
 var Button = require("./Button");
 var moment = require("moment");
 
@@ -9,7 +10,7 @@ module.exports = React.createClass({
 
   getInitialState () {
     return {
-      question: this.props.question,
+      question: QuestionStore.get(this.props.qid),
       hideSignButton: false,
       hideContent: true
     };
@@ -26,11 +27,15 @@ module.exports = React.createClass({
 
   _handleSignClick (event) {
     var {question} = this.state;
-    var {signatures} = question;
-    signatures.push('facebook:123123');
-    question.signatures = signatures;
+    // var {signatures} = question;
+    // signatures.push('facebook:123123');
+    // question.signatures = signatures;
+    QuestionActionCreators.signQuestion({
+      qid: this.props.qid,
+      signer: 'facebook:123123',
+      signedAt: new Date().getTime()
+    });
     this.setState({
-      question: question,
       hideSignButton: true
     });
   },
@@ -42,7 +47,7 @@ module.exports = React.createClass({
   _render (props, state) {
     var {index} = props;
     var {question} = state;
-    var {title, content, asker, createdAt, signatures} = question;
+    var {title, content, author, createdAt, signatures} = question;
 
     if ('facebook:123123' in signatures) {
       this.setState({hideSignButton: true});

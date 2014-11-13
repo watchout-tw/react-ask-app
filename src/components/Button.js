@@ -9,17 +9,6 @@ module.exports = React.createClass({
     };
   },
 
-  // _handleClick (event) {
-  //   var {target} = event;
-
-  //   if (target.className.match(/sign/)) {
-  //     console.log('haha');
-  //   }
-  //   // this.setState({
-  //   //   hideContent: !this.state.hideContent
-  //   // });
-  // },
-
   render () {
     return this._render(this.props, this.state);
   },
