@@ -2,12 +2,17 @@
 var React = require("react/addons");
 var {Link} = require("react-router");
 var {PolicyList} = require("../components");
+var PolicyStore = require("../stores/PolicyStore");
+var CandidateStore = require("../stores/CandidateStore");
 
 module.exports = React.createClass({
   displayName: "IndexPage",
 
   getInitialState () {
+    var {candidateId} = this.props.params;
     return {
+      data: PolicyStore.getAllFrom(candidateId),
+      candidate: CandidateStore.get(candidateId)
     };
   },
 
@@ -16,16 +21,11 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var items = [
-      {
-        index: '馮光遠政見#1',
-        title:'馮光遠馮光遠馮光遠馮光遠馮光遠'
-      }
-    ];
+    var {data, candidate} = state;
     return <div id="content">
       <div className="wrapper">
-        <div><h2>馮光遠的政見</h2></div>
-        <PolicyList data={items}/>
+        <div><h2>{ candidate.name + '的政見'}</h2></div>
+        <PolicyList data={data} cid={candidate.id} />
       </div>
     </div>;
 

@@ -1,12 +1,14 @@
 "use strict";
 var React = require("react/addons");
 var {Link} = require("react-router");
+var CandidateStore = require("../stores/CandidateStore");
 
 module.exports = React.createClass({
   displayName: "IndexPage",
 
   getInitialState () {
     return {
+      candidates: CandidateStore.getAll()
     };
   },
 
@@ -15,6 +17,16 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
+    var candidates = Object.keys(state.candidates).map((c) => {
+      return state.candidates[c];
+    });
+    var result = candidates.map((c) => {
+      return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
+        <div className='index_c_item md-whiteframe-z1'>
+            <img src={c.avatar} />
+        </div>
+      </Link>;
+    });
     return <div id='content'>
       <div className='page_wrapper'>
         <img className="index_cover" src="ui/images/cover.jpg" />
@@ -30,17 +42,7 @@ module.exports = React.createClass({
       <div className="wrapper">
       </div>
       <div className='wrapper l_center'>
-        <Link to="policies" params={{candidateId: 5}}>
-          <div className='index_c_item md-whiteframe-z1'>
-            <img src="ui/images/candidates/5.jpg" />
-          </div>
-        </Link>
-        <div className='index_c_item md-whiteframe-z1'>
-          <img src="ui/images/candidates/6.jpg" />
-        </div>
-        <div className='index_c_item md-whiteframe-z1'>
-          <img src="ui/images/candidates/7.jpg" />
-        </div>
+        {result}
       </div>
     </div>;
   }
