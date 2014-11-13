@@ -1,4 +1,5 @@
 var QuestionActionCreators = require('../actions/QuestionActionCreators');
+var UserStore = require("../stores/UserStore");
 var React = require('react/addons');
 var Button = require('./Button');
 // var ENTER_KEY_CODE = 13;
@@ -14,8 +15,10 @@ module.exports = React.createClass({
     // validate title and question and click time
     var {question} = this.state;
     var {policy, candidate} = this.props;
+    var user = UserStore.get();
     question.policyId = policy.id;
     question.candidateId = candidate.id;
+    question.author = user;
     QuestionActionCreators.createQuestion(question);
     this.props._handleCloseComposer();
   },

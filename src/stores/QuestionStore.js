@@ -8,11 +8,12 @@ var assign = require('object-assign');
 
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
-var _questions = {
-  '5': {},
-  '6': {},
-  '7': {}
-};
+
+if (!localStorage.questions) {
+  localStorage.questions = JSON.stringify({ '5': {}, '6': {}, '7': {} });
+}
+
+var _questions = JSON.parse(localStorage.questions);
 
 var QuestionStore = assign({}, EventEmitter.prototype, {
 
@@ -48,18 +49,22 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
   },
 
   getCreatedQuestionData (question) {
-    var {policyId, title, content, candidateId} = question;
+    var {policyId, title, content, candidateId, author} = question;
     var timestamp = new Date().getTime();
     return {
       id: 'q_' + timestamp,
       title: title,
       content: content,
-      author: 'facebook:11234',
-      signatures: [{ uid: 'facebook:11234', signedAt: timestamp}],
+      author: author,
+      signatures: [{ uid: author.uid, signedAt: timestamp}],
       createdAt: timestamp,
       policyId: policyId,
       candidateId: candidateId
     };
+  },
+
+  save () {
+    localStorage.questions = JSON.stringify(_questions);
   }
 });
 
@@ -73,6 +78,7 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
         _questions[candidateId][policyId] = {};
       }
       _questions[candidateId][policyId][id] = question;
+      QuestionStore.save();
       QuestionStore.emitChange();
       break;
     case ActionTypes.SIGN_QUESTION:
@@ -82,6 +88,7 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
         uid: uid,
         signedAt: signedAt
       });
+      QuestionStore.save();
       QuestionStore.emitChange();
     default:
   }

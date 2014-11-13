@@ -15,7 +15,7 @@ module.exports = React.createClass({
     return {
       new_question: {
         title: null,
-        content: null
+        content: null,
       },
       policy: PolicyStore.get({
         cid: candidateId,
