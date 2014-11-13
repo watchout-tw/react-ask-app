@@ -1,4 +1,4 @@
-
+<div id="notification" class="notification_hide"></div>
 
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}">
 
@@ -21,7 +21,8 @@
   <div class="nav_list_function">
     <!-- 候選人選單 -->
     <div class="nav_list_function_item l_inline" ng-click="toggleCandidateMenu()" id="candidateTopMenu">
-        <div class="nav_list_function_item_select"><i class="fa fa-cog"></i> 候選人</div>
+        <div class="nav_list_function_item_select" ng-if="!candidate"><i class="fa fa-cog"></i> 候選人</div>
+        <div class="nav_list_function_item_select" ng-if="candidate"><i class="fa fa-cog"></i> {{candidate.name}}</div>
         <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}"></div>
         <div class="nav_list_function_item_inner md-whiteframe-z1" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}" ng-repeat="c in candidates" ng-click="chooseCandidate(c.id)">
           <img src="images/candidates_avatar/{{c.id}}.jpg">

@@ -734,3 +734,29 @@ a.nav_item_sidebar:hover {
 .page_left {
   left: 10px;
 }
+/* ------------------------------------------------------------ */
+/* page button left & right
+/* ------------------------------------------------------------ */
+#notification {
+  background: #212121;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  width: 180px;
+  border-radius: 10px;
+  color: white;
+  z-index: 99;
+  font-weight: 800;
+  padding: 20px 50px;
+  height: 65px;
+  box-sizing: border-box;
+
+}
+.notification_hide {
+  opacity: 0;
+  -webkit-transition: opacity .2s cubic-bezier(.4,0,.2,1);
+  transition: opacity .2s cubic-bezier(.4,0,.2,1); 
+}
+.notification_show {
+  opacity: 0.8;
+}

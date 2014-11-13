@@ -77,13 +77,57 @@ app.factory('DataService', function ($http, $q){
   return DataService;
 })
 
-app.controller('AuthCtrl',['$scope', function($scope){
+app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope, DataService, $location){
   $scope.login = function(){
+
     $scope.user = {"name" : "username tool ongcanno tshowall"};
+    //$("#notification").removeClass("notification_hide");
+
+    $("#notification").text("成功登入！");
+    setTimeout(function(){
+      $("#notification").addClass("notification_show");
+      setTimeout(function(){
+        $("#notification").removeClass("notification_show");
+
+      },2500);
+
+    },100);
+    
+    
 
   };
   $scope.logout = function(){
     $scope.user = null;
+
+    $("#notification").text("成功登出！");
+    setTimeout(function(){
+      $("#notification").addClass("notification_show");
+      setTimeout(function(){
+        $("#notification").removeClass("notification_show");
+
+      },2500);
+    },100);
+  };
+
+  $scope.toggleCandidateMenu = function(){
+    $scope.showCandidateMenu = !$scope.showCandidateMenu;
+  };
+  $scope.toggleUserMenu = function(){
+    if($scope.user){
+       $scope.showUserMenu = !$scope.showUserMenu;
+    }
+  };
+  DataService.getData('candidate').then(function(data){
+      $scope.candidates = data;
+  });
+  $scope.chooseCandidate = function(cid){
+    var validID = ["5","6","7"];
+    
+    if(validID.indexOf(cid)!== -1){
+        $scope.candidate = $scope.candidates[cid];
+        $location.path('/policy/'+cid);
+    }
+    
   };
 
 }]);
@@ -101,25 +145,6 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
           $scope.sidebar = value;
       }
   }
-
-  $scope.toggleCandidateMenu = function(){
-    $scope.showCandidateMenu = !$scope.showCandidateMenu;
-  };
-  $scope.toggleUserMenu = function(){
-    $scope.showUserMenu = !$scope.showUserMenu;
-
-  };
-  
-
-  DataService.getData('candidate').then(function(data){
-      $scope.candidates = data;
-  });
-  $scope.chooseCandidate = function(cid){
-     $location.path('/policy/'+cid);
-  };
-
-
-
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
