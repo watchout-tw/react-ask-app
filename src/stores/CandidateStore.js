@@ -6,6 +6,7 @@ var assign = require('object-assign');
 
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
+var _current = null;
 var _candidates = {
   '5': {
     id: 5,
@@ -38,6 +39,10 @@ var CandidateStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
+  getCurrentCandidate () {
+    return _current;
+  },
+
   get (id) {
     return _candidates[id];
   },
@@ -50,6 +55,12 @@ var CandidateStore = assign({}, EventEmitter.prototype, {
 CandidateStore.dispatchToken = AppDispatcher.register((payload) => {
   var {action} = payload;
   switch(action.type) {
+    case ActionTypes.CHOOSE_CANDIDATE:
+      _current=action.id;
+      // var question = QuestionStore.getCreatedQuestionData(action.question);
+      // _questions[question.id]=question;
+      CandidateStore.emitChange();
+      break;
     default:
   }
 

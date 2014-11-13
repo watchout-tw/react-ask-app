@@ -14,10 +14,10 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var {index, title} = props.item;
+    var {indexTitle, title} = props.item;
 
     return <div className='md-whiteframe-z1 c_item l_inline v_top'>
-      <div className='c_indexTitle'>{index}</div>
+      <div className='c_indexTitle'>{indexTitle}</div>
       <div className='c_title'>{title}</div>
     </div>;
   }

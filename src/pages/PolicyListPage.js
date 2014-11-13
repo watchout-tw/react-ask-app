@@ -4,6 +4,7 @@ var {Link} = require("react-router");
 var {PolicyList} = require("../components");
 var PolicyStore = require("../stores/PolicyStore");
 var CandidateStore = require("../stores/CandidateStore");
+var CandidateActionCreators = require("../actions/CandidateActionCreators");
 
 module.exports = React.createClass({
   displayName: "IndexPage",
@@ -22,6 +23,7 @@ module.exports = React.createClass({
 
   _render (props, state) {
     var {data, candidate} = state;
+    CandidateActionCreators.chooseCandidate(candidate.id);
     return <div id="content">
       <div className="wrapper">
         <div><h2>{ candidate.name + '的政見'}</h2></div>

@@ -3,6 +3,7 @@ var React = require("react/addons");
 var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("../components");
 var QuestionStore = require("../stores/QuestionStore");
 var PolicyStore = require("../stores/PolicyStore");
+var CandidateActionCreators = require("../actions/CandidateActionCreators");
 
 module.exports = React.createClass({
   displayName: "App",
@@ -75,6 +76,8 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
+    var {candidateId} = this.props.params;
+    CandidateActionCreators.chooseCandidate(candidateId);
     var {policy, questions} = state;
     var items = Object.keys(questions).map( (question)=> { return questions[question]; });
 

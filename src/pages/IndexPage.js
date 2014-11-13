@@ -2,6 +2,7 @@
 var React = require("react/addons");
 var {Link} = require("react-router");
 var CandidateStore = require("../stores/CandidateStore");
+var CandidateActionCreators = require("../actions/CandidateActionCreators");
 
 module.exports = React.createClass({
   displayName: "IndexPage",
@@ -27,6 +28,7 @@ module.exports = React.createClass({
         </div>
       </Link>;
     });
+    CandidateActionCreators.chooseCandidate(null);
     return <div id='content'>
       <div className='page_wrapper'>
         <img className="index_cover" src="ui/images/cover.jpg" />

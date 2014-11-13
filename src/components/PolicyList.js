@@ -18,7 +18,8 @@ module.exports = React.createClass({
   _render (props, state) {
     var { data, cid } = props;
     var result = data.map( (p,i ) => {
-      return <Link to="policy" params={{candidateId: cid, policyId: i}} className='policy' >
+      var {id} = p;
+      return <Link to="policy" params={{candidateId: cid, policyId: id}} className='policy' >
         <PolicyBox item={p} />
       </Link>;
     });

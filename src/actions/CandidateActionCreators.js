@@ -6,17 +6,10 @@ var {ActionTypes} = AppConstants;
 
 module.exports = {
 
-  createQuestion (question) {
+  chooseCandidate (id) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.CREATE_QUESTION,
-      question: question
-    });
-  },
-
-  signQuestion (signInfo) {
-    AppDispatcher.handleViewAction({
-      type: ActionTypes.SIGN_QUESTION,
-      signInfo: signInfo
+      type: ActionTypes.CHOOSE_CANDIDATE,
+      id: id
     });
   }
 
