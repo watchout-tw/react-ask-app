@@ -1,0 +1,47 @@
+<div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
+
+<!-- LEFT & RIGHT BUTTON -->
+<div class="page_button page_left" ng-click="previousPolicy()"><i class="fa fa-chevron-left"></i></div>
+<div class="page_button page_right" ng-click="nextPolicy()"><i class="fa fa-chevron-right"></i></div>
+<!-- . . . . . . . . . . . . -->
+
+<div id="content" ng-click="resetFocus()">
+
+<div class="wrapper">
+
+  <!--ng-if="shouldShow(q.id)"-->
+  <div class="pa_totalq" >共有 {{(questions | filter:query).length}} 題</div>
+
+  <div ng-repeat="q in questions | filter:query | orderBy: 'signatures_count' : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()">
+
+    <div class="q_title l_inline" ng-class="{'q_title_active':showQuestion(q.id)}" ng-click="toggleQuestion(q.id)">
+      <div class="q_order l_inline">{{$index+1}}</div>
+      <div class="q_vote l_inline">{{q.signatures_count | number:0}}</div>
+      {{q.title | limitTo:40}}{{(q.title).length>40?'...':''}}
+
+    <!-- function tab goes here -->
+        <div class="q_function l_inline">
+          <span ng-if="!showQuestion(q.id)"><i class="fa fa-angle-double-down"></i></span>
+          <span ng-if="showQuestion(q.id)"><i class="fa fa-angle-double-up"></i></span>
+        </div>
+    <!-- ...................... -->
+    </div>
+
+    <div class="q_content" ng-if="showQuestion(q.id)">
+        <div class="q_title_mobile_inner">{{q.title}}</div>
+        <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
+        <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
+        <a class="q_postmeta" href="#/policy/{{q.candidateID}}/{{q.policyID}}">提問政策：{{q.policyTitle}}</a>
+        <div class="q_action">
+            <a class="button"><i class="fa fa-bullhorn"></i> 連署</a>
+            <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</div>
+</div>

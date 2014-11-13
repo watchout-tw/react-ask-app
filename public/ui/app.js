@@ -39,6 +39,10 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/policy.html',
       controller: 'PolicyCtrl'
     }).
+      when('/rank/:cid',{
+      templateUrl: 'partials/rank.html',
+      controller: 'RankCtrl'
+    }).
       when('/policy/:cid',{
       templateUrl: 'partials/candidate.html',
       controller: 'CandidateCtrl'
@@ -216,11 +220,6 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   };
 
-  $scope.candidateFilter = function(n){
-      if(n.state === 'responded')
-         return n;
-  };
-
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
@@ -252,8 +251,6 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   });
 
-
-
   $scope.showQuestion = function(qid){
     return $scope.focusQuestion === qid;
   };
@@ -273,7 +270,7 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
   $scope.toTrusted = function(html_code) {
     return $sce.trustAsHtml(html_code);
   };
-  $scope.responseShowState = {};
+
 
   $scope.togglePolicy = function(){
     $scope.policyShowState = !$scope.policyShowState;
@@ -295,7 +292,57 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       $scope.showAskQuestionForm = !$scope.showAskQuestionForm;
   };
 
+}]);
+app.controller('RankCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
+
+  $scope.go = function(path){
+      $("body").scrollTop(0);
+      $location.path(path);
+  };
+
+  DataService.getData('questions').then(function(data){
+      $scope.questions = [];
+
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+      if(validID.indexOf($routeParams.cid)!== -1){
+          for(var pid in data[cid]){
+              for(var key in data[cid][pid]){
+                  //console.log(data[cid][pid][key]);
+                  $scope.questions.push(data[cid][pid][key]);
+              }
+          }
+
+      }else{
+        $location.path('/');
+      }
+
+
+
+  });
+
+  $scope.showQuestion = function(qid){
+    return $scope.focusQuestion === qid;
+  };
+
+  $scope.toggleQuestion = function(qid){
+    if($scope.focusQuestion === qid){
+        $scope.focusQuestion = false;
+
+    }else{
+        $scope.focusQuestion = qid;
+    }
+
+  };
+
+  $scope.resetFocus = function(){
+      console.log("RESET");
+      $scope.policyShowState = false;
+      $scope.focusQuestion = false;
+
+  };
+
 
 
 }]);
-

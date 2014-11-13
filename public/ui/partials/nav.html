@@ -2,7 +2,9 @@
 <div id="sidebar-container" ng-class="{'show':sidebar, 'hide':!sidebar}">
 
 	<a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/">首頁</a>
-    <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/policy/{{candidate.id}}/{{p.id}}" ng-repeat="p in policy">{{p.indexTitle}} {{p.title}}</a>
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/rank/{{c.id}}" ng-repeat="c in candidates">{{c.name}}大亂鬥</a>
+
+  <a class="nav_item_sidebar" ng-click="showsidebar(false)" href="#/policy/{{candidate.id}}/{{p.id}}" ng-repeat="p in policy">{{p.indexTitle}} {{p.title}}</a>
 
 
 </div>
@@ -28,7 +30,7 @@
     <!-- 登入選單 -->
     <div class="nav_list_function_item l_inline">
         <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-user"></i> 登入</div>
-        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}"></div>
+        <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user"></div>
         <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><i class="fa fa-user"></i> {{user.name}}</div>
         <div class="nav_list_function_item_tooltip" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user" ng-click="logout()">
         	<div class="tri-up" ng-show="showUserMenu"></div>登出

@@ -36,6 +36,8 @@ getData('parsed_questions').then(function(data){
        item.post_timestamp = data[key].post_timestamp;
        item.signatures_count = data[key].signatures_count;
        item.content = data[key].content;
+       item.policyTitle = '推動「台北安居」＆「創藝飛翔」計畫 讓原民在北市快樂生活';
+
 
        if(count < 4){
           item.candidateID = "5";
