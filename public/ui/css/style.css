@@ -542,7 +542,7 @@ a.nav_item_sidebar:hover {
   left: 10px;
   top:10px;
 }
-@media screen and (max-width: 500px){
+@media screen and (max-width: 600px){
   .nav_search {
      display: none;
   }
