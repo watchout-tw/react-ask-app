@@ -52,10 +52,10 @@ module.exports = React.createClass({
       </div>): '';
 
     return <header className='md-whiteframe-z1'>
-      <div className='nav_item l_inline' onClick={props._toggleSiderBar}>
+      <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
         <i className="fa fa-align-justify"></i>
       </div>
-      <Link to="/"><div className="nav_list_logo l_inline">市長給問嗎 x 最後一役</div></Link>
+      <Link to='/'><div className="nav_list_logo l_inline">市長給問嗎 x 最後一役</div></Link>
       <div className="nav_list_function">
         <div className="nav_list_function_item l_inline">
           <div className="nav_list_function_item_select"><i className="fa fa-cog"></i> 候選人</div>
@@ -66,7 +66,11 @@ module.exports = React.createClass({
           </div>
           {userMenu}
         </div>
-
+      </div>
+      <div className="nav_search">
+        <div className="nav_search_inner">
+         <input className="fs" ng-model="query" /><i className="fa fa-search"></i>
+        </div>
       </div>
     </header>;
   }
