@@ -97,7 +97,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
 
   };
   $scope.login = function(){
-    $scope.user = {"name" : "username"};
+    $scope.user = {"name" : "username tool ongcanno tshowall"};
 
   };
   $scope.logout = function(){

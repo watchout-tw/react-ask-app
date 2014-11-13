@@ -388,7 +388,7 @@ a.nav_item_sidebar:hover {
 .tri-up:before, .tri-up:after {
   content: "";
   position: absolute;
-  right: 18px;
+  left: 30px;
   width: 0;
   height: 0;
   border-style: solid;
@@ -458,19 +458,27 @@ a.nav_item_sidebar:hover {
   height: 50px;
   box-sizing: border-box;
   vertical-align: top;
-
+  position: relative;
+  width: 130px;
 }
 .nav_list_function_item_hide {
-  height: 80%;
   opacity: 0;
-}
-.nav_list_function_item_inner {
-  margin-left: 25px;
-  margin-top: 5px;
-  color: black;
   transition-property: all;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.nav_list_function_item_inner {
+  background: white;
+  cursor: pointer;
+  padding: 5px 10px 3px 5px;
+  color: black;
+  border-left: 5px solid white;
+}
+.nav_list_function_item_text {
+  margin-top: 15px;
+  vertical-align: top;
+  display: inline-block;
+
 }
 .nav_list_function_item_tooltip {
   height: 40px;
@@ -479,9 +487,7 @@ a.nav_item_sidebar:hover {
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
   background: white;
   box-shadow: 0 0 4px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.16);
 }
@@ -489,19 +495,26 @@ a.nav_item_sidebar:hover {
   border-radius: 100%;
   height: 50px;
   width: 50px;
-  cursor: pointer;
-  box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
-
 }
-.nav_list_function_item_inner:hover img {
-  box-shadow: 0 4px 10px rgba(0,0,0,.16),0 8px 14px rgba(0,0,0,.32);
+.nav_list_function_item_inner:hover{
+  border-left: 5px solid gray;
 }
 .nav_list_function_item_select {
   cursor: pointer;
-  padding: 15px 15px;
+  padding: 15px 0px;
   height: 50px;
+  width: 120px;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 
 }
+@media screen and (max-width: 400px){
+  #candidateTopMenu {
+     display: none;
+  }
+}
+
 
 /* ------------------------------------------------------------ */
 /* compose / ask question
