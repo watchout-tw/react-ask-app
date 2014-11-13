@@ -28,6 +28,14 @@ getData('lien').then(function(data){
         var index = parseInt(data[key].indexTitle.split("#")[1]).toString();//remove the 0 in front
         data[key].id = index;
 
+
+        var tmp = data[key].content.split(' ');
+        data[key].content = "";
+        tmp.map(function(value){
+            data[key].content += '<p>'+value+'</p>';
+
+        });
+
         policy[index]= data[key];
 
         console.log(data[key].indexTitle);

@@ -242,7 +242,7 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
       if($routeParams.pid){
          if(validID.indexOf($routeParams.cid)!== -1){
-            $scope.policy = data[cid];
+            $scope.policy = Object.keys(data[cid]).map(function(o){ return data[cid][o];});
             $scope.policyLength = Object.keys(data[cid]).length;
             $scope.currentPolicy = data[cid][$routeParams.pid];
          }else{
