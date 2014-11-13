@@ -11,7 +11,6 @@ body {
   background: rgb(236,236,236);
   color: rgb(55,53,54);
   font-size: 16px;
-
 }
 a {
   text-decoration: none;
@@ -57,7 +56,11 @@ a {
 #content {
 	margin-top: 50px;
 }
-
+hr {
+  border: 0;
+  height: 1px;
+  background: rgb(220,220,220);
+}
 
 /* ------------------------------------------------------------ */
 /* material test
@@ -96,6 +99,9 @@ input{
 }
 .l_center {
   text-align: center;
+}
+.l_left {
+  text-align: left;
 }
 .v_top {
   vertical-align: top;
@@ -320,7 +326,7 @@ a.button.facebook{
 
 }
 .p_fullcontent_hide{
-  height: 10px;
+  height: 0px;
   overflow: hidden;
 
   -moz-transition: .2s;

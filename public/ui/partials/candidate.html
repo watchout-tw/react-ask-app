@@ -9,11 +9,14 @@
 <div id="content">
 
 <div class="wrapper">
-    <div><h2>{{candidate.name}}的政見</h2></div>
+    <div class="l_center"><h2>{{candidate.name}}的政見</h2></div>
+
+    <div class="l_center">
+
     <div ng-repeat="p in policy" class="md-whiteframe-z1 c_item l_inline v_top" ng-click="go('policy/'+candidate.id+'/'+p.id)">
         <div class="c_indexTitle">{{p.indexTitle}}</div>
         <div class="c_title">{{p.title}}</div>
-
+    </div>
     </div>
 
 

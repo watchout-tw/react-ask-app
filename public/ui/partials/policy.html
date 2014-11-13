@@ -13,7 +13,7 @@
       <!-- POLICY -->
       <div class="md-whiteframe-z1 p_item" ng-if="policy" ng-click="$event.stopPropagation()">
           <div class="p_title" ng-click="togglePolicy()">
-            {{currentPolicy.title}}
+            {{currentPolicy.indexTitle}} {{currentPolicy.title}}
             <div class="p_actionicon l_inline" ng-if="!showPolicy()"><i class="fa fa-angle-double-down"></i></div>
             <div class="p_actionicon l_inline" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i></div>
 
