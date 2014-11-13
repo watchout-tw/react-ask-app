@@ -1,3 +1,4 @@
+"use strict";
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 // var ChatMessageUtils = require('../utils/ChatMessageUtils');

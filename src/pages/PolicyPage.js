@@ -2,16 +2,22 @@
 var React = require("react/addons");
 var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("../components");
 var QuestionStore = require("../stores/QuestionStore");
+var PolicyStore = require("../stores/PolicyStore");
 
 module.exports = React.createClass({
   displayName: "App",
 
   getInitialState () {
+    var {candidateId, policyId} = this.props.params;
     return {
       new_question: {
         title: null,
         content: null
       },
+      policy: PolicyStore.get({
+        cid: candidateId,
+        index: policyId
+      }),
       questions: QuestionStore.getAll(),
       hideComposer: true
     };
@@ -69,18 +75,7 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var data = [
-      {
-        index: '連勝文政見#21',
-        title: '十二夜不流淚！ 零安樂不撲殺！'
-      },
-      {
-        index: '連勝文政見#32',
-        title: '推動「台北安居」＆「創藝飛翔」計畫 讓原民在北市快樂生活'
-      }
-    ];
-
-    var {questions} = state;
+    var {policy, questions} = state;
     var items = Object.keys(questions).map( (question)=> { return questions[question]; });
 
     var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer}
@@ -89,13 +84,13 @@ module.exports = React.createClass({
                                                                  question={state.new_question}/>);
     return <div id='content'>
         <div className='wrapper' id='policy'>
-          <Policy />
+          <Policy data={policy} />
           <div className='ask_item' onClick={this._toggleComposer}>
             <i className='fa fa-plus ask_icon'></i>
           </div>
           {composer}
         </div>
-        <div className='wrapper'><QuestionList items={items} /></div>
+        <div className='wrapper'><QuestionList items={[]} /></div>
       </div>;
   }
 });

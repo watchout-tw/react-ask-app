@@ -19,9 +19,9 @@ var webpackConfig = module.exports = {
       { test: /\.js(x?)$/, loader: JSX_LOADER },
       { test: /\.css$/, loader: "style-loader!css-loader"},
       { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
       // { test: /\.less$/, loader: CSS_LOADER }
-      // { test: /\.jpg$/, loader: "file-loader" }
+      { test: /\.(jpg|png)$/, loader: "file-loader?name=[path][name].[ext]&context=client" }
       // { test: /\.scss$/, loader: SCSS_LOADER },
     ]
   },
