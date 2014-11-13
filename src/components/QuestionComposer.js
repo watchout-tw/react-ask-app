@@ -13,6 +13,9 @@ module.exports = React.createClass({
   _handleCreateQuestion () {
     // validate title and question and click time
     var {question} = this.state;
+    var {policy, candidate} = this.props;
+    question.policyId = policy.id;
+    question.candidateId = candidate.id;
     QuestionActionCreators.createQuestion(question);
     this.props._handleCloseComposer();
   },
@@ -23,20 +26,19 @@ module.exports = React.createClass({
 
   _render (props, state) {
 
-    var {question} = props;
+    var {question, policy, candidate} = props;
     var {title, content} = question;
-
     return <div className='ask_form'>
       <div className='ask_form_title'>
         <i className='fa fa-paper-plane-o'></i>
-        { '  對連勝文的政策提問：'}
+        { '  ' + candidate.name + '的政策提問：'}
         <div className='ask_form_remove' onClick={props._handleCloseComposer}>
           <i className='fa fa-times'></i>
         </div>
       </div>
       <div className='ask_form_listitem'>
         <span className="ask_form_subtitle">{'提問政策'}</span>
-        {'  十二夜不流淚！ 零安樂不撲殺！'}
+        {'  ' + policy.title }
       </div>
       <div className='ask_form_listitem'>
         <span className="ask_form_subtitle" >{'問題簡述'}</span>

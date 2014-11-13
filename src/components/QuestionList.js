@@ -32,7 +32,9 @@ module.exports = React.createClass({
                        selected={selected}
                        index={index}
                        qid={item.id}
-                       _handleClick={boundClick} />;
+                       _handleClick={boundClick}
+                       cid={props.candidate.id}
+                       pid={props.policy.id} />;
     });
     return <div >
       <div className='pa_totalq'>{'共有 ' + items.length + ' 題'} </div>

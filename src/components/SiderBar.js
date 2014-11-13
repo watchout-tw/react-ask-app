@@ -29,8 +29,8 @@ module.exports = React.createClass({
     var policies = PolicyStore.getAllFrom(cid);
     // this.setState({ policies });
     var result = policies.map((p) => {
-      var {id, indexTitle} = p;
-      return <Link className='nav_item_sidebar' to="policy" params={{candidateId: cid, policyId: id}}>{indexTitle}</Link>;
+      var {id, title} = p;
+      return <Link className='nav_item_sidebar' to="policy" params={{candidateId: cid, policyId: id}}>{title}</Link>;
     });
     var toggleClass = (props.hideSiderBar)? '': 'show';
     return <div id='sidebar-container' className={toggleClass} >

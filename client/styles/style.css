@@ -11,7 +11,6 @@ body {
   background: rgb(236,236,236);
   color: rgb(55,53,54);
   font-size: 16px;
-
 }
 a {
   text-decoration: none;
@@ -53,10 +52,15 @@ a {
   background: rgb(236,236,236);
 
 }
+
 #content {
 	margin-top: 50px;
 }
-
+hr {
+  border: 0;
+  height: 1px;
+  background: rgb(220,220,220);
+}
 
 /* ------------------------------------------------------------ */
 /* material test
@@ -98,6 +102,9 @@ input{
 }
 .l_center {
   text-align: center;
+}
+.l_left {
+  text-align: left;
 }
 .v_top {
   vertical-align: top;
@@ -162,8 +169,12 @@ input{
   width: 100%;
   padding-left: 10px;
   font-size: 14px;
-  margin-bottom: 20px;
-
+}
+a.q_postmeta {
+  color: rgb(55,53,54);
+}
+a.q_postmeta:hover {
+  color: #03A9F4;
 }
 .q_action {
   margin: 20px 10px;
@@ -318,7 +329,7 @@ a.button.facebook{
 
 }
 .p_fullcontent_hide{
-  height: 10px;
+  height: 0px;
   overflow: hidden;
 
   -moz-transition: .2s;
@@ -393,7 +404,7 @@ a.nav_item_sidebar:hover {
 .tri-up:before, .tri-up:after {
   content: "";
   position: absolute;
-  right: 18px;
+  left: 30px;
   width: 0;
   height: 0;
   border-style: solid;
@@ -463,19 +474,27 @@ a.nav_item_sidebar:hover {
   height: 50px;
   box-sizing: border-box;
   vertical-align: top;
-
+  position: relative;
+  width: 130px;
 }
 .nav_list_function_item_hide {
-  height: 80%;
   opacity: 0;
-}
-.nav_list_function_item_inner {
-  margin-left: 25px;
-  margin-top: 5px;
-  color: black;
   transition-property: all;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+.nav_list_function_item_inner {
+  background: white;
+  cursor: pointer;
+  padding: 5px 10px 3px 5px;
+  color: black;
+  border-left: 5px solid white;
+}
+.nav_list_function_item_text {
+  margin-top: 15px;
+  vertical-align: top;
+  display: inline-block;
+
 }
 .nav_list_function_item_tooltip {
   height: 40px;
@@ -484,9 +503,7 @@ a.nav_item_sidebar:hover {
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
   background: white;
   box-shadow: 0 0 4px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.16);
 }
@@ -494,19 +511,55 @@ a.nav_item_sidebar:hover {
   border-radius: 100%;
   height: 50px;
   width: 50px;
-  cursor: pointer;
-  box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
-
 }
-.nav_list_function_item_inner:hover img {
-  box-shadow: 0 4px 10px rgba(0,0,0,.16),0 8px 14px rgba(0,0,0,.32);
+.nav_list_function_item_inner:hover{
+  border-left: 5px solid gray;
 }
 .nav_list_function_item_select {
   cursor: pointer;
-  padding: 15px 15px;
+  padding: 15px 0px;
   height: 50px;
+  width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
 }
+@media screen and (max-width: 500px){
+  #candidateTopMenu {
+     display: none;
+  }
+}
+.nav_search {
+  position: absolute;
+  width: 100%;
+  padding-left: 260px;
+  padding-right: 300px;
+  text-decoration: center;
+  pointer-events: none;
+}
+.nav_search_inner {
+  width: 100%;
+  position: relative;
+}
+.nav_search_inner input {
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  padding-left: 30px;
+  pointer-events: auto;
+}
+.nav_search_inner i{
+  position: absolute;
+  left: 10px;
+  top:10px;
+}
+@media screen and (max-width: 600px){
+  .nav_search {
+     display: none;
+  }
+}
+
 
 /* ------------------------------------------------------------ */
 /* compose / ask question

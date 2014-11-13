@@ -3,6 +3,8 @@ var React = require("react/addons");
 var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("../components");
 var QuestionStore = require("../stores/QuestionStore");
 var PolicyStore = require("../stores/PolicyStore");
+var CandidateStore = require("../stores/CandidateStore");
+var UserStore = require("../stores/UserStore");
 var CandidateActionCreators = require("../actions/CandidateActionCreators");
 
 module.exports = React.createClass({
@@ -19,14 +21,15 @@ module.exports = React.createClass({
         cid: candidateId,
         index: policyId
       }),
-      questions: QuestionStore.getAll(),
-      hideComposer: true
+      candidate: CandidateStore.get(candidateId),
+      questions: QuestionStore.getAllFrom(candidateId, policyId),
+      hideComposer: true,
+      loggedIn: this.props.loggedIn
     };
   },
 
   componentDidMount () {
     QuestionStore.addChangeListener(this._onChange);
-    // console.log(this.state);
   },
 
   componentWillUnmount () {
@@ -34,8 +37,9 @@ module.exports = React.createClass({
   },
 
   _onChange () {
+    var {candidate, policy} = this.state;
     this.setState({
-      questions: QuestionStore.getAll(),
+      questions: QuestionStore.getAllFrom(candidate.id, policy.id),
       new_question: {
         title: null,
         content: null
@@ -44,6 +48,9 @@ module.exports = React.createClass({
   },
 
   _toggleComposer () {
+    if (!this.state.loggedIn) {
+      return;
+    }
     this.setState({
       hideComposer: !this.state.hideComposer
     });
@@ -78,22 +85,31 @@ module.exports = React.createClass({
   _render (props, state) {
     var {candidateId} = this.props.params;
     CandidateActionCreators.chooseCandidate(candidateId);
+    var { name } = CandidateStore.get(candidateId);
     var {policy, questions} = state;
-    var items = Object.keys(questions).map( (question)=> { return questions[question]; });
-
+    var {loggedIn} = props;
     var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer}
                                                                  _handleComposerChange={this._handleComposerChange}
                                                                  _handleDrop={this._handleDrop}
-                                                                 question={state.new_question}/>);
+                                                                 question={state.new_question}
+                                                                 policy={state.policy}
+                                                                 candidate={state.candidate} />);
     return <div id='content'>
         <div className='wrapper' id='policy'>
+          <div>
+            <h2>{ name + '的政見'}</h2>
+          </div>
           <Policy data={policy} />
           <div className='ask_item' onClick={this._toggleComposer}>
             <i className='fa fa-plus ask_icon'></i>
           </div>
           {composer}
         </div>
-        <div className='wrapper'><QuestionList items={[]} /></div>
+        <div className='wrapper'>
+          <QuestionList items={questions}
+                        policy={state.policy}
+                        candidate={state.candidate} />
+        </div>
       </div>;
   }
 });
