@@ -32,8 +32,6 @@ html, body {
     font-size: 1.17em;
     font-weight: bold; }
 
-button, select, html, textarea, input {
-  font-family: 'RobotoDraft', 'Helvetica Neue', Helvetica, Arial; }
 
 body {
   margin: 0;

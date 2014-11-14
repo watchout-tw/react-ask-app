@@ -2,7 +2,7 @@
 
 body {
   /* font-family: "Open Sans","Helvetica Neue", "Helvetica", "Arial", sans-serif; */
-  font-family: "Source Han Sans TC", "Noto Sans", "微軟正黑體", Helvetica, Arial, sans-serif;
+  font-family: "Source Han Sans TC", "Noto Sans", Helvetica, Arial, sans-serif;
   background: rgb;
   margin: 0px;
   padding: 0px;
@@ -446,13 +446,7 @@ a.nav_item_sidebar:hover {
   top: 14px;
   left: 20px;
 }
-.nav_list_logo {
-  position: absolute;
-  cursor: pointer;
-  top: 14px;
-  left: 60px;
-  font-weight: 700;
-}
+
 @media screen and (min-width: 600px){
 
   #sidebar-container{
@@ -474,7 +468,6 @@ a.nav_item_sidebar:hover {
     top: 50px;
     left:0px;
     overflow: auto;
-
   }
 
 }
@@ -491,6 +484,14 @@ a.nav_item_sidebar:hover {
   position: relative;
   width: 130px;
 }
+.nav_list_function_item_user {
+  height: 50px;
+  box-sizing: border-box;
+  vertical-align: top;
+  position: relative;
+  width: 60px;
+}
+
 .nav_list_function_item_hide {
   opacity: 0;
   transition-property: all;
@@ -539,33 +540,40 @@ a.nav_item_sidebar:hover {
   text-overflow: ellipsis;
 
 }
+.user_profile_image {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
 @media screen and (max-width: 500px){
-  #candidateTopMenu, #toggleCtrl {
+  #candidateTopMenu, #toggleCtrl{
      display: none;
+
   }
 }
 #toggleCtrl {
   position: absolute;
-  right: 240px;
+  right: 160px;
   top: 0px;
 
 }
 #candidateTopMenu {
   position: absolute;
-  right: 110px;
+  right: 30px;
   top: 0px;
 }
 #userMenu {
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 0px;
 }
-
 .nav_search {
   position: absolute;
   width: 100%;
   padding-left: 260px;
-  padding-right: 400px;
+  padding-right: 350px;
   text-decoration: center;
   pointer-events: none;
 }
@@ -590,7 +598,20 @@ a.nav_item_sidebar:hover {
      display: none;
   }
 }
+.nav_list_home {
+  position: absolute;
+  cursor: pointer;
+  top: 20px;
+  left: 60px;
+  font-weight: 700;
+}
+#watchout_nav_logo {
+  width: 80px;
+  position: absolute;
+  top: -18px;
+  left: 62px;
 
+}
 
 /* ------------------------------------------------------------ */
 /* compose / ask question
@@ -787,7 +808,7 @@ a.nav_item_sidebar:hover {
   color: white;
   z-index: 99;
   font-weight: 800;
-  padding: 20px 50px;
+  padding: 20px;
   height: 65px;
   box-sizing: border-box;
 
@@ -810,7 +831,7 @@ a.nav_item_sidebar:hover {
 }
 .question_menu {
   position: relative;
-  padding: 10px;
+  padding: 5px 10px 10px 10px;
 }
 .sorting_menu {
   position: absolute;

@@ -17,8 +17,8 @@
 
 
   <div class="nav_list_toggle l_inline" ng-click="showsidebar('toggle')"><i class="fa fa-align-justify"></i></div>
-
-  <div class="nav_list_logo l_inline" ng-click="go('.')">市長給問嗎 x 最後一役</div>
+  <img src="images/watchout_logo.svg" id="watchout_nav_logo">
+  <div class="nav_list_home" ng-click="go('.')">市長給問嗎 x 最後一役</div>
 
   <div class="nav_list_function">
 
@@ -41,10 +41,10 @@
         </div>
     </div>
     <!-- 登入選單 -->
-    <div class="nav_list_function_item l_inline" id="userMenu">
+    <div class="nav_list_function_item_user l_inline" id="userMenu">
         <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-user"></i> 登入</div>
         <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user"></div>
-        <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><i class="fa fa-user"></i> {{user.name}}</div>
+        <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><img class="user_profile_image" src="images/user.png"></div>
         <div class="nav_list_function_item_tooltip" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user" ng-click="logout()">
         	<div class="tri-up" ng-show="showUserMenu"></div>登出
         </div>
