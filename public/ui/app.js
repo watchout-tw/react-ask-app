@@ -231,6 +231,20 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   });
 
+  $scope.showLoginTip = function () {
+    
+    $("#notification").text("請先登入");
+    setTimeout(function(){
+      $("#notification").addClass("notification_show");
+      setTimeout(function(){
+          $("#notification").removeClass("notification_show");
+
+      },2500);
+
+    },100);
+
+  };
+
   $scope.previousPolicy = function(){
     var pid = parseInt($routeParams.pid)-1;
     if(pid < 1)

@@ -737,12 +737,15 @@ a.nav_item_sidebar:hover {
 /* ------------------------------------------------------------ */
 /* page button left & right
 /* ------------------------------------------------------------ */
-#notification {
-  background: #212121;
+.notification_wrapper {
   position: absolute;
   top: 60px;
-  right: 30px;
-  width: 180px;
+  left: 50%;
+}
+#notification {
+  background: #212121;
+  position: relative;
+  left: -50%;
   border-radius: 10px;
   color: white;
   z-index: 99;

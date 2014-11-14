@@ -34,7 +34,10 @@
       <!-- ASK QUESTION -->
       <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user&&!liveAskQuestionForm"><i class="fa fa-plus ask_icon"></i></div>
 
-      <div class="ask_prompt" ng-if="!user">登入後即可對政策提問</div>
+      <!-- ASK QUESTION (未登入)-->
+      <div class="ask_item" ng-click="showLoginTip()" ng-if="!user"><i class="fa fa-plus ask_icon"></i></div>
+
+     
 
       <!-- ASK QUESTION FORM -->
       <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="liveAskQuestionForm">
