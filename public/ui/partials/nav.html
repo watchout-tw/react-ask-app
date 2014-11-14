@@ -21,6 +21,12 @@
   <div class="nav_list_logo l_inline" ng-click="go('.')">市長給問嗎 x 最後一役</div>
 
   <div class="nav_list_function">
+
+    <div class="slider_wrap">
+        <input type="checkbox" id="s1" ng-click="toggleSignFilter()"/>
+        <label class="slider" for="s1"></label>
+    </div>
+
     <!-- 候選人選單 -->
     <div class="nav_list_function_item l_inline" ng-click="toggleCandidateMenu()" id="candidateTopMenu">
         <div class="nav_list_function_item_select" ng-if="!candidate"><i class="fa fa-cog"></i> 候選人</div>

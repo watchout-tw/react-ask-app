@@ -144,7 +144,11 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
       }else{
           $scope.sidebar = value;
       }
-  }
+  };
+
+
+
+  
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
@@ -219,6 +223,10 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
 
   $scope.order = 'signatures_count';
   
+  $scope.toggleSignFilter = function () {
+      $scope.signFilter = !$scope.signFilter;
+  };
+
   DataService.getData('candidate').then(function(data){
       var validID = ["5","6","7"];
       var cid = $routeParams.cid;
@@ -231,6 +239,18 @@ app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$ro
       }
 
   });
+
+  DataService.getData('user_signatures').then(function(data){
+     $scope.signatures = data;
+
+  });
+  $scope.hasSigned = function (qid) {
+      return $scope.signatures[qid];
+  };
+  $scope.sign = function(qid) {
+      $scope.signatures[qid] = true;
+  };
+  
 
   $scope.showLoginTip = function () {
     

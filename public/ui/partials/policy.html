@@ -89,8 +89,7 @@
       </div>
   </div>
 
-
-  <div ng-repeat="q in questions | filter:query | orderBy: order : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()">
+  <div ng-repeat="q in questions | filter:query | orderBy: order : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()" ng-hide="signFilter && !hasSigned(q.id)">
 
     <div class="q_title l_inline" ng-class="{'q_title_active':showQuestion(q.id)}" ng-click="toggleQuestion(q.id)">
       <div class="q_order l_inline">{{$index+1}}</div>
@@ -103,6 +102,8 @@
           <span ng-if="showQuestion(q.id)"><i class="fa fa-angle-double-up"></i></span>
         </div>
     <!-- ...................... -->
+        <span class="q_function_sign" ng-class="{'q_function_signed':hasSigned(q.id),'q_function_unsigned':!hasSigned(q.id)}"><i class="fa fa-bullhorn"></i> </span>
+     <!-- ...................... -->
     </div>
 
     <div class="q_content" ng-if="showQuestion(q.id)">
@@ -110,7 +111,7 @@
         <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
         <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
         <div class="q_action">
-            <a class="button"><i class="fa fa-bullhorn"></i> 連署</a>
+            <a class="button" ng-click="sign(q.id)"><i class="fa fa-bullhorn"></i> 連署</a>
             <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
         </div>
 
