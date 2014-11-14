@@ -1,3 +1,5 @@
+/** @jsx React.DOM */
+"use strict";
 var QuestionActionCreators = require('../actions/QuestionActionCreators');
 var UserStore = require("../stores/UserStore");
 var React = require('react/addons');
@@ -11,6 +13,10 @@ module.exports = React.createClass({
     };
   },
 
+  render () {
+    return this._render(this.props, this.state);
+  },
+
   _handleCreateQuestion () {
     // validate title and question and click time
     var {question} = this.state;
@@ -21,10 +27,6 @@ module.exports = React.createClass({
     question.author = user;
     QuestionActionCreators.createQuestion(question);
     this.props._handleCloseComposer();
-  },
-
-  render () {
-    return this._render(this.props, this.state);
   },
 
   _render (props, state) {

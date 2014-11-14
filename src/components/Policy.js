@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 
@@ -10,18 +11,19 @@ module.exports = React.createClass({
     };
   },
 
+  render () {
+    return this._render(this.props, this.state);
+  },
+
   _handleClick () {
     this.setState({
       hideContent: !this.state.hideContent
     });
   },
+
   // TODO: do this on the server
   _handlePreview (html) {
     return String(html).replace(/<[^>]+>/gm, '').replace(/&nbsp;/gi,' ').substring(0,200) + '...';
-  },
-
-  render () {
-    return this._render(this.props, this.state);
   },
 
   _render (props, state) {

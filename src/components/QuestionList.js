@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 var Question = require("./Question");
@@ -11,16 +12,16 @@ module.exports = React.createClass({
     };
   },
 
+  render () {
+    return this._render(this.props, this.state);
+  },
+
   _handleClick (i, event) {
     if (i !== this.state.selectedIndex) {
       this.setState({ selectedIndex: i });
     } else {
       this.setState({ selectedIndex: -1 });
     }
-  },
-
-  render () {
-    return this._render(this.props, this.state);
   },
 
   _render (props, state) {

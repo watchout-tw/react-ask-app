@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("../components");

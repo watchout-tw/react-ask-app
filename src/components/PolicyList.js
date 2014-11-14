@@ -1,6 +1,7 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
-var PolicyBox = require('./PolicyBox');
+var PolicyBox = require("./PolicyBox");
 var {Link} = require("react-router");
 
 module.exports = React.createClass({
@@ -19,7 +20,7 @@ module.exports = React.createClass({
     var { data, cid } = props;
     var result = data.map( (p,i ) => {
       var {id} = p;
-      return <Link to="policy" params={{candidateId: cid, policyId: id}} className='policy' >
+      return <Link key={id} to="policy" params={{candidateId: cid, policyId: id}} className='policy' >
         <PolicyBox item={p} />
       </Link>;
     });
