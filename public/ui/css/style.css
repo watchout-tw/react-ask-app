@@ -797,19 +797,19 @@ a.nav_item_sidebar:hover {
   font-size: 14px;
 }
 /* Native input control and checked events */
-input {
+.radio input {
   opacity: 0; 
 }
-input:checked + .outer { 
+.radio input:checked + .outer { 
   border: 2px solid #009688;
 }
-input:focus + .outer .inner {
+.radio input:focus + .outer .inner {
   opacity: 1;  
   -webkit-transform: scale(1);
   transform: scale(1);
   
 }
-input:checked + .outer .inner {
+.radio input:checked + .outer .inner {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
