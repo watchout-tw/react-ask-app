@@ -72,10 +72,25 @@
 
 <div class="wrapper">
 
-  <!--ng-if="shouldShow(q.id)"-->
-  <div class="pa_totalq" >共有 {{(questions | filter:query).length}} 題</div>
+  <div class="question_menu">
+      <div class="question_menu_meta">共有 {{(questions | filter:query).length}} 題</div>
+      
+      <div class="sorting_menu">
+          <label class="radio" ng-click="order='signatures_count'">
+             <input id="radio1" type="radio" name="radios" checked>
+             <span class="outer"><span class="inner"></span></span>
+             <span class="radio_text">票數排序</span>
+          </label>
+          <label class="radio" ng-click="order='post_timestamp'">
+          <input id="radio2" type="radio" name="radios" >
+             <span class="outer"><span class="inner"></span></span>
+             <span class="radio_text">時間排序</span>
+          </label>
+      </div>
+  </div>
 
-  <div ng-repeat="q in questions | filter:query | orderBy: 'signatures_count' : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()">
+
+  <div ng-repeat="q in questions | filter:query | orderBy: order : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()">
 
     <div class="q_title l_inline" ng-class="{'q_title_active':showQuestion(q.id)}" ng-click="toggleQuestion(q.id)">
       <div class="q_order l_inline">{{$index+1}}</div>

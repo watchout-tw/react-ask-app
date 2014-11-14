@@ -11,6 +11,7 @@ body {
   background: rgb(236,236,236);
   color: rgb(55,53,54);
   font-size: 16px;
+  
 }
 a {
   text-decoration: none;
@@ -56,6 +57,7 @@ a {
 #content {
 	margin-top: 50px;
 }
+
 hr {
   border: 0;
   height: 1px;
@@ -106,6 +108,11 @@ input{
 .v_top {
   vertical-align: top;
 }
+
+/* ------------------------------------------------------------ */
+/* question
+/* ------------------------------------------------------------ */
+
 .q_title{
   display: inline-block;
   white-space: nowrap;
@@ -336,11 +343,7 @@ a.button.facebook{
   transition-duration: 1.5s;
 
 }
-.pa_totalq {
-  margin: 10px;
-  font-size: 20px;
-  font-weight: 700;
-}
+
 /* ------------------------------------------------------------ */
 /* index / policy list
 /* ------------------------------------------------------------ */
@@ -763,3 +766,84 @@ a.nav_item_sidebar:hover {
 .notification_show {
   opacity: 0.8;
 }
+
+/* ------------------------------------------------------------ */
+/* radio button / sorting menu
+/* ------------------------------------------------------------ */
+.question_menu_meta {
+  font-size: 20px;
+  font-weight: 700;
+}
+.question_menu {
+  position: relative;
+  padding: 10px;
+}
+.sorting_menu {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.radio {
+  display: inline-block;
+  padding-right: 20px;
+  cursor: pointer;
+  position: relative;
+  width: 100px;
+}
+.radio_text {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  font-size: 14px;
+}
+/* Native input control and checked events */
+input {
+  opacity: 0; 
+}
+input:checked + .outer { 
+  border: 2px solid #009688;
+}
+input:focus + .outer .inner {
+  opacity: 1;  
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  
+}
+input:checked + .outer .inner {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+
+} 
+/* Outer ring of custom radio */
+.outer {
+  width: 20px;
+  height: 20px;
+  display: block;
+  float: left;
+  margin: 10px 9px 10px 10px;
+  border: 2px solid #009688;
+  border-radius: 50%;
+  
+}
+/* Inner ring of custom radio */
+.inner {
+  -moz-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+  width: 12px;
+  height: 12px;
+  display: block;
+  margin: 2px;
+  border-radius: 50%;
+  background-color: #009688;
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+.radio:hover .inner {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  
+}
+

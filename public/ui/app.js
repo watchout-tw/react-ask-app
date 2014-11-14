@@ -217,7 +217,8 @@ app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '
 
 app.controller('PolicyCtrl', ['$scope', 'DataService', '$location', '$sce', '$routeParams', function ($scope, DataService, $location, $sce, $routeParams){
 
-
+  $scope.order = 'signatures_count';
+  
   DataService.getData('candidate').then(function(data){
       var validID = ["5","6","7"];
       var cid = $routeParams.cid;
