@@ -847,3 +847,16 @@ a.nav_item_sidebar:hover {
   
 }
 
+/* ------------------------------------------------------------ */
+/* question bottom "more" function
+/* ------------------------------------------------------------ */
+.question_bottom {
+  text-align: center;
+  margin: 20px auto;
+}
+.question_bottom a.button {
+  color: #424242;
+  background: white;
+  width: 100px;
+}
+
