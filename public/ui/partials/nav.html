@@ -22,15 +22,18 @@
 
   <div class="nav_list_function">
 
-    <div class="slider_wrap">
-        <input type="checkbox" id="s1" ng-click="toggleSignFilter()"/>
-        <label class="slider" for="s1"></label>
+    <!-- toggle control -->
+    <div id="toggleCtrl">
+        <div class="slider_wrap">
+            <input type="checkbox" id="s1" ng-click="toggleSignFilter()"/>
+            <label class="slider" for="s1"></label>
+        </div>
     </div>
 
     <!-- 候選人選單 -->
     <div class="nav_list_function_item l_inline" ng-click="toggleCandidateMenu()" id="candidateTopMenu">
-        <div class="nav_list_function_item_select" ng-if="!candidate"><i class="fa fa-cog"></i> 候選人</div>
-        <div class="nav_list_function_item_select" ng-if="candidate"><i class="fa fa-cog"></i> {{candidate.name}}</div>
+        <div class="nav_list_function_item_select" ng-if="!candidate"><i class="fa fa-eye"></i> 候選人</div>
+        <div class="nav_list_function_item_select" ng-if="candidate"><i class="fa fa-eye"></i> {{candidate.name}}</div>
         <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}"></div>
         <div class="nav_list_function_item_inner md-whiteframe-z1" ng-class="{'nav_list_function_item_hide':!showCandidateMenu}" ng-repeat="c in candidates" ng-click="chooseCandidate(c.id)">
           <img src="images/candidates_avatar/{{c.id}}.jpg">
@@ -38,7 +41,7 @@
         </div>
     </div>
     <!-- 登入選單 -->
-    <div class="nav_list_function_item l_inline">
+    <div class="nav_list_function_item l_inline" id="userMenu">
         <div class="nav_list_function_item_select" ng-hide="user" ng-click="login()"><i class="fa fa-user"></i> 登入</div>
         <div class="tri-up" ng-class="{'nav_list_function_item_hide':!showUserMenu}" ng-show="user"></div>
         <div class="nav_list_function_item_select" ng-show="user" ng-click="toggleUserMenu()"><i class="fa fa-user"></i> {{user.name}}</div>

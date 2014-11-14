@@ -540,10 +540,27 @@ a.nav_item_sidebar:hover {
 
 }
 @media screen and (max-width: 500px){
-  #candidateTopMenu {
+  #candidateTopMenu, #toggleCtrl {
      display: none;
   }
 }
+#toggleCtrl {
+  position: absolute;
+  right: 240px;
+  top: 0px;
+
+}
+#candidateTopMenu {
+  position: absolute;
+  right: 110px;
+  top: 0px;
+}
+#userMenu {
+  position: absolute;
+  right: 20px;
+  top: 0px;
+}
+
 .nav_search {
   position: absolute;
   width: 100%;
@@ -568,7 +585,7 @@ a.nav_item_sidebar:hover {
   left: 10px;
   top:10px;
 }
-@media screen and (max-width: 600px){
+@media screen and (max-width: 800px){
   .nav_search {
      display: none;
   }

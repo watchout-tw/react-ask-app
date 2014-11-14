@@ -111,6 +111,7 @@ app.controller('AuthCtrl',['$scope', 'DataService', '$location', function($scope
 
   $scope.toggleCandidateMenu = function(){
     $scope.showCandidateMenu = !$scope.showCandidateMenu;
+   
   };
   $scope.toggleUserMenu = function(){
     if($scope.user){
@@ -158,7 +159,7 @@ app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', funct
       $location.path(path);
   };
   DataService.getData('candidate').then(function(data){
-      $scope.candidate = data;
+      $scope.candidates = data;
   });
 
 }]);

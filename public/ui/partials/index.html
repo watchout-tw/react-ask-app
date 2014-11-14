@@ -1,3 +1,4 @@
+<div ng-controller="AuthCtrl">
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
 <div id="content">
@@ -18,8 +19,9 @@
     <div class="wrapper">
     </div>
     <div class="wrapper l_center">
-        <div ng-repeat="c in candidate" class="index_c_item md-whiteframe-z1" ng-click="go('policy/'+c.id)">
+        <div ng-repeat="c in candidates" class="index_c_item md-whiteframe-z1" ng-click="go('policy/'+c.id)">
         	<img ng-src="images/candidates/{{c.id}}.jpg">
         </div>
     </div>
+</div>
 </div>
