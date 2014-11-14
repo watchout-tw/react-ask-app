@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 var {Link} = require("react-router");
@@ -7,7 +8,7 @@ var CandidateStore = require("../stores/CandidateStore");
 var CandidateActionCreators = require("../actions/CandidateActionCreators");
 
 module.exports = React.createClass({
-  displayName: "IndexPage",
+  displayName: "PolicyListPage",
 
   getInitialState () {
     var {candidateId} = this.props.params;
@@ -15,6 +16,14 @@ module.exports = React.createClass({
       data: PolicyStore.getAllFrom(candidateId),
       candidate: CandidateStore.get(candidateId)
     };
+  },
+
+  componentWillReceiveProps (nextProps) {
+    var {candidateId} = nextProps.params;
+    this.setState({
+      data: PolicyStore.getAllFrom(candidateId),
+      candidate: CandidateStore.get(candidateId)
+    });
   },
 
   render () {
@@ -30,6 +39,5 @@ module.exports = React.createClass({
         <PolicyList data={data} cid={candidate.id} />
       </div>
     </div>;
-
   }
 });

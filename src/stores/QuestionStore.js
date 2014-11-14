@@ -5,6 +5,7 @@ var AppConstants = require('../constants/AppConstants');
 var {EventEmitter} = require('events');
 // var ThreadStore = require('../stores/ThreadStore');
 var assign = require('object-assign');
+var localStorage = require("localStorage");
 
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
@@ -52,6 +53,7 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
     var {policyId, title, content, candidateId, author} = question;
     var timestamp = new Date().getTime();
     return {
+      // TODO: soidid說要用uuid
       id: 'q_' + timestamp,
       title: title,
       content: content,

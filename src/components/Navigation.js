@@ -1,7 +1,11 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 var {Link} = require("react-router");
 var UserStore = require("../stores/UserStore");
+var CandidateStore = require("../stores/CandidateStore");
+var WebAPIUtils = require("../utils/WebAPIUtils");
+var UserActionCreators = require("../actions/UserActionCreators");
 
 module.exports = React.createClass({
   displayName: "Navigation",
@@ -9,24 +13,28 @@ module.exports = React.createClass({
   getInitialState () {
     return {
       loggedIn: this.props.loggedIn, //UserStore.loggedIn(),
-      hideLogout: true
+      hideLogout: true,
+      hideCandidate: true
     };
   },
 
-  componentWillMount: function() {
-    UserStore.onChange = this._handleStateOnAuth;
-    UserStore.login();
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      loggedIn: nextProps.loggedIn
+    });
   },
 
   render () {
     return this._render(this.props, this.state);
   },
 
-  _handleStateOnAuth (loggedIn) {
-    this.setState({ loggedIn });
+  _handleCandidate () {
+    this.setState({
+      hideCandidate: !this.state.hideCandidate
+    });
   },
 
-  _handleClick () {
+  _handleAuth () {
     var {loggedIn} = this.state;
     if (loggedIn) {
       this.setState({
@@ -34,23 +42,31 @@ module.exports = React.createClass({
       });
       return;
     }
-    UserStore.login('joe@example.com', 'password1', (loggedIn) => {
-      this.setState({loggedIn});
-    });
+    return WebAPIUtils.login();
   },
 
   _handleLogout () {
-    UserStore.logout();
+    UserActionCreators.logout();
   },
 
   _render (props, state) {
     var user = (state.loggedIn)? 'username tool ongcanno tshowall': '登入';
-    var menuClass = (state.hideLogout)? 'nav_list_function_item_tooltip  nav_list_function_item_hide' : 'nav_list_function_item_tooltip';
+    var toggleClass = (state.hideLogout)? 'nav_list_function_item_hide' : '';
+    var toggleCandidateClass = (state.hideCandidate)? 'nav_list_function_item_hide': '';
     var userMenu = (state.loggedIn)? (
-      <div className={menuClass} onClick={this._handleLogout}>
+      <div className={ 'nav_list_function_item_tooltip ' + toggleClass} onClick={this._handleLogout}>
         <div className="tri-up"></div>登出
       </div>): '';
 
+    var candidates =  CandidateStore.getAll();
+    var candidateMenu = candidates.map((c) => {
+      return <Link to="policies" params={{ candidateId: c.id }} key={c.id}>
+        <div className={'nav_list_function_item_inner md-whiteframe-z1 ' + toggleCandidateClass } >
+          <img src={c.avatar} />
+          <div className="nav_list_function_item_text">{c.name}</div>
+        </div>
+      </Link>;
+    });
     return <header className='md-whiteframe-z1'>
       <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
         <i className="fa fa-align-justify"></i>
@@ -58,9 +74,11 @@ module.exports = React.createClass({
       <Link to='/'><div className="nav_list_logo l_inline">市長給問嗎 x 最後一役</div></Link>
       <div className="nav_list_function">
         <div className="nav_list_function_item l_inline">
-          <div className="nav_list_function_item_select"><i className="fa fa-cog"></i> 候選人</div>
+          <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-cog"></i> 候選人</div>
+          <div className={"tri-up " + toggleCandidateClass}></div>
+          {candidateMenu}
         </div>
-        <div className="nav_list_function_item l_inline" onClick={this._handleClick}>
+        <div className="nav_list_function_item l_inline" onClick={this._handleAuth}>
           <div className="nav_list_function_item_select">
             <i className="fa fa-user"></i> {user}
           </div>

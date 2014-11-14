@@ -5,12 +5,16 @@ var assign = require("object-assign");
 
 var AppDispatcher = assign(new Dispatcher(), {
   handleServerAction () {
-
+    var payload = {
+      source: PayloadSources.Server_ACTION,
+      action: action
+    };
+    this.dispatch(payload);
   },
 
   handleViewAction (action) {
     var payload = {
-      source: PayloadSources.SOURCE_VIEW_ACTION,
+      source: PayloadSources.VIEW_ACTION,
       action: action
     };
     this.dispatch(payload);

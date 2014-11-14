@@ -10,7 +10,7 @@ var webpackConfig = module.exports = {
   entry: "./client/scripts/index.js",
   output: {
     path: Path.resolve(__dirname, "../public/assets"),
-    publicPath: "assets/",
+    publicPath: "/assets/",
     filename: (IS_PRODUCTION ? "[hash].js" : "bundle.js")
   },
   module: {
@@ -18,17 +18,17 @@ var webpackConfig = module.exports = {
       { test: require.resolve("react/addons"), loader: "expose-loader?React" },
       { test: /\.js(x?)$/, loader: JSX_LOADER },
       { test: /\.css$/, loader: "style-loader!css-loader"},
-      { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff&name=[path][name].[ext]?[hash]&context=client" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader?name=[path][name].[ext]?[hash]&context=client" },
       // { test: /\.less$/, loader: CSS_LOADER }
-      { test: /\.(jpg|png)$/, loader: "file-loader?name=[path][name].[ext]&context=client" }
+      { test: /\.(jpg|png)$/, loader: "file-loader?name=[path][name].[ext]?[hash]&context=client" }
       // { test: /\.scss$/, loader: SCSS_LOADER },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./client/index.html",
-      filename: "../index.html"
+      filename: "../app.html"
     })
   ]
 };

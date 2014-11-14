@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
@@ -35,6 +36,10 @@ module.exports = React.createClass({
     this.setState({ hideContent: !selected });
   },
 
+  render () {
+    return this._render(this.props, this.state);
+  },
+
   _handleSignClick (event) {
     console.log(this.state.loggedIn);
     if (!this.state.loggedIn) {
@@ -53,10 +58,6 @@ module.exports = React.createClass({
     this.setState({
       hideSignButton: true
     });
-  },
-
-  render () {
-    return this._render(this.props, this.state);
   },
 
   _render (props, state) {

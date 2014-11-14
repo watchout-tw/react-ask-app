@@ -3,4 +3,5 @@ web-server.js
 node_modules/
 public/assets
 public/index.html
+public/app.html
 *.log

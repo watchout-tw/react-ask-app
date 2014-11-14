@@ -11,17 +11,17 @@ var _candidates = {
   '5': {
     id: 5,
     name: '馮光遠',
-    avatar: 'assets/images/candidates/5.jpg'
+    avatar: '/assets/images/candidates/5.jpg' //require("../../client/images/candidates/5.jpg")
   },
   '6': {
     id: 6,
     name: '連勝文',
-    avatar: 'assets/images/candidates/6.jpg'
+    avatar: '/assets/images/candidates/6.jpg' //require("../../client/images/candidates/6.jpg")
   },
   '7': {
     id: 7,
     name: '柯文哲',
-    avatar: 'assets/images/candidates/7.jpg'
+    avatar: '/assets/images/candidates/7.jpg' //require("../../client/images/candidates/7.jpg")
   }
 };
 
@@ -48,7 +48,9 @@ var CandidateStore = assign({}, EventEmitter.prototype, {
   },
 
   getAll () {
-    return _candidates;
+    return Object.keys(_candidates).map((c) => {
+      return _candidates[c];
+    });
   }
 });
 

@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
 var {Link} = require("react-router");
@@ -18,9 +19,7 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var candidates = Object.keys(state.candidates).map((c) => {
-      return state.candidates[c];
-    });
+    var {candidates} = state;
     var result = candidates.map((c) => {
       return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
         <div className='index_c_item md-whiteframe-z1'>
@@ -31,7 +30,7 @@ module.exports = React.createClass({
     CandidateActionCreators.chooseCandidate(null);
     return <div id='content'>
       <div className='page_wrapper'>
-        <img className="index_cover" src="ui/images/cover.jpg" />
+        <img className="index_cover" src='assets/images/cover.jpg' />
       </div>
       <div className='page_wrapper color_yellow'>
         <div className="wrapper color_yellow">
