@@ -3,7 +3,7 @@
 var React = require("react");
 var Router = require("react-router");
 var {Route, Routes} = Router;
-var {Navigation, SiderBar} = require("./components");
+var {Navigation, SiderBar, Footer} = require("./components");
 var CandidateStore = require("./stores/CandidateStore");
 var UserActionCreators = require("./actions/UserActionCreators");
 var UserStore = require("./stores/UserStore");
@@ -59,23 +59,7 @@ module.exports = React.createClass({
                   user={state.user} />
       <props.activeRouteHandler loggedIn={state.loggedIn}
                                 user={state.user} />
-
-      <div id="footer">
-          <div className="footer_link">
-          <ul>
-              <li className="footer_text"><a href="terms">使用條款</a></li>
-              <li className="footer_text"><a href="qa">發問指南</a></li>
-              <li className="footer_text"><a href="contact">聯絡我們</a></li>
-          </ul>
-          </div>
-          <div className="footer_logo">
-          <ul>
-              <li className="footer_img"><a href="http://goo.gl/2vlnVR" target="_new"><img id="footer_apple" src="/assets/images/apple_logo.png" /></a></li>
-              <li className="footer_img"><a href="http://goo.gl/du71aO" target="_new"><img id="footer_watchout" src="/assets/images/watchout_logo_black.png" /></a></li>
-              <li className="footer_img"><a href="http://goo.gl/LB3KC9" target="_new"><img src="/assets/images/google_logo_color.png" /></a></li>
-          </ul>
-          </div>
-      </div>
+      <Footer />
     </div>;
   }
 });

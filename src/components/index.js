@@ -6,3 +6,4 @@ exports.Navigation = require("./Navigation");
 exports.QuestionList = require("./QuestionList");
 exports.QuestionComposer = require("./QuestionComposer");
 exports.SiderBar = require("./SiderBar");
+exports.Footer = require("./Footer");

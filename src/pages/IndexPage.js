@@ -58,7 +58,7 @@ module.exports = React.createClass({
                     <li>柯文哲：（時間未定）</li>
                     </ul>
                 </p>
-                <p>直播頻道：<a href="http://live.appledaily.com.tw/livechannel/subject/108">http://live.appledaily.com.tw/livechannel/subject/108</a>
+                <p>直播頻道：<a href="http://live.appledaily.com.tw/livechannel/subject/108" target="_blank">http://live.appledaily.com.tw/livechannel/subject/108</a>
                 </p>
             </div>
             <div className="index_subsection">
@@ -69,23 +69,23 @@ module.exports = React.createClass({
                     <li>請勿留下任何自己或他人之電話、聯絡方式等私人資訊</li>
                     <li>請勿發表涉及人身攻擊、謾罵、惡意攻訐與恐嚇等之言論</li>
                     <li>請勿進行洗版與重複發問</li>
-                    <li>請勿使用有關性別、民族、族群或國籍等歧視性用語</li>  
+                    <li>請勿使用有關性別、民族、族群或國籍等歧視性用語</li>
                 </ol>
                 <p>註：若候選人團隊認為提問不符上述規範，可拒絕回答該題。</p>
             </div>
             <div className="index_subsection">
                 <div className="index_title">考前惡補</div>
-                <p>一個好的提問至關重要！沒有頭緒？請看我們為你準備的<a href="#/how-to-ask">發問指南</a>。</p>
+                <p>一個好的提問至關重要！沒有頭緒？請看我們為你準備的<Link to="qa">發問指南</Link>。</p>
             </div>
         </div>
         <div className="l_center"><h2>開始發問</h2></div>
         <div className="l_center">
                 {result}
         </div>
-        
+
     </div>
     </div>
-    
+
 </div>
   }
 });

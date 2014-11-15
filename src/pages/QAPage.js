@@ -85,7 +85,7 @@ module.exports = React.createClass({
 
                 <div className="quote"><p>a. 可以在台北市種四季都看得見的植栽嗎？<br/>b. 可以在台北市種四季都有不同面貌，一看就知道是什麼季節的植栽嗎？</p></div>
 
-                <p>如果當初提供問題的朋友，可以多花一點時間描述清楚，那麼，想要問類似問題的人，就更容易判斷自己要不要參加連署，而在連署成功之後，候選人也會更不容易閃躲囉！</p>  
+                <p>如果當初提供問題的朋友，可以多花一點時間描述清楚，那麼，想要問類似問題的人，就更容易判斷自己要不要參加連署，而在連署成功之後，候選人也會更不容易閃躲囉！</p>
             </div>
             <div className="index_subsection">
                 <div className="index_title">標題用問句，議題一目瞭然</div>
@@ -137,7 +137,7 @@ module.exports = React.createClass({
         </div>
     </div>
     </div>
-</div>
+</div>;
 
   }
 });
