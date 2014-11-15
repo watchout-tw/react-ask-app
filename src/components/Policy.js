@@ -35,6 +35,9 @@ module.exports = React.createClass({
         {preview}
         <span className='p_seeall' onClick={this._handleClick}>{'（繼續閱讀）'}</span>
       </div>) : '';
+    var toggle = (state.hideContent)? '' : (<div className="l_center">
+        <span className="p_seeall" onClick={this._handleClick}><i className="fa fa-angle-double-up"></i> 摺疊</span>
+      </div>);
 
     return <div className='md-whiteframe-z1 p_item'>
       <div className='p_title' onClick={this._handleClick}>
@@ -45,8 +48,7 @@ module.exports = React.createClass({
       </div>
       {togglePreview}
       <div className={contentClass} dangerouslySetInnerHTML={{__html: content}} onDoubleClick={this._handleClick}/>
-      <div className='l_center'>
-      </div>
+      {toggle}
     </div>;
 
   }

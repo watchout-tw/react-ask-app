@@ -25,6 +25,7 @@ module.exports = React.createClass({
     if (!title || !content) {
       return;
     }
+    // console.log(question);
     QuestionActionCreators.createQuestion(question);
     this.props._handleCloseComposer();
   },

@@ -80,10 +80,12 @@ module.exports = React.createClass({
     var user = UserStore.get();
 
     var signButton = (state.hideSignButton)? (<Button className='signed' name='已連署' icon='fa-bullhorn' />) : ( <Button className='sign' name='連署' icon='fa-bullhorn' _handleClick={this._handleSignClick} />);
+    var signClass = 'q_function_unsigned';
 
     signatures.map((s) => {
       if (user.id === s) {
         signButton = <Button className='signed' name='已連署' icon='fa-bullhorn' />;
+        signClass = 'q_function_signed';
       }
     });
 
@@ -115,6 +117,9 @@ module.exports = React.createClass({
         <div className='q_function l_inline'>
           <span><i className={toggleIcon}></i></span>
         </div>
+        <span className={"q_function_sign " + signClass } >
+          <i className="fa fa-bullhorn"></i>
+        </span>
       </div>
       {formatedContent}
     </div>;

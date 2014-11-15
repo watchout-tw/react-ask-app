@@ -44,11 +44,11 @@ module.exports = React.createClass({
     QuestionStore.addChangeListener(this._onChange);
     setTimeout( (function () {
       var {candidateId, policyId} = this.props.params;
-      // var {new_question} = this.state;
-      // new_question.author = this.props.user;
-      // new_question.cid = candidateId;
-      // new_question.pid = policyId;
-      // this.setState({ new_question });
+      var {new_question} = this.state;
+      new_question.author = this.props.user;
+      new_question.cid = candidateId;
+      new_question.pid = policyId;
+      this.setState({ new_question });
       QuestionActionCreators.getQuestions({
         cid: candidateId,
         pid: policyId

@@ -137,9 +137,21 @@ api
       if (err) {
         return res.error(err.stack);
       }
+      var signs = question.signatures.map(function (s) {
+        return s.user.id;
+      });
       return res.json({
         status: 'success',
-        data: question
+        data: {
+          id: question.id,
+          cid: question.cid,
+          pid: question.pid,
+          title: question.title,
+          content: question.content,
+          author: question.author,
+          signatures: signs,
+          createdAt: question.createdAt
+        }
       });
     });
   })
