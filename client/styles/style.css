@@ -242,8 +242,25 @@ input{
 }
 .q_postmeta {
   width: 100%;
-  padding-left: 10px;
+  padding-left: 12px;
   font-size: 14px;
+  margin-top: 50px;
+}
+.q_author_img {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+}
+.q_author_meta, .q_time_meta {
+  display: inline-block;
+  width: 100%;
+  /* vertical-align: top; */
+  /* padding-top: 15px; */
+  margin-left: 60px;
+  /* height: 50px; */
+}
+.q_author_meta {
+  margin-top: 5px;
 }
 a.q_postmeta {
   color: rgb(55,53,54);
@@ -252,7 +269,7 @@ a.q_postmeta:hover {
   color: #03A9F4;
 }
 .q_action {
-  margin: 20px 10px;
+  margin: 15px 10px;
 }
 .q_title_active {
   border-bottom: 1px solid rgb(220,220,220);
@@ -928,7 +945,7 @@ a.nav_item_sidebar:hover {
   position: fixed;
   top: 48%;
   font-size: 30px;
-  z-index: 99;
+  z-index: 10;
   color: rgb(55,53,54);
 }
 .page_right {

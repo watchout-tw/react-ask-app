@@ -69,7 +69,7 @@ module.exports = React.createClass({
 
     var candidates =  CandidateStore.getAll();
     var candidateMenu = (state.hideCandidate)? '': candidates.map((c) => {
-      return <Link to="policies" params={{ candidateId: c.id }} key={c.id}>
+      return <Link to="policies" params={{ candidateId: c.id }} key={c.id} onClick={this._handleCandidate}>
         <div className={'nav_list_function_item_inner md-whiteframe-z1 ' + toggleCandidateClass } >
           <img src={c.avatar_square} />
           <div className="nav_list_function_item_text">{c.name}</div>

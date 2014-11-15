@@ -95,9 +95,9 @@ module.exports = React.createClass({
     var formatedContent = (state.hideContent)? '': <div className='q_content'>
         <p className='q_text'>{content}</p>
         <div className='q_postmeta'>
-          {'提問人：' + author.name }
-          <img src={author.avatar} />
-          {'/ 提問時間：' + formatedDate }
+        <img src={author.avatar} className='q_author_img' />
+          <div className='q_author_meta'>{'提問人：' + author.name }</div>
+          <div className='q_time_meta'>{'提問時間：' + formatedDate }</div>
         </div>
         <div className='q_action'>
           {signButton}{ ' '}
