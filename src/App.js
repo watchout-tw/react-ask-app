@@ -58,9 +58,9 @@ module.exports = React.createClass({
       <div id="footer">
           <div className="footer_link">
           <ul>
-              <li className="footer_text"><a href="#/terms">使用條款</a></li>
-              <li className="footer_text"><a href="#/how-to-ask">發問指南</a></li>
-              <li className="footer_text"><a href="#/contact">聯絡我們</a></li>
+              <li className="footer_text"><a href="terms">使用條款</a></li>
+              <li className="footer_text"><a href="qa">發問指南</a></li>
+              <li className="footer_text"><a href="contact">聯絡我們</a></li>
           </ul>
           </div>
           <div className="footer_logo">
