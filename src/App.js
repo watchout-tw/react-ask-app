@@ -5,14 +5,16 @@ var Router = require("react-router");
 var {Route, Routes} = Router;
 var {Navigation, SiderBar} = require("./components");
 var CandidateStore = require("./stores/CandidateStore");
+var UserActionCreators = require("./actions/UserActionCreators");
 var UserStore = require("./stores/UserStore");
 var {Promise} = require("es6-shim");
-var WebAPIUtils = require("./utils/WebAPIUtils");
+// var WebAPIUtils = require("./utils/WebAPIUtils");
 
 module.exports = React.createClass({
   displayName: "App",
 
   getInitialState () {
+    UserActionCreators.checkLogin();
     return {
       hideSiderBar: true,
       loggedIn: false
@@ -22,11 +24,9 @@ module.exports = React.createClass({
   componentDidMount () {
     UserStore.addChangeListener(this._onChange);
     setTimeout((function () {
-      UserStore.loggedIn( (err, res) =>{
-        this.setState({
-          loggedIn: !!res.body.authenticated
-        });
-      }).bind(this);
+      this.setState({
+        loggedIn: UserStore.loggedIn()
+      });
     }).bind(this) ,1000);
   },
 
@@ -35,11 +35,9 @@ module.exports = React.createClass({
   },
 
   _onChange () {
-    UserStore.loggedIn( (err, res) =>{
-      this.setState({
-        loggedIn: !!res.body.authenticated
-      });
-    }).bind(this);
+    this.setState({
+      loggedIn: UserStore.loggedIn()
+    });
   },
 
   // TODO: handle null SiderBar and need to be closed when clicking

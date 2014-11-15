@@ -4,9 +4,12 @@ var AppConstants = require('../constants/AppConstants');
 var {EventEmitter} = require('events');
 var assign = require('object-assign');
 var WebAPIUtils = require("../utils/WebAPIUtils");
-var localStorage = require("localStorage");
+// var localStorage = require("localStorage");
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
+
+var _token = null;
+var _user = {};
 
 var UserStore = assign({}, EventEmitter.prototype, {
 
@@ -22,43 +25,62 @@ var UserStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  // saveToken (res) {
-  //   var {token, user} = res;
-  //   if(localStorage.token) {
-  //     return;
-  //   }
-  //   localStorage.token = JSON.stringify(token);
-  //   localStorage.user = JSON.stringify(user);
-  // },
 
   getToken () {
     return localStorage.token;
   },
 
   logout () {
-    delete localStorage.token;
-    delete localStorage.user;
+    // call logout
   },
 
-  loggedIn (cb) {
-    return WebAPIUtils.getToken(cb);
+  checkLogin () {
+    WebAPIUtils.getToken();
+  },
+
+  saveUser (data) {
+    var {token, user} = data;
+    _token = token;
+    _user = user;
+    console.log('saved');
+  },
+
+  loggedIn () {
+    return !!_token;
   },
 
   get () {
-    // if (localStorage.user) {
-    //   return JSON.parse(localStorage.user);
-    // }
-    return {};
+    return _user;
   }
 });
 
 UserStore.dispatchToken = AppDispatcher.register((payload) => {
   var {action} = payload;
   switch(action.type) {
+    case ActionTypes.IS_LOGIN:
+      WebAPIUtils.getToken((err, res) => {
+        if(err) {
+          console.log(err);
+          return;
+        }
+        var {authenticated, token, user} = res.body;
+        if(authenticated) {
+          _token = token;
+          _user = user;
+          UserStore.emitChange();
+        }
+      });
+
+      break;
     case ActionTypes.LOGOUT:
-      console.log(action);
-      UserStore.logout();
-      UserStore.emitChange();
+      WebAPIUtils.logout( (err, res) => {
+        if (err) {
+          console.log(err);
+        }
+        _token = null;
+        _user = {};
+        UserStore.emitChange();
+      });
       break;
     default:
   }

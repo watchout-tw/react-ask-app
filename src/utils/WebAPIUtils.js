@@ -1,4 +1,5 @@
-var UserStore = require("../stores/UserStore");
+// var UserStore = require("../stores/UserStore");
+var UserActionCreators = require("../actions/UserActionCreators");
 var request = require("superagent");
 var TIMEOUT = 10000;
 var API = '/api';
@@ -10,8 +11,7 @@ function makeURL (path) {
 
 module.exports = {
   login () {
-    location.href = makeURL('/auth/facebook');
-
+    return location.href = makeURL('/auth/facebook');
   },
 
   getToken (cb) {
@@ -20,12 +20,15 @@ module.exports = {
       .timeout(TIMEOUT)
       .end( function (err, res) {
         cb(err, res);
-        // if (err) {
-        //   return;
-        // }
-        // if (res.body.authenticated) {
-        //   UserStore.saveToken(res.body);
-        // }
+      });
+  },
+
+  logout (cb) {
+    request
+      .get(makeURL('/logout'))
+      .timeout(TIMEOUT)
+      .end(function (err, res) {
+        cb(err, res);
       });
   },
 
@@ -35,7 +38,7 @@ module.exports = {
       .query(query)
       .timeout(TIMEOUT)
       .end(function (err, res) {
-        cb(err, res);
+        return cb(err, res);
       });
   },
 
@@ -45,7 +48,7 @@ module.exports = {
       .send({question: question})
       .timeout(TIMEOUT)
       .end(function(err, res) {
-        cb(err, res);
+        return cb(err, res);
       });
   }
 

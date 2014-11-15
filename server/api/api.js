@@ -62,6 +62,14 @@ api.get('/token', function (req, res) {
 
 });
 
+api.get('/logout', function (req, res) {
+  req.logout();
+  return res.json({
+    status: "success",
+    message: "Logout successed"
+  });
+});
+
 api
   .get('/questions', function (req, res) {
     var cid = req.query.cid;
