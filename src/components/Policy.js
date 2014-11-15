@@ -43,7 +43,7 @@ module.exports = React.createClass({
       <div className='p_title' onClick={this._handleClick}>
         {indexTitle}{title}
         <div className='p_actionicon l_inline'>
-          <i className={toggleIcon}></i>
+          {'　'}<i className={toggleIcon}></i>
         </div>
       </div>
       {togglePreview}

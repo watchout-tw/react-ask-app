@@ -49,13 +49,16 @@ module.exports = React.createClass({
         cid: candidateId,
         index: policyId
       });
+    QuestionActionCreators.getQuestions({
+        cid: candidateId,
+        pid: policyId,
+    });
     this.setState({
       loggedIn: nextProps.loggedIn,
       policy: policy,
       prev: prev,
       next: next,
       limit: limit,
-      questions: QuestionStore.getAllFrom(candidateId, policyId),
       hideComposer: true,
       new_question: {
         title: null,

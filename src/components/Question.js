@@ -115,7 +115,7 @@ module.exports = React.createClass({
         <div className='q_vote l_inline'>{count}</div>
         {title}
         <div className='q_function l_inline'>
-          <span><i className={toggleIcon}></i></span>
+          {'　'}<span><i className={toggleIcon}></i></span>
         </div>
         <span className={"q_function_sign " + signClass } >
           <i className="fa fa-bullhorn"></i>
