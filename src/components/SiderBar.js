@@ -30,12 +30,12 @@ module.exports = React.createClass({
     var policies = PolicyStore.getAllFrom(cid);
     // this.setState({ policies });
     var result = policies.map((p) => {
-      var {id, title} = p;
+      var {id, title, indexTitle} = p;
       return <Link key={id}
                    className='nav_item_sidebar'
                    to="policy"
                    params={{candidateId: cid, policyId: id}}>
-        {title}
+       {indexTitle} {title}
       </Link>;
     });
     var toggleClass = (props.hideSiderBar)? '': 'show';

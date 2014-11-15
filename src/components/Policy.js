@@ -41,7 +41,7 @@ module.exports = React.createClass({
 
     return <div className='md-whiteframe-z1 p_item'>
       <div className='p_title' onClick={this._handleClick}>
-        {indexTitle}{title}
+        {indexTitle} {title}
         <div className='p_actionicon l_inline'>
           {'　'}<i className={toggleIcon}></i>
         </div>
