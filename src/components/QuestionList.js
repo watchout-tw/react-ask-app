@@ -81,6 +81,9 @@ module.exports = React.createClass({
         </div>
       </div>
       {result}
+      <div className="question_bottom">
+       <a className="button"><i className="fa fa-bullhorn"></i>{ ' 更多'}</a>
+      </div>
     </div>;
   }
 });

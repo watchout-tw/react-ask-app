@@ -16,7 +16,8 @@ module.exports = React.createClass({
     return {
       loggedIn: this.props.loggedIn,
       hideLogout: true,
-      hideCandidate: true
+      hideCandidate: true,
+      checked: false
     };
   },
 
@@ -51,6 +52,12 @@ module.exports = React.createClass({
     UserActionCreators.logout();
   },
 
+  _handleCheck () {
+    this.setState({
+      checked: !this.state.checked
+    });
+  },
+
   _render (props, state) {
     var user = (state.loggedIn)? <img className='user_profile_image' src={props.user.avatar} /> : '登入';
     var toggleClass = (state.hideLogout)? 'nav_list_function_item_hide' : '';
@@ -82,18 +89,25 @@ module.exports = React.createClass({
         <i className="fa fa-align-justify"></i>
       </div>
       <Link to='/'><div className="nav_list_home">市長給問嗎! 最後一役</div></Link>
-      <div className="nav_list_function_item l_inline" id="candidateTopMenu">
-          <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> {candidateName}</div>
-          <div className={"tri-up " + toggleCandidateClass}></div>
-          {candidateMenu}
-      </div>
-      <div className="nav_list_function_item_user l_inline" onClick={this._handleAuth} id="userMenu">
-          <div className="nav_list_function_item_select">
-            <i className="fa fa-facebook"></i> {user}
+      <div className="nav_list_function">
+        <div id="toggleCtrl" onClick={this._handleCheck}>
+          <div className="slider_wrap" >
+            <input type="checkbox" id="s1" checked={state.checked} />
+            <label className="slider" for="s1"></label>
           </div>
-          {userMenu}
+        </div>
+        <div className="nav_list_function_item l_inline" id="candidateTopMenu">
+            <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> {candidateName}</div>
+            <div className={"tri-up " + toggleCandidateClass}></div>
+            {candidateMenu}
+        </div>
+        <div className="nav_list_function_item_user l_inline" onClick={this._handleAuth} id="userMenu">
+            <div className="nav_list_function_item_select">
+              <i className="fa fa-facebook"></i> {user}
+            </div>
+            {userMenu}
+        </div>
       </div>
-
 
       <div className="nav_search">
         <div className="nav_search_inner">
