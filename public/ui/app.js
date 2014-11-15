@@ -52,8 +52,10 @@ app.config(['$routeProvider','$locationProvider',
       controller: 'IndexCtrl'
     }).
       when('/terms',{
-      templateUrl: 'partials/terms.html',
-      controller: 'IndexCtrl'
+      templateUrl: 'partials/terms.html'
+    }).
+      when('/contact',{
+      templateUrl: 'partials/contact.html'
     }).
       otherwise({
       redirectTo:'/',
