@@ -49,10 +49,13 @@ module.exports = React.createClass({
         cid: candidateId,
         index: policyId
       });
-    QuestionActionCreators.getQuestions({
-        cid: candidateId,
-        pid: policyId,
-    });
+    // avoid calling api multiple times
+    if (policyId !== this.state.policy.id) {
+      QuestionActionCreators.getQuestions({
+          cid: candidateId,
+          pid: policyId,
+      });
+    }
     this.setState({
       loggedIn: nextProps.loggedIn,
       policy: policy,
