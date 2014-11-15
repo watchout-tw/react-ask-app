@@ -11,7 +11,7 @@ var QuestionActionCreators = require("../actions/QuestionActionCreators");
 var WebAPIUtils = require("../utils/WebAPIUtils");
 
 module.exports = React.createClass({
-  displayName: "App",
+  displayName: "PolicyPage",
 
   getInitialState () {
     var {candidateId, policyId} = this.props.params;
@@ -19,6 +19,9 @@ module.exports = React.createClass({
       new_question: {
         title: null,
         content: null,
+        cid: candidateId,
+        pid: policyId,
+        author: this.props.user
       },
       policy: PolicyStore.get({
         cid: candidateId,
@@ -27,7 +30,7 @@ module.exports = React.createClass({
       candidate: CandidateStore.get(candidateId),
       questions: QuestionStore.getAllFrom(candidateId, policyId),
       hideComposer: true,
-      loggedIn: this.props.loggedIn
+      loggedIn: this.props.loggedIn,
     };
   },
 
@@ -41,6 +44,11 @@ module.exports = React.createClass({
     QuestionStore.addChangeListener(this._onChange);
     setTimeout( (function () {
       var {candidateId, policyId} = this.props.params;
+      // var {new_question} = this.state;
+      // new_question.author = this.props.user;
+      // new_question.cid = candidateId;
+      // new_question.pid = policyId;
+      // this.setState({ new_question });
       QuestionActionCreators.getQuestions({
         cid: candidateId,
         pid: policyId
@@ -53,13 +61,14 @@ module.exports = React.createClass({
   },
 
   _onChange () {
-    var {candidate, policy} = this.state;
+    var {candidate, policy, new_question} = this.state;
+    new_question.title = null;
+    new_question.content = null;
+    new_question.cid = candidate.id;
+    new_question.pid = policy.id;
     this.setState({
       questions: QuestionStore.getAllFrom(candidate.id, policy.id),
-      new_question: {
-        title: null,
-        content: null
-      }
+      new_question: new_question
     });
   },
 
@@ -73,12 +82,12 @@ module.exports = React.createClass({
   },
 
   _handleDrop () {
+    var {new_question} = this.state;
+    new_question.title = null;
+    new_question.content = null;
     this.setState({
       hideComposer: !this.state.hideComposer,
-      new_question: {
-        title: null,
-        content: null
-      }
+      new_question: new_question
     });
   },
 

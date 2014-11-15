@@ -7,9 +7,10 @@ var Button = require('./Button');
 // var ENTER_KEY_CODE = 13;
 
 module.exports = React.createClass({
+  displayName: "QuestionComposer",
+
   getInitialState () {
     return {
-      question: this.props.question
     };
   },
 
@@ -19,12 +20,11 @@ module.exports = React.createClass({
 
   _handleCreateQuestion () {
     // validate title and question and click time
-    var {question} = this.state;
-    var {policy, candidate} = this.props;
-    var user = UserStore.get();
-    question.pid= policy.id;
-    question.cid = candidate.id;
-    question.author = "cuU015csimKADCcf";
+    var {question} = this.props;
+    var {title, content} = question;
+    if (!title || !content) {
+      return;
+    }
     QuestionActionCreators.createQuestion(question);
     this.props._handleCloseComposer();
   },

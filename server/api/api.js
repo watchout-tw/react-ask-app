@@ -19,7 +19,8 @@ passport.use(new FacebookStrategy({
     clientID: config.FACEBOOK_APP_ID,
     clientSecret: config.FACEBOOK_APP_SECRET,
     callbackURL: config.FACEBOOK_APP_CALLBACK,
-    passReqToCallback : true
+    passReqToCallback : true,
+    profileFields: ['id', 'displayName', 'name', 'gender', 'birthday', 'profileUrl', 'emails', 'photos', 'age_range', 'locale', 'location', 'timezone']
   },
   function (req, accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
@@ -53,11 +54,16 @@ api.get('/token', function (req, res) {
       token: null
     });
   }
-  var token = jwt.sign({user: req.user.id}, 'sacascasc');
+  var token = jwt.sign({user: req.user.id}, config.tokenSecret);
+
   return res.json({
     authenticated: true,
     token: token,
-    user: req.user._json
+    user: {
+      id: req.user.id,
+      name: req.user.facebookData.displayName,
+      avatar: req.user.facebookData._json.picture.data.url
+    }
   });
 
 });
@@ -91,14 +97,14 @@ api
     });
   })
   .post('/questions', function (req, res) {
-    var newQuestion = req.body.question;
-
     if(!req.user) {
       return res.json({
         status: 'failed',
         message: 'Not authenticated'
       });
     }
+
+    var newQuestion = req.body.question;
     var createdAt = new Date();
     Question.findOrCreate({title: newQuestion.title, cid: newQuestion.cid, pid: newQuestion.pid}, {
       id: uid(16),
@@ -121,7 +127,36 @@ api
         data: question
       });
     });
-});
+  })
+  .patch('/questions', function (req, res) {
+    if(!req.user) {
+      return res.json({
+        status: 'failed',
+        message: 'Not authenticated'
+      });
+    }
+
+    var signQuestion = req.body.question;
+    var createdAt = new Date();
+    Question.where({id: signQuestion.id}).findOne(function (err, question) {
+      if (err) {
+        return res.error(err.stack);
+      }
+      question.signatures.push({
+        uid: signQuestion.signer,
+        timestamp: createdAt.getTime()
+      });
+
+      question.save(function (err) {
+        if (err) {
+          return res.error(err.stack);
+        }
+        return res.json({
+          status: "success"
+        });
+      });
+    });
+  });
 
 
 module.exports = api;

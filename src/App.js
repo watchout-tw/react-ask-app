@@ -17,7 +17,8 @@ module.exports = React.createClass({
     UserActionCreators.checkLogin();
     return {
       hideSiderBar: true,
-      loggedIn: false
+      loggedIn: false,
+      user: {}
     };
   },
 
@@ -25,7 +26,8 @@ module.exports = React.createClass({
     UserStore.addChangeListener(this._onChange);
     setTimeout((function () {
       this.setState({
-        loggedIn: UserStore.loggedIn()
+        loggedIn: UserStore.loggedIn(),
+        user: UserStore.get()
       });
     }).bind(this) ,1000);
   },
@@ -36,7 +38,8 @@ module.exports = React.createClass({
 
   _onChange () {
     this.setState({
-      loggedIn: UserStore.loggedIn()
+      loggedIn: UserStore.loggedIn(),
+      user: UserStore.get()
     });
   },
 
@@ -52,9 +55,11 @@ module.exports = React.createClass({
     return <div>
       <SiderBar hideSiderBar={hideSiderBar} />
       <Navigation _toggleSiderBar={this._toggleSiderBar}
-                  loggedIn={state.loggedIn} />
-      <props.activeRouteHandler loggedIn={state.loggedIn} />
-      
+                  loggedIn={state.loggedIn}
+                  user={state.user} />
+      <props.activeRouteHandler loggedIn={state.loggedIn}
+                                user={state.user} />
+
       <div id="footer">
           <div className="footer_link">
           <ul>
@@ -72,13 +77,5 @@ module.exports = React.createClass({
           </div>
       </div>
     </div>;
-
-    // return <div>
-    //   <SiderBar hideSiderBar={hideSiderBar} />
-    //   <Navigation _toggleSiderBar={this._toggleSiderBar}
-    //               _handleLogin = { this._handleLogin}
-    //               loggedIn={state.loggedIn} />
-    //   <props.activeRouteHandler loggedIn={state.loggedIn} />
-    // </div>;
   }
 });

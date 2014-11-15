@@ -7,7 +7,7 @@ var QuestionSchema = new Schema({
   pid: String,
   title: String,
   content: String,
-  autor: Schema.Types.Mixed,
+  author: Schema.Types.Mixed,
   createdAt: Date,
   signatures: [Schema.Types.Mixed]
 });

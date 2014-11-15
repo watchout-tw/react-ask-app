@@ -12,13 +12,6 @@ module.exports = React.createClass({
 
   getInitialState () {
     var {cid, pid } = this.props;
-    // var user = UserStore.get();
-    // var question = QuestionStore.get({
-    //     candidateId: cid,
-    //     policyId: pid,
-    //     qid: qid
-    //   });
-    // var signed = (user.uid in question.signatures)? false: true;
     return {
       loggedIn: this.props.loggedIn,
       question: this.props.question,
@@ -47,17 +40,17 @@ module.exports = React.createClass({
     }
     var {cid, pid} = this.props;
     var {question} = this.state;
-    var user = UserStore.get();
-    QuestionActionCreators.signQuestion({
-      cid: cid,
-      pid: pid,
-      qid: question.id,
-      signer: user.uid,
-      signedAt: new Date().getTime()
-    });
-    this.setState({
-      hideSignButton: true
-    });
+    // var user = UserStore.get();
+    // QuestionActionCreators.signQuestion({
+    //   cid: cid,
+    //   pid: pid,
+    //   qid: question.id,
+    //   signer: user.uid,
+    //   signedAt: new Date().getTime()
+    // });
+    // this.setState({
+    //   hideSignButton: true
+    // });
   },
 
   _render (props, state) {
@@ -65,15 +58,15 @@ module.exports = React.createClass({
     var {question} = state;
     var {title, content, author, createdAt, signatures} = question;
 
-    // if ('facebook:123123' in signatures) {
-    //   this.setState({hideSignButton: true});
-    // }
-
     var formatedDate = new moment(createdAt).fromNow();
     var signButton = (state.hideSignButton)? (<Button className='signed' name='已連署' icon='fa-bullhorn' />) : ( <Button className='sign' name='連署' icon='fa-bullhorn' _handleClick={this._handleSignClick} />);
     var formatedContent = (state.hideContent)? '': <div className='q_content'>
         <p className='q_text'>{content}</p>
-        <div className='q_postmeta'>{'提問人：someid / 提問時間：' + formatedDate }</div>
+        <div className='q_postmeta'>
+          {'提問人：' + author.name }
+          <img src={author.avatar} />
+          {'/ 提問時間：' + formatedDate }
+        </div>
         <div className='q_action'>
           {signButton}{ ' '}
           <Button className='facebook' name='分享' icon='fa-facebook' />

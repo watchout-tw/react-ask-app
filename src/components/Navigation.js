@@ -12,7 +12,7 @@ module.exports = React.createClass({
 
   getInitialState () {
     return {
-      loggedIn: this.props.loggedIn, //UserStore.loggedIn(),
+      loggedIn: this.props.loggedIn,
       hideLogout: true,
       hideCandidate: true
     };
@@ -50,7 +50,7 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var user = (state.loggedIn)? 'username tool ongcanno tshowall': '登入';
+    var user = (state.loggedIn)? props.user.name : '登入';
     var toggleClass = (state.hideLogout)? 'nav_list_function_item_hide' : '';
     var toggleCandidateClass = (state.hideCandidate)? 'nav_list_function_item_hide': '';
     var userMenu = (state.loggedIn)? (
@@ -59,7 +59,7 @@ module.exports = React.createClass({
       </div>): '';
 
     var candidates =  CandidateStore.getAll();
-    var candidateMenu = candidates.map((c) => {
+    var candidateMenu = (state.hideCandidate)? '': candidates.map((c) => {
       return <Link to="policies" params={{ candidateId: c.id }} key={c.id}>
         <div className={'nav_list_function_item_inner md-whiteframe-z1 ' + toggleCandidateClass } >
           <img src={c.avatar_square} />

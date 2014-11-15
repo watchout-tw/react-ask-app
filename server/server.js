@@ -22,7 +22,7 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
+app.use(session({ secret: config.sessionSecret }));
 app.use(passport.initialize());
 app.use(passport.session());
 
