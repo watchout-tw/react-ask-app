@@ -51,6 +51,10 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/how-to-ask.html',
       controller: 'IndexCtrl'
     }).
+      when('/terms',{
+      templateUrl: 'partials/terms.html',
+      controller: 'IndexCtrl'
+    }).
       otherwise({
       redirectTo:'/',
       templateUrl: 'partials/index.html',
