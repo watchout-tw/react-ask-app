@@ -771,17 +771,16 @@ a.nav_item_sidebar:hover {
   position: relative;
   padding-bottom: 100px;
 }
-
-@media screen and (min-width: 1100px){
+@media screen and (min-width:900px){
   .index_section {
     position: absolute;
-    top: -260;
+    top: -300px;
   }
 }
-@media screen and (min-width:1000px){
+@media screen and (min-width: 1200px){
   .index_section {
     position: absolute;
-    top: -180px;
+    top: -400px;
   }
 }
 .index_content {
@@ -793,6 +792,24 @@ a.nav_item_sidebar:hover {
   font-size: 18px;
   background: white;
   margin-bottom: 5px;
+}
+.index_maintitle {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #BDBDBD;
+  padding: 20px 0px;
+}
+.index_maintitle h1{
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  
+}
+.index_maintitle h3{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0px;
+  text-align: center;
 }
 .index_title {
   font-size: 24px;
