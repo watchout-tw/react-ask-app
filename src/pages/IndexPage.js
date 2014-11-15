@@ -64,7 +64,7 @@ module.exports = React.createClass({
             <div className="index_subsection">
                 <div className="index_title">提問規範</div>
                 <ol>
-                    <li><b>本次提問為針對政策之提問，請勿詢問與政策無關之提問</b></li>
+                    <li><b>本次提問僅針對政策，請勿詢問與政策無關之提問</b></li>
                     <li>請勿發表廣告、商業宣傳或競選文案</li>
                     <li>請勿留下任何自己或他人之電話、聯絡方式等私人資訊</li>
                     <li>請勿發表涉及人身攻擊、謾罵、惡意攻訐與恐嚇等之言論</li>
