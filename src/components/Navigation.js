@@ -62,7 +62,7 @@ module.exports = React.createClass({
     var candidateMenu = candidates.map((c) => {
       return <Link to="policies" params={{ candidateId: c.id }} key={c.id}>
         <div className={'nav_list_function_item_inner md-whiteframe-z1 ' + toggleCandidateClass } >
-          <img src={c.avatar} />
+          <img src={c.avatar_square} />
           <div className="nav_list_function_item_text">{c.name}</div>
         </div>
       </Link>;
@@ -71,20 +71,20 @@ module.exports = React.createClass({
       <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
         <i className="fa fa-align-justify"></i>
       </div>
-      <Link to='/'><div className="nav_list_logo l_inline">市長給問嗎 x 最後一役</div></Link>
-      <div className="nav_list_function">
-        <div className="nav_list_function_item l_inline">
-          <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-cog"></i> 候選人</div>
+      <Link to='/'><div className="nav_list_home">市長給問嗎! 最後一役</div></Link>
+      <div className="nav_list_function_item l_inline" id="candidateTopMenu">
+          <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> 候選人</div>
           <div className={"tri-up " + toggleCandidateClass}></div>
           {candidateMenu}
-        </div>
-        <div className="nav_list_function_item l_inline" onClick={this._handleAuth}>
+      </div>
+      <div className="nav_list_function_item_user l_inline" onClick={this._handleAuth} id="userMenu">
           <div className="nav_list_function_item_select">
-            <i className="fa fa-user"></i> {user}
+            <i className="fa fa-facebook"></i> {user}
           </div>
           {userMenu}
-        </div>
       </div>
+      
+
       <div className="nav_search">
         <div className="nav_search_inner">
          <input className="fs" ng-model="query" /><i className="fa fa-search"></i>
