@@ -1145,3 +1145,13 @@ input:checked + .slider::before {
   padding: 5px 10px;
   background: rgb(230,230,230);
 }
+
+/* ------------------------------------------------------------ */
+/* iframe
+/* ------------------------------------------------------------ */
+@media screen and (max-width: 540px){
+  iframe {
+    width: 100%;
+    height: 220px;
+  }
+}
