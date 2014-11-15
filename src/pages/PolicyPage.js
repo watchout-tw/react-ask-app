@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
+var {Link} = require("react-router");
+var RouteNavigation = require("react-router").Navigation;
 var { PolicyList, Navigation, Policy, QuestionList, QuestionComposer } = require("../components");
 var QuestionStore = require("../stores/QuestionStore");
 var PolicyStore = require("../stores/PolicyStore");
@@ -9,12 +11,19 @@ var UserStore = require("../stores/UserStore");
 var CandidateActionCreators = require("../actions/CandidateActionCreators");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
 var WebAPIUtils = require("../utils/WebAPIUtils");
+// var {transitionTo} = RouteNavigation;
 
 module.exports = React.createClass({
   displayName: "PolicyPage",
 
+  mixins: [RouteNavigation],
+
   getInitialState () {
     var {candidateId, policyId} = this.props.params;
+    var {policy, next, prev, limit} = PolicyStore.get({
+        cid: candidateId,
+        index: policyId
+      });
     return {
       new_question: {
         title: null,
@@ -23,10 +32,10 @@ module.exports = React.createClass({
         pid: policyId,
         author: this.props.user
       },
-      policy: PolicyStore.get({
-        cid: candidateId,
-        index: policyId
-      }),
+      policy: policy,
+      next: next,
+      prev: prev,
+      limit: limit,
       candidate: CandidateStore.get(candidateId),
       questions: QuestionStore.getAllFrom(candidateId, policyId),
       hideComposer: true,
@@ -35,8 +44,26 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps (nextProps) {
+    var {candidateId, policyId} = nextProps.params;
+    var {policy, next, prev, limit} = PolicyStore.get({
+        cid: candidateId,
+        index: policyId
+      });
     this.setState({
-      loggedIn: nextProps.loggedIn
+      loggedIn: nextProps.loggedIn,
+      policy: policy,
+      prev: prev,
+      next: next,
+      limit: limit,
+      questions: QuestionStore.getAllFrom(candidateId, policyId),
+      hideComposer: true,
+      new_question: {
+        title: null,
+        content: null,
+        cid: candidateId,
+        pid: policyId,
+        author: this.props.user
+      }
     });
   },
 
@@ -51,13 +78,17 @@ module.exports = React.createClass({
       this.setState({ new_question });
       QuestionActionCreators.getQuestions({
         cid: candidateId,
-        pid: policyId
+        pid: policyId,
       });
     }).bind(this) , 1000);
   },
 
   componentWillUnmount () {
     QuestionStore.removeChangeListener(this._onChange);
+  },
+
+  render () {
+    return this._render(this.props, this.state);
   },
 
   _onChange () {
@@ -103,10 +134,6 @@ module.exports = React.createClass({
     this.setState({ new_question });
   },
 
-  render () {
-    return this._render(this.props, this.state);
-  },
-
   _render (props, state) {
     var {candidateId} = this.props.params;
     CandidateActionCreators.chooseCandidate(candidateId);
@@ -119,23 +146,29 @@ module.exports = React.createClass({
                                                                  question={state.new_question}
                                                                  policy={state.policy}
                                                                  candidate={state.candidate} />);
+    var prevButton = (state.prev > 0)?<Link to="policy" params={{candidateId: candidateId, policyId: state.prev}}>
+      <div className="page_button page_left" ><i className="fa fa-chevron-left"></i></div></Link> : '';
+    var nextButton = (state.next <= state.limit)? <Link to="policy" params={{candidateId: candidateId, policyId: state.next}}>
+      <div className="page_button page_right" ><i className="fa fa-chevron-right"></i></div></Link>: '';
     return <div id='content'>
-        <div className='wrapper' id='policy'>
-          <div>
-            <h2>{ name + '的政見'}</h2>
-          </div>
-          <Policy data={policy} />
-          <div className='ask_item' onClick={this._toggleComposer}>
-            <i className='fa fa-plus ask_icon'></i>
-          </div>
-          {composer}
+      {prevButton}
+      {nextButton}
+      <div className='wrapper' id='policy'>
+        <div>
+          <h2>{ name + '的政見'}</h2>
         </div>
-        <div className='wrapper'>
-          <QuestionList items={questions}
-                        loggedIn={props.loggedIn}
-                        policy={state.policy}
-                        candidate={state.candidate} />
+        <Policy data={policy} />
+        <div className='ask_item' onClick={this._toggleComposer}>
+          <i className='fa fa-plus ask_icon'></i>
         </div>
-      </div>;
+        {composer}
+      </div>
+      <div className='wrapper'>
+        <QuestionList items={questions}
+                      loggedIn={props.loggedIn}
+                      policy={state.policy}
+                      candidate={state.candidate} />
+      </div>
+    </div>;
   }
 });

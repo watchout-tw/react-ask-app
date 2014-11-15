@@ -28,7 +28,13 @@ var PolicyStore = assign({}, EventEmitter.prototype, {
 
   get (query) {
     var {cid, index} = query;
-    return _policies[cid][index];
+
+    return {
+      policy: _policies[cid][index],
+      next: ~~index + 1,
+      prev: ~~index - 1,
+      limit: Object.keys(_policies[cid]).length
+    };
   },
 
   getAllFrom (cid) {

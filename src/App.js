@@ -3,7 +3,7 @@
 var React = require("react");
 var Router = require("react-router");
 var {Route, Routes} = Router;
-var {Navigation, SiderBar, Footer} = require("./components");
+var {Navigation, SiderBar, Footer, Button} = require("./components");
 var CandidateStore = require("./stores/CandidateStore");
 var UserActionCreators = require("./actions/UserActionCreators");
 var UserStore = require("./stores/UserStore");
