@@ -7,6 +7,8 @@ var PolicyStore = require("../stores/PolicyStore");
 var CandidateStore = require("../stores/CandidateStore");
 var UserStore = require("../stores/UserStore");
 var CandidateActionCreators = require("../actions/CandidateActionCreators");
+var QuestionActionCreators = require("../actions/QuestionActionCreators");
+var WebAPIUtils = require("../utils/WebAPIUtils");
 
 module.exports = React.createClass({
   displayName: "App",
@@ -37,10 +39,29 @@ module.exports = React.createClass({
 
   componentDidMount () {
     QuestionStore.addChangeListener(this._onChange);
+    setTimeout( (function () {
+      var that = this;
+      WebAPIUtils.getQuestions({
+        cid: '5',
+        pid: '1'
+      }, function (res) {
+        // console.log(res.body.data);
+        that.setState({
+          questions: res.body.data
+        });
+        // QuestionActionCreators.saveQuestions({
+        //   query: {
+        //     cid: '5',
+        //     pid: '1'
+        //   },
+        //   data: res.body.data
+        // });
+      });
+    }).bind(this) , 1000);
   },
 
   componentWillUnmount () {
-    QuestionStore.addChangeListener(this._onChange);
+    QuestionStore.removeChangeListener(this._onChange);
   },
 
   _onChange () {

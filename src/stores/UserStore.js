@@ -44,9 +44,9 @@ var UserStore = assign({}, EventEmitter.prototype, {
   },
 
   get () {
-    if (localStorage.user) {
-      return JSON.parse(localStorage.user);
-    }
+    // if (localStorage.user) {
+    //   return JSON.parse(localStorage.user);
+    // }
     return {};
   }
 });

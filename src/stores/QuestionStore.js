@@ -5,16 +5,18 @@ var AppConstants = require('../constants/AppConstants');
 var {EventEmitter} = require('events');
 // var ThreadStore = require('../stores/ThreadStore');
 var assign = require('object-assign');
-var localStorage = require("localStorage");
+// var localStorage = require("localStorage");
 
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
 
-if (!localStorage.questions) {
-  localStorage.questions = JSON.stringify({ '5': {}, '6': {}, '7': {} });
-}
+// if (!localStorage.questions) {
+//   localStorage.questions = JSON.stringify({ '5': {}, '6': {}, '7': {} });
+// }
 
-var _questions = JSON.parse(localStorage.questions);
+// var _questions = JSON.parse(localStorage.questions);
+
+var _questions = { '5': {}, '6': {}, '7': {} };
 
 var QuestionStore = assign({}, EventEmitter.prototype, {
 
@@ -32,6 +34,7 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
 
   get (query) {
     var {candidateId, policyId, qid} = query;
+    console.log(query, _questions);
     return _questions[candidateId][policyId][qid];
   },
 
@@ -80,7 +83,7 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
         _questions[candidateId][policyId] = {};
       }
       _questions[candidateId][policyId][id] = question;
-      QuestionStore.save();
+      // QuestionStore.save();
       QuestionStore.emitChange();
       break;
     case ActionTypes.SIGN_QUESTION:
@@ -90,7 +93,18 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
         uid: uid,
         signedAt: signedAt
       });
-      QuestionStore.save();
+      // QuestionStore.save();
+      QuestionStore.emitChange();
+
+    case ActionTypes.SAVE_QUESTIONS:
+      var {query, data} = action;
+      var {cid, pid} = query;
+      data.map( (q) => {
+        if (!_questions[cid][pid]) {
+          _questions[cid][pid]= {};
+        }
+        _questions[cid][pid][q.id] = q;
+      });
       QuestionStore.emitChange();
     default:
   }

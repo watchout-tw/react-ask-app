@@ -18,6 +18,15 @@ module.exports = {
       type: ActionTypes.SIGN_QUESTION,
       signInfo: signInfo
     });
+  },
+
+  saveQuestions (res) {
+    var {query, data} = res;
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.SAVE_QUESTIONS,
+      query: query,
+      data: data
+    });
   }
 
 };
