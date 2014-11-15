@@ -11,7 +11,7 @@ body {
   background: rgb(236,236,236);
   color: rgb(55,53,54);
   font-size: 16px;
-  
+
 }
 a {
   text-decoration: none;
@@ -95,7 +95,7 @@ hr {
   text-align: center;
 }
 .footer_text a, .footer_text a:visited {
-  
+
   color: #757575;
 }
 .footer_img {
@@ -185,7 +185,7 @@ input{
 
   /* used for functional buttons */
   /* padding-right: 60px; */
-  
+
 }
 .q_function {
   display: none;
@@ -603,7 +603,7 @@ a.nav_item_sidebar:hover {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 2px;
+  top: 0px;
   right: 10px;
 }
 @media screen and (max-width: 500px){
@@ -684,7 +684,7 @@ a.nav_item_sidebar:hover {
   right: 30px;
   bottom: 30px;
   padding: 10px;
-  
+
   box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
   box-sizing: content-box;
   z-index: 90;
@@ -861,7 +861,7 @@ a.nav_item_sidebar:hover {
   font-weight: 700;
   margin-bottom: 10px;
   text-align: center;
-  
+
 }
 .index_maintitle h3{
   font-size: 20px;
@@ -912,7 +912,7 @@ a.nav_item_sidebar:hover {
     height: 112px;
     padding-top: 30px;
   }
-  
+
 }
 
 /* ------------------------------------------------------------ */
@@ -960,7 +960,7 @@ a.nav_item_sidebar:hover {
 .notification_hide {
   opacity: 0;
   -webkit-transition: opacity .2s cubic-bezier(.4,0,.2,1);
-  transition: opacity .2s cubic-bezier(.4,0,.2,1); 
+  transition: opacity .2s cubic-bezier(.4,0,.2,1);
 }
 .notification_show {
   opacity: 0.8;
@@ -997,23 +997,23 @@ a.nav_item_sidebar:hover {
 }
 /* Native input control and checked events */
 .radio input {
-  opacity: 0; 
+  opacity: 0;
 }
-.radio input:checked + .outer { 
+.radio input:checked + .outer {
   border: 2px solid #009688;
 }
 .radio input:focus + .outer .inner {
-  opacity: 1;  
+  opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
-  
+
 }
 .radio input:checked + .outer .inner {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
 
-} 
+}
 /* Outer ring of custom radio */
 .outer {
   width: 20px;
@@ -1023,7 +1023,7 @@ a.nav_item_sidebar:hover {
   margin: 10px 9px 10px 10px;
   border: 2px solid #009688;
   border-radius: 50%;
-  
+
 }
 /* Inner ring of custom radio */
 .inner {
@@ -1043,7 +1043,7 @@ a.nav_item_sidebar:hover {
 .radio:hover .inner {
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-  
+
 }
 
 /* ------------------------------------------------------------ */
@@ -1063,35 +1063,35 @@ a.nav_item_sidebar:hover {
 /* slider
 /* ------------------------------------------------------------ */
 
-.slider_wrap { 
+.slider_wrap {
   position:relative;
   display: inline-block;
   margin-top: 18px;
   margin-right: 30px;
 }
-.slider_wrap input { 
+.slider_wrap input {
   position: absolute;
   opacity: 0;
 }
 .slider {
-  position: relative; 
+  position: relative;
   display: block;
-  width: 2.5em; 
+  width: 2.5em;
   height: 1em;
   cursor: pointer;
   border-radius: 1.5em;
   transition: 300ms;
   background: #00695C;
-  
+
 }
 /* active base */
 input:checked + .slider {
   background: #ECEFF1;
-  
+
 }
 /* toggle button */
 .slider::before {
-  position: absolute; 
+  position: absolute;
   content:'';
   width: 1.4em; height: 1.4em;
   top: -0.2em; left: -0.3em;
@@ -1106,7 +1106,7 @@ input:checked + .slider {
 }
 /* active button */
 .slider::after {
-  position: absolute; 
+  position: absolute;
   border-radius: 50%;
   transition: 200ms ease-in;
 }
@@ -1135,7 +1135,7 @@ input:checked + .slider::before {
   margin-bottom: 2px;
   background: white;
   box-shadow: 0 0 6px rgba(0,0,0,.16),0 2px 6px rgba(0,0,0,.16);
-  
+
 }
 .bad_example {
   border-left: 10px solid #F44336;
@@ -1143,7 +1143,7 @@ input:checked + .slider::before {
   background: white;
   margin-bottom: 2px;
   box-shadow: 0 0 6px rgba(0,0,0,.16);
-  
+
 }
 .quote {
   border-left: 10px solid rgb(100,100,100);
