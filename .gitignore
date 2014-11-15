@@ -5,3 +5,4 @@ public/assets
 public/index.html
 public/app.html
 *.log
+server/config/config.js
