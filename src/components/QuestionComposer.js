@@ -37,9 +37,9 @@ module.exports = React.createClass({
     return <div className='ask_form'>
       <div className='ask_form_title'>
         <i className='fa fa-paper-plane-o'></i>
-        { '  ' + candidate.name + '的政策提問：'}
+        { '  對' + candidate.name + '的政策提問：'}
         <div className='ask_form_remove' onClick={props._handleCloseComposer}>
-          <i className='fa fa-times'></i>
+          <i className='fa fa-minus'></i>
         </div>
       </div>
       <div className='ask_form_listitem'>
