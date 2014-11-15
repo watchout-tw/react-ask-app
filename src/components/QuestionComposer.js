@@ -22,9 +22,9 @@ module.exports = React.createClass({
     var {question} = this.state;
     var {policy, candidate} = this.props;
     var user = UserStore.get();
-    question.policyId = policy.id;
-    question.candidateId = candidate.id;
-    question.author = user;
+    question.pid= policy.id;
+    question.cid = candidate.id;
+    question.author = "cuU015csimKADCcf";
     QuestionActionCreators.createQuestion(question);
     this.props._handleCloseComposer();
   },

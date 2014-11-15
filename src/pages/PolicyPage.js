@@ -40,22 +40,10 @@ module.exports = React.createClass({
   componentDidMount () {
     QuestionStore.addChangeListener(this._onChange);
     setTimeout( (function () {
-      var that = this;
-      WebAPIUtils.getQuestions({
-        cid: '5',
-        pid: '1'
-      }, function (res) {
-        // console.log(res.body.data);
-        that.setState({
-          questions: res.body.data
-        });
-        // QuestionActionCreators.saveQuestions({
-        //   query: {
-        //     cid: '5',
-        //     pid: '1'
-        //   },
-        //   data: res.body.data
-        // });
+      var {candidateId, policyId} = this.props.params;
+      QuestionActionCreators.getQuestions({
+        cid: candidateId,
+        pid: policyId
       });
     }).bind(this) , 1000);
   },

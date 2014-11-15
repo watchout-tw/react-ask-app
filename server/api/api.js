@@ -83,7 +83,6 @@ api
     });
   })
   .post('/questions', function (req, res) {
-    console.log(req.body);
     var newQuestion = req.body.question;
 
     if(!req.user) {
@@ -92,6 +91,7 @@ api
         message: 'Not authenticated'
       });
     }
+    var createdAt = new Date();
     Question.findOrCreate({title: newQuestion.title, cid: newQuestion.cid, pid: newQuestion.pid}, {
       id: uid(16),
       cid: newQuestion.cid,
@@ -99,7 +99,11 @@ api
       title: newQuestion.title,
       content: newQuestion.content,
       author: newQuestion.author,
-      signatures: newQuestion.signatures
+      signatures: [{
+        uid: newQuestion.author,
+        timestamp: createdAt.getTime()
+      }],
+      createdAt: createdAt
     }, function (err, question) {
       if (err) {
         return res.error(err.stack);

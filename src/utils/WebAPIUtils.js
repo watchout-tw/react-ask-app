@@ -1,18 +1,22 @@
-var ServerActionCreators = require("../actions/ServerActionCreators");
-var QuestionActionCreators =require("../actions/QuestionActionCreators");
 var UserStore = require("../stores/UserStore");
 var request = require("superagent");
 var TIMEOUT = 10000;
+var API = '/api';
+
+
+function makeURL (path) {
+  return API + path;
+}
 
 module.exports = {
   login () {
-    location.href = '/api/auth/facebook';
+    location.href = makeURL('/auth/facebook');
 
   },
 
   getToken () {
     request
-      .get('/api/token')
+      .get(makeURL('/token'))
       .timeout(TIMEOUT)
       .end( function (err, res) {
         if (err) {
@@ -26,14 +30,21 @@ module.exports = {
 
   getQuestions (query, cb) {
     request
-      .get('/api/questions')
+      .get(makeURL('/questions'))
       .query(query)
       .timeout(TIMEOUT)
       .end(function (err, res) {
-        if (err) {
-          console.log(err);
-        }
-        cb(res);
+        cb(err, res);
+      });
+  },
+
+  postQuestion (question, cb) {
+    request
+      .post(makeURL('/questions'))
+      .send({question: question})
+      .timeout(TIMEOUT)
+      .end(function(err, res) {
+        cb(err, res);
       });
   }
 

@@ -1,7 +1,7 @@
 "use strict";
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
-
+// var WebAPIUtils = require("../utils/WebAPIUtils");
 var {ActionTypes} = AppConstants;
 
 module.exports = {
@@ -20,12 +20,10 @@ module.exports = {
     });
   },
 
-  saveQuestions (res) {
-    var {query, data} = res;
+  getQuestions (query) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.SAVE_QUESTIONS,
-      query: query,
-      data: data
+      type: ActionTypes.GET_QUESTIONS,
+      query: query
     });
   }
 
