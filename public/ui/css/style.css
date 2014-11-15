@@ -659,7 +659,8 @@ a.nav_item_sidebar:hover {
 .nav_list_home {
   position: absolute;
   cursor: pointer;
-  top: 20px;
+  /* top: 20px; */
+  top: 13px;
   left: 60px;
   font-weight: 700;
 }
@@ -866,6 +867,12 @@ a.nav_item_sidebar:hover {
   margin: 0px;
   text-align: center;
 }
+@media screen and (max-width: 500px){
+  .index_maintitle h1, .index_maintitle h3{
+    text-align: left;
+  }
+
+}
 .index_title {
   font-size: 24px;
   font-weight: 700;
@@ -913,13 +920,18 @@ a.nav_item_sidebar:hover {
   position: fixed;
   top: 48%;
   font-size: 30px;
-  /* z-index: 99; if mobile*/
+  z-index: 99;
 }
 .page_right {
   right: 10px;
 }
 .page_left {
   left: 10px;
+}
+@media screen and (max-width: 1000px){
+  .page_button {
+    opacity: 0;
+  }
 }
 /* ------------------------------------------------------------ */
 /* page button left & right
