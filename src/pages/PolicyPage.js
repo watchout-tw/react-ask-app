@@ -29,6 +29,12 @@ module.exports = React.createClass({
     };
   },
 
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      loggedIn: nextProps.loggedIn
+    });
+  },
+
   componentDidMount () {
     QuestionStore.addChangeListener(this._onChange);
   },

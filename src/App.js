@@ -52,7 +52,7 @@ module.exports = React.createClass({
       <SiderBar hideSiderBar={hideSiderBar} />
       <Navigation _toggleSiderBar={this._toggleSiderBar}
                   loggedIn={state.loggedIn} />
-      <props.activeRouteHandler />
+      <props.activeRouteHandler loggedIn={state.loggedIn} />
     </div>;
 
     // return <div>

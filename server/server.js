@@ -4,11 +4,16 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-
+var mongoose = require("mongoose");
+var config = require("./config/config");
 var app = express();
 
 var port = process.env.PORT || 8080;
 
+mongoose.connect(config.database);
+mongoose.connection.on('error', function (err) {
+  console.log(err);
+});
 
 
 app.use(morgan('dev')); // log every request to the console
