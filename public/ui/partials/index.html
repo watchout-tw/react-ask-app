@@ -2,12 +2,9 @@
 <div ng-include="'partials/nav.html'" ng-controller="NavCtrl"></div>
 
 <div id="content">
-    <div class="page_wrapper index_cover">
-    	<img src="images/cover.jpg">
-    </div>
-    
+    <div class="page_wrapper index_section">
     <div class="wrapper">
-        <div class="index_section">
+        
             <div class="index_content md-whiteframe-z1">
             <div class="index_subsection">
                 <div class="index_maintitle">
@@ -62,9 +59,10 @@
                     <div class="index_c_item_name">{{c.name}}</div>
                 </div>
         </div>
-        <div ng-include="'partials/footer.html'"></div>
-    </div><!-- end of warpper -->
-
+        
+    </div><!-- end of wrapper -->
+    </div><!-- end of page wrapper -->
+    <div ng-include="'partials/footer.html'"></div>
 </div><!-- end of content -->
 
 </div><!-- end of auth -->

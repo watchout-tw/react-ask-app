@@ -833,19 +833,10 @@ a.nav_item_sidebar:hover {
 }
 .index_section {
   position: relative;
-  padding-bottom: 30px;
-}
-@media screen and (min-width:900px){
-  .index_section {
-    position: absolute;
-    top: -300px;
-  }
-}
-@media screen and (min-width: 1200px){
-  .index_section {
-    position: absolute;
-    top: -400px;
-  }
+  background: url('../images/cover.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  padding-top: 50%;
 }
 .index_content {
   width: 100%;
