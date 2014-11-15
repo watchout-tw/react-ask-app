@@ -4,6 +4,7 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var mongoose = require("mongoose");
 var config = require("./config/config");
 var app = express();
@@ -21,8 +22,12 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-app.use(session({ secret: config.sessionSecret }));
+app.use(session({
+  secret: config.sessionSecret,
+  store: new MongoStore({
+    db: mongoose.connection.db
+  })
+ }));
 app.use(passport.initialize());
 app.use(passport.session());
 
