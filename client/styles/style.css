@@ -356,6 +356,9 @@ a.button.facebook{
 /* ------------------------------------------------------------ */
 /* Policy
 /* ------------------------------------------------------------ */
+.policy {
+  text-align: left;
+}
 .p_item {
   background: white;
   padding: 20px;
@@ -568,6 +571,7 @@ a.nav_item_sidebar:hover {
   margin-top: 15px;
   vertical-align: top;
   display: inline-block;
+  padding-left: 8px;
 
 }
 .nav_list_function_item_tooltip {
@@ -925,6 +929,7 @@ a.nav_item_sidebar:hover {
   top: 48%;
   font-size: 30px;
   z-index: 99;
+  color: rgb(55,53,54);
 }
 .page_right {
   right: 10px;

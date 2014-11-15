@@ -34,7 +34,7 @@ module.exports = React.createClass({
     var {data, candidate} = state;
     CandidateActionCreators.chooseCandidate(candidate.id);
     return <div id="content">
-      <div className="wrapper">
+      <div className="wrapper l_center">
         <div><h2>{ candidate.name + '的政見'}</h2></div>
         <PolicyList data={data} cid={candidate.id} />
       </div>
