@@ -600,11 +600,12 @@ a.nav_item_sidebar:hover {
 
 }
 .user_profile_image {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   position: absolute;
   top: 2px;
-  right: 10px;
+  right: 15px;
+  border-radius: 50%;
 }
 @media screen and (max-width: 500px){
   #candidateTopMenu, #toggleCtrl{
