@@ -90,9 +90,24 @@ api
       if (err) {
         return res.error(err.stack);
       }
+      var result = questions.map(function (q) {
+        var signs = q.signatures.map(function (s) {
+          return s.user.id;
+        });
+        return {
+          id: q.id,
+          cid: q.cid,
+          pid: q.pid,
+          title: q.title,
+          content: q.content,
+          createdAt: q.createdAt,
+          author: q.author,
+          signatures: signs
+        };
+      });
       return res.json({
         status: 'success',
-        data: questions
+        data: result
       });
     });
   })
@@ -114,7 +129,7 @@ api
       content: newQuestion.content,
       author: newQuestion.author,
       signatures: [{
-        uid: newQuestion.author,
+        user: newQuestion.author,
         timestamp: createdAt.getTime()
       }],
       createdAt: createdAt
@@ -143,7 +158,7 @@ api
         return res.error(err.stack);
       }
       question.signatures.push({
-        uid: signQuestion.signer,
+        user: signQuestion.signer,
         timestamp: createdAt.getTime()
       });
 

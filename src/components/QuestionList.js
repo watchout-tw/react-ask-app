@@ -36,6 +36,7 @@ module.exports = React.createClass({
                        _handleClick={boundClick}
                        cid={props.candidate.id}
                        pid={props.policy.id}
+                       qid={item.id}
                        loggedIn={props.loggedIn} />;
     });
     return <div >

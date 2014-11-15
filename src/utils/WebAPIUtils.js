@@ -47,7 +47,17 @@ module.exports = {
       .post(makeURL('/questions'))
       .send({question: question})
       .timeout(TIMEOUT)
-      .end(function(err, res) {
+      .end(function (err, res) {
+        return cb(err, res);
+      });
+  },
+
+  signQuestion (signInfo, cb) {
+    request
+      .patch(makeURL('/questions'))
+      .send({question: signInfo})
+      .timeout(TIMEOUT)
+      .end(function (err, res) {
         return cb(err, res);
       });
   }

@@ -32,9 +32,8 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
   },
 
   get (query) {
-    var {candidateId, policyId, qid} = query;
-    console.log(query, _questions);
-    return _questions[candidateId][policyId][qid];
+    var {cid, pid, qid} = query;
+    return _questions[cid][pid][qid];
   },
 
   getAll () {
@@ -65,8 +64,6 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
           console.log(err);
           return;
         }
-        // console.log(err, res);
-        // console.log(res.body.data);
         var {pid, id, cid} = res.body.data;
         if (!_questions[cid][pid]) {
           _questions[cid][pid] = {};
@@ -77,13 +74,11 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
       break;
     case ActionTypes.SIGN_QUESTION:
       var {signInfo} = action;
-      var {cid, pid, qid, uid, signedAt} = signInfo;
-      _questions[cid][pid][qid].signatures.push({
-        uid: uid,
-        signedAt: signedAt
+      var {cid, pid, id, signer} = signInfo;
+      WebAPIUtils.signQuestion(signInfo, function (err, res) {
+        _questions[cid][pid][id].signatures.push(signer.name);
+        QuestionStore.emitChange();
       });
-      // QuestionStore.save();
-      QuestionStore.emitChange();
       break;
     case ActionTypes.GET_QUESTIONS:
       WebAPIUtils.getQuestions(action.query, function (err, res) {

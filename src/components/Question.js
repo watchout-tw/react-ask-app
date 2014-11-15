@@ -14,7 +14,8 @@ module.exports = React.createClass({
     var {cid, pid } = this.props;
     return {
       loggedIn: this.props.loggedIn,
-      question: this.props.question,
+      count: this.props.question.signatures.length,
+      // question: this.props.question,
       hideSignButton: false,
       hideContent: true
     };
@@ -24,13 +25,33 @@ module.exports = React.createClass({
     return (JSON.stringify(nextState) !== JSON.stringify(this.state));
   },
 
+  componentDidMount () {
+    QuestionStore.addChangeListener(this._onChange);
+  },
+
   componentWillReceiveProps (nextProps) {
-    var {selected} = nextProps;
-    this.setState({ hideContent: !selected });
+    var {selected, question} = nextProps;
+    this.setState({
+      hideContent: !selected,
+    });
+  },
+
+  componentWillUnmount () {
+    QuestionStore.removeChangeListener(this._onChange);
   },
 
   render () {
     return this._render(this.props, this.state);
+  },
+
+  _onChange () {
+    var {cid, pid, qid} = this.props;
+    var question = QuestionStore.get({
+      cid: cid,
+      pid: pid,
+      qid: qid
+    });
+    this.setState({ count: question.signatures.length });
   },
 
   _handleSignClick (event) {
@@ -38,28 +59,37 @@ module.exports = React.createClass({
     if (!this.state.loggedIn) {
       return;
     }
-    var {cid, pid} = this.props;
-    var {question} = this.state;
-    // var user = UserStore.get();
-    // QuestionActionCreators.signQuestion({
-    //   cid: cid,
-    //   pid: pid,
-    //   qid: question.id,
-    //   signer: user.uid,
-    //   signedAt: new Date().getTime()
-    // });
-    // this.setState({
-    //   hideSignButton: true
-    // });
+    var {cid, pid, qid} = this.props;
+    // var {question} = this.state;
+    var user = UserStore.get();
+    QuestionActionCreators.signQuestion({
+      cid: cid,
+      pid: pid,
+      id: qid,
+      signer: user
+    });
+    this.setState({
+      hideSignButton: true
+    });
   },
 
   _render (props, state) {
-    var {index} = props;
-    var {question} = state;
+    var {index, question} = props;
+    var {count} = state;
     var {title, content, author, createdAt, signatures} = question;
+    var user = UserStore.get();
+
+    var signButton = (state.hideSignButton)? (<Button className='signed' name='已連署' icon='fa-bullhorn' />) : ( <Button className='sign' name='連署' icon='fa-bullhorn' _handleClick={this._handleSignClick} />);
+
+    signatures.map((s) => {
+      if (user.id === s) {
+        signButton = <Button className='signed' name='已連署' icon='fa-bullhorn' />;
+      }
+    });
+
 
     var formatedDate = new moment(createdAt).fromNow();
-    var signButton = (state.hideSignButton)? (<Button className='signed' name='已連署' icon='fa-bullhorn' />) : ( <Button className='sign' name='連署' icon='fa-bullhorn' _handleClick={this._handleSignClick} />);
+
     var formatedContent = (state.hideContent)? '': <div className='q_content'>
         <p className='q_text'>{content}</p>
         <div className='q_postmeta'>
@@ -80,7 +110,7 @@ module.exports = React.createClass({
     return <div className={itemClass}>
       <div className={titleClass} onClick={props._handleClick}>
         <div className='q_order l_inline'>{index + 1}</div>
-        <div className='q_vote l_inline'>{signatures.length}</div>
+        <div className='q_vote l_inline'>{count}</div>
         {title}
         <div className='q_function l_inline'>
           <span><i className={toggleIcon}></i></span>
