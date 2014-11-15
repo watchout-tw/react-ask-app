@@ -11,17 +11,17 @@ module.exports = React.createClass({
   displayName: "Question",
 
   getInitialState () {
-    var {cid, pid, qid} = this.props;
-    var user = UserStore.get();
-    var question = QuestionStore.get({
-        candidateId: cid,
-        policyId: pid,
-        qid: qid
-      });
-    var signed = (user.uid in question.signatures)? false: true;
+    var {cid, pid } = this.props;
+    // var user = UserStore.get();
+    // var question = QuestionStore.get({
+    //     candidateId: cid,
+    //     policyId: pid,
+    //     qid: qid
+    //   });
+    // var signed = (user.uid in question.signatures)? false: true;
     return {
       loggedIn: UserStore.loggedIn(),
-      question: question,
+      question: this.props.question,
       hideSignButton: false,
       hideContent: true
     };
@@ -41,17 +41,17 @@ module.exports = React.createClass({
   },
 
   _handleSignClick (event) {
-    console.log(this.state.loggedIn);
+    // console.log(this.state.loggedIn);
     if (!this.state.loggedIn) {
       return;
     }
-    var {cid, pid, qid} = this.props;
+    var {cid, pid} = this.props;
     var {question} = this.state;
     var user = UserStore.get();
     QuestionActionCreators.signQuestion({
       cid: cid,
       pid: pid,
-      qid: qid,
+      qid: question.id,
       signer: user.uid,
       signedAt: new Date().getTime()
     });
@@ -65,9 +65,9 @@ module.exports = React.createClass({
     var {question} = state;
     var {title, content, author, createdAt, signatures} = question;
 
-    if ('facebook:123123' in signatures) {
-      this.setState({hideSignButton: true});
-    }
+    // if ('facebook:123123' in signatures) {
+    //   this.setState({hideSignButton: true});
+    // }
 
     var formatedDate = new moment(createdAt).fromNow();
     var signButton = (state.hideSignButton)? (<Button className='signed' name='已連署' icon='fa-bullhorn' />) : ( <Button className='sign' name='連署' icon='fa-bullhorn' _handleClick={this._handleSignClick} />);

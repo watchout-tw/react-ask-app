@@ -6,7 +6,8 @@ module.exports = {
     CREATE_QUESTION: null,
     SIGN_QUESTION: null,
     CHOOSE_CANDIDATE: null,
-    LOGOUT: null
+    LOGOUT: null,
+    SAVE_QUESTIONS: null
   }),
   PayloadSources: keyMirror({
     SERVER_ACTION: null,

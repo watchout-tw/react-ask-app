@@ -27,12 +27,13 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = props;
     var result = items.map((item, index) => {
+      // console.log(item);
       var boundClick = this._handleClick.bind(this, index);
       var selected = (index === state.selectedIndex)? true: false;
       return <Question key={item.id}
                        selected={selected}
                        index={index}
-                       qid={item.id}
+                       question={item}
                        _handleClick={boundClick}
                        cid={props.candidate.id}
                        pid={props.policy.id} />;
