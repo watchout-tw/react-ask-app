@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
-var {Link} = require("react-router");
+var {Link, CurrentPath} = require("react-router");
 var UserStore = require("../stores/UserStore");
 var CandidateStore = require("../stores/CandidateStore");
 var WebAPIUtils = require("../utils/WebAPIUtils");
@@ -9,6 +9,8 @@ var UserActionCreators = require("../actions/UserActionCreators");
 
 module.exports = React.createClass({
   displayName: "Navigation",
+
+  mixins: [CurrentPath],
 
   getInitialState () {
     return {
@@ -50,7 +52,7 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-    var user = (state.loggedIn)? props.user.name : '登入';
+    var user = (state.loggedIn)? <img className='user_profile_image' src={props.user.avatar} /> : '登入';
     var toggleClass = (state.hideLogout)? 'nav_list_function_item_hide' : '';
     var toggleCandidateClass = (state.hideCandidate)? 'nav_list_function_item_hide': '';
     var userMenu = (state.loggedIn)? (
@@ -67,13 +69,21 @@ module.exports = React.createClass({
         </div>
       </Link>;
     });
+
+    var candidateName = '候選人';
+    var cid;
+    if (this.getCurrentPath().match(/^\/candidates/)) {
+      cid = this.getCurrentPath().match(/^\/candidates\/(\d+)/)[1];
+      candidateName = (CandidateStore.get(cid)).name;
+    }
+
     return <header className='md-whiteframe-z1'>
       <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
         <i className="fa fa-align-justify"></i>
       </div>
       <Link to='/'><div className="nav_list_home">市長給問嗎! 最後一役</div></Link>
       <div className="nav_list_function_item l_inline" id="candidateTopMenu">
-          <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> 候選人</div>
+          <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> {candidateName}</div>
           <div className={"tri-up " + toggleCandidateClass}></div>
           {candidateMenu}
       </div>
@@ -83,7 +93,7 @@ module.exports = React.createClass({
           </div>
           {userMenu}
       </div>
-      
+
 
       <div className="nav_search">
         <div className="nav_search_inner">
