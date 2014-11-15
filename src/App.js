@@ -13,7 +13,6 @@ module.exports = React.createClass({
   displayName: "App",
 
   getInitialState () {
-    WebAPIUtils.getToken();
     return {
       hideSiderBar: true,
       loggedIn: false
@@ -21,12 +20,14 @@ module.exports = React.createClass({
   },
 
   componentDidMount () {
-    setTimeout((function () {
-      this.setState({
-        loggedIn: UserStore.loggedIn()
-      });
-    }).bind(this) ,1000);
     UserStore.addChangeListener(this._onChange);
+    setTimeout((function () {
+      UserStore.loggedIn( (err, res) =>{
+        this.setState({
+          loggedIn: !!res.body.authenticated
+        });
+      }).bind(this);
+    }).bind(this) ,1000);
   },
 
   render () {
@@ -34,9 +35,11 @@ module.exports = React.createClass({
   },
 
   _onChange () {
-    this.setState({
-      loggedIn: UserStore.loggedIn()
-    });
+    UserStore.loggedIn( (err, res) =>{
+      this.setState({
+        loggedIn: !!res.body.authenticated
+      });
+    }).bind(this);
   },
 
   // TODO: handle null SiderBar and need to be closed when clicking

@@ -3,6 +3,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var {EventEmitter} = require('events');
 var assign = require('object-assign');
+var WebAPIUtils = require("../utils/WebAPIUtils");
 var localStorage = require("localStorage");
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
@@ -21,14 +22,14 @@ var UserStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  saveToken (res) {
-    var {token, user} = res;
-    if(localStorage.token) {
-      return;
-    }
-    localStorage.token = JSON.stringify(token);
-    localStorage.user = JSON.stringify(user);
-  },
+  // saveToken (res) {
+  //   var {token, user} = res;
+  //   if(localStorage.token) {
+  //     return;
+  //   }
+  //   localStorage.token = JSON.stringify(token);
+  //   localStorage.user = JSON.stringify(user);
+  // },
 
   getToken () {
     return localStorage.token;
@@ -39,8 +40,8 @@ var UserStore = assign({}, EventEmitter.prototype, {
     delete localStorage.user;
   },
 
-  loggedIn () {
-    return !!localStorage.token;
+  loggedIn (cb) {
+    return WebAPIUtils.getToken(cb);
   },
 
   get () {

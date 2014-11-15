@@ -123,6 +123,7 @@ module.exports = React.createClass({
         </div>
         <div className='wrapper'>
           <QuestionList items={questions}
+                        loggedIn={props.loggedIn}
                         policy={state.policy}
                         candidate={state.candidate} />
         </div>

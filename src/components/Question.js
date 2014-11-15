@@ -20,7 +20,7 @@ module.exports = React.createClass({
     //   });
     // var signed = (user.uid in question.signatures)? false: true;
     return {
-      loggedIn: UserStore.loggedIn(),
+      loggedIn: this.props.loggedIn,
       question: this.props.question,
       hideSignButton: false,
       hideContent: true

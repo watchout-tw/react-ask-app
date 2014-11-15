@@ -1,10 +1,8 @@
 "use strict";
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
-// var ChatMessageUtils = require('../utils/ChatMessageUtils');
 var WebAPIUtils = require("../utils/WebAPIUtils");
 var {EventEmitter} = require('events');
-// var ThreadStore = require('../stores/ThreadStore');
 var assign = require('object-assign');
 // var localStorage = require("localStorage");
 
@@ -52,22 +50,6 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
       return _questions[cid][pid][q];
     });
   },
-
-  // getCreatedQuestionData (question) {
-  //   var {pid, title, content, cid, author} = question;
-  //   var timestamp = new Date().getTime();
-  //   return {
-  //     // TODO: soidid說要用uuid
-  //     id: question.id
-  //     title: title,
-  //     content: content,
-  //     author: author,
-  //     signatures: [{ uid: author, signedAt: timestamp}],
-  //     createdAt: timestamp,
-  //     pid: pid,
-  //     cid: cid
-  //   };
-  // },
 
   save () {
     localStorage.questions = JSON.stringify(_questions);

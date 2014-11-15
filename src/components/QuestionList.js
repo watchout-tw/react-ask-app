@@ -27,7 +27,6 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = props;
     var result = items.map((item, index) => {
-      // console.log(item);
       var boundClick = this._handleClick.bind(this, index);
       var selected = (index === state.selectedIndex)? true: false;
       return <Question key={item.id}
@@ -36,7 +35,8 @@ module.exports = React.createClass({
                        question={item}
                        _handleClick={boundClick}
                        cid={props.candidate.id}
-                       pid={props.policy.id} />;
+                       pid={props.policy.id}
+                       loggedIn={props.loggedIn} />;
     });
     return <div >
       <div className='pa_totalq'>{'共有 ' + items.length + ' 題'} </div>

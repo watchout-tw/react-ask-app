@@ -14,17 +14,18 @@ module.exports = {
 
   },
 
-  getToken () {
+  getToken (cb) {
     request
       .get(makeURL('/token'))
       .timeout(TIMEOUT)
       .end( function (err, res) {
-        if (err) {
-          return;
-        }
-        if (res.body.authenticated) {
-          UserStore.saveToken(res.body);
-        }
+        cb(err, res);
+        // if (err) {
+        //   return;
+        // }
+        // if (res.body.authenticated) {
+        //   UserStore.saveToken(res.body);
+        // }
       });
   },
 
