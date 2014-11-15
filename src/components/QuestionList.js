@@ -8,8 +8,15 @@ module.exports = React.createClass({
 
   getInitialState () {
     return {
-      selectedIndex: -1
+      selectedIndex: -1,
+      items: this.props.items
     };
+  },
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      items: nextProps.items
+    });
   },
 
   render () {
@@ -24,8 +31,26 @@ module.exports = React.createClass({
     }
   },
 
+  _handleSort (event) {
+    var {items} = this.state;
+    switch(event.target.id) {
+      case 'sortBySign':
+        items.sort(function (a, b) {
+          return b.signatures.length - a.signatures.length;
+        });
+        break;
+      case 'sortByTime':
+        items.sort(function (a, b) {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        });
+        break;
+      default:
+    }
+    this.setState({items});
+  },
+
   _render (props, state) {
-    var {items} = props;
+    var {items} = state;
     var result = items.map((item, index) => {
       var boundClick = this._handleClick.bind(this, index);
       var selected = (index === state.selectedIndex)? true: false;
@@ -40,9 +65,22 @@ module.exports = React.createClass({
                        loggedIn={props.loggedIn} />;
     });
     return <div >
-      <div className='pa_totalq'>{'共有 ' + items.length + ' 題'} </div>
+      <div className="question_menu">
+        <div className="question_menu_meta">{'共有 ' + items.length + ' 題'}</div>
+        <div className="sorting_menu" >
+            <label className="radio" >
+               <input id="sortBySign" type="radio" name="radios" checked="" onClick={this._handleSort} />
+               <span className="outer"><span className="inner"></span></span>
+               <span className="radio_text">票數排序</span>
+            </label>
+            <label className="radio">
+            <input id="sortByTime" type="radio" name="radios" onClick={this._handleSort} />
+               <span className="outer"><span className="inner"></span></span>
+               <span className="radio_text">時間排序</span>
+            </label>
+        </div>
+      </div>
       {result}
-
     </div>;
   }
 });
