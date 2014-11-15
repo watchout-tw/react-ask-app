@@ -9,6 +9,8 @@
 <!-- . . . . . . . . . . . . -->
 
 <div id="content" ng-click="resetFocus()">
+  <div id="page_content">
+  <!-- Policy -->
   <div class="wrapper" id="policy">
       <div><h2>{{candidate.name}}的政見</h2></div>
       <!-- POLICY -->
@@ -35,8 +37,6 @@
       <!-- ASK QUESTION (未登入)-->
       <div class="ask_item" ng-click="showLoginTip()" ng-if="!user"><i class="fa fa-plus ask_icon"></i></div>
 
-     
-
       <!-- ASK QUESTION FORM -->
       <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="liveAskQuestionForm">
           <div class="ask_form_title"><i class="fa fa-paper-plane-o"></i> 對{{candidate.name}}的政策提問：
@@ -54,22 +54,12 @@
                 <a class="button"><i class="fa fa-bullhorn"></i> 送出</a>
                 <span class="ask_form_trash" ng-click="deleteAskQuestionForm()"><i class='fa fa-trash-o'></i></span>
               </div>
-
-
           </div>
-
       </div>
-
-
-
-
   </div>
-
-
-
-
-<div class="wrapper">
-
+  <!-- Question -->
+  <div class="wrapper">
+  
   <div class="question_menu">
       <div class="question_menu_meta">共有 {{(questions | filter:query).length}} 題</div>
       
@@ -86,7 +76,6 @@
           </label>
       </div>
   </div>
-
   <div ng-repeat="q in questions | filter:query | orderBy: order : true" ng-class="{'md-whiteframe-z1':showQuestion(q.id),'q_item_active':showQuestion(q.id)}" class="q_item" ng-click="$event.stopPropagation()" ng-hide="signFilter && !hasSigned(q.id)" id="q_{{q.id}}" >
 
     <div class="q_title l_inline" ng-class="{'q_title_active':showQuestion(q.id)}" ng-click="toggleQuestion(q.id)">
@@ -119,9 +108,8 @@
   <div class="question_bottom">
      <a class="button"><i class="fa fa-bullhorn"></i> 更多</a>
   </div>
-
-
-
-</div><!-- wrapper -->
+  </div><!-- wrapper -->
+  </div>
+<div ng-include="'partials/footer.html'"></div>
 </div><!-- content -->
 </div><!-- Auth -->

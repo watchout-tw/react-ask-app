@@ -52,11 +52,12 @@ a {
   background: rgb(236,236,236);
 
 }
-
 #content {
 	margin-top: 50px;
 }
-
+#page_content {
+  min-height: 600px;
+}
 hr {
   border: 0;
   height: 1px;
@@ -71,6 +72,7 @@ hr {
   margin-top: 50px;
   background: #E0E0E0;
   width: 100%;
+
 }
 #footer ul {
   margin: 0px;

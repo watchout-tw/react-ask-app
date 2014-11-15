@@ -383,6 +383,18 @@ app.controller('RankCtrl', ['$scope', 'DataService', '$location', '$sce', '$rout
       $location.path(path);
   };
 
+  DataService.getData('candidate').then(function(data){
+      var validID = ["5","6","7"];
+      var cid = $routeParams.cid;
+
+      if(validID.indexOf($routeParams.cid)!== -1){
+        $scope.candidate = data[cid];
+      }else{
+        $location.path('/');
+      }
+
+  });
+
   DataService.getData('questions').then(function(data){
       $scope.questions = [];
 
