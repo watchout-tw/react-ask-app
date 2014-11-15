@@ -31,11 +31,13 @@
           <div class="l_center"><span class="p_seeall" ng-click="togglePolicy()" ng-if="showPolicy()"><i class="fa fa-angle-double-up"></i> 摺疊</span></div>
       </div>
 
-      <!-- ASK QUESTION -->
-      <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user&&!liveAskQuestionForm"><i class="fa fa-plus ask_icon"></i></div>
+      <span ng-if="!candidate.due">
+          <!-- ASK QUESTION -->
+          <div class="ask_item" ng-click="toogleAskQuestionForm()" ng-if="user&&!liveAskQuestionForm"><i class="fa fa-plus ask_icon"></i></div>
 
-      <!-- ASK QUESTION (未登入)-->
-      <div class="ask_item" ng-click="showLoginTip()" ng-if="!user"><i class="fa fa-plus ask_icon"></i></div>
+          <!-- ASK QUESTION (未登入)-->
+          <div class="ask_item" ng-click="showLoginTip()" ng-if="!user"><i class="fa fa-plus ask_icon"></i></div>
+      </span>
 
       <!-- ASK QUESTION FORM -->
       <div class="ask_form" ng-class="{'ask_form_minimize':!showAskQuestionForm}" ng-if="liveAskQuestionForm">
@@ -98,7 +100,10 @@
         <p class="q_text" ng-repeat="p in q.content">{{p}}</p>
         <div class="q_postmeta">提問人：someid / 提問時間：{{q.post_timestamp | date:'MM-dd hh:mm'}}</div>
         <div class="q_action">
-            <a class="button" ng-click="sign(q.id)"><i class="fa fa-bullhorn"></i> 連署</a>
+            <span ng-if="!candidate.due">
+            <a class="button unsign" ng-click="sign(q.id)" ng-hide="hasSigned(q.id)"><i class="fa fa-bullhorn"></i> 連署</a>
+            <a class="button" ng-show="hasSigned(q.id)"><i class="fa fa-bullhorn"></i> 已連署</a>
+            </span>
             <a class="button facebook"><i class="fa fa-facebook"></i> 分享</a>
         </div>
 

@@ -346,6 +346,10 @@ a.button {
   min-width: 70px;
   text-align: center;
 }
+a.button.unsign {
+  /* background: #db4437; */
+  min-width: 83px;
+}
 a.button.facebook{
   background: #0277BD;
 }
