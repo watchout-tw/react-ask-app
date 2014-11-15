@@ -27,6 +27,7 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
+
     var {indexTitle, title, content} = props.data;
     var preview= this._handlePreview(content);
     var contentClass = (state.hideContent)? 'p_fullcontent_hide': '';

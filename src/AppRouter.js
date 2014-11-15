@@ -2,7 +2,7 @@
 "use strict";
 var React = require("react/addons");
 var ReactRouter = require("react-router");
-var {Routes, Route, DefaultRoute, Redirect} = ReactRouter;
+var {Routes, Route, DefaultRoute, NotFoundRoute} = ReactRouter;
 // var App = require("./App");
 // var {IndexPage, PolicyPage, PolicyListPage} = require("./pages");
 var App = React.createFactory(require("./App"));
@@ -27,7 +27,7 @@ var app_router = <Routes location="history">
       <Route name="qa" path="/qa" handler={QAPage} />
       <Route name="policies" path="/candidates/:candidateId/policies" handler={PolicyListPage} />
       <Route name="policy" path="/candidates/:candidateId/policies/:policyId" handler={PolicyPage} />
-      <Redirect path="/auth/facebook/callback" to="/" />
+      <NotFoundRoute handler={IndexPage} />
     </Route>
 </Routes>;
 

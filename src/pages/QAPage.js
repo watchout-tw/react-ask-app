@@ -2,12 +2,14 @@
 "use strict";
 var React = require("react/addons");
 var {Link} = require("react-router");
+var CandidateStore = require("../stores/CandidateStore");
 
 module.exports = React.createClass({
   displayName: "QAPage",
 
   getInitialState () {
     return {
+      candidates: CandidateStore.getAll()
     };
   },
 
@@ -16,7 +18,15 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
-
+    var {candidates} = state;
+    var result = candidates.map((c) => {
+      return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
+        <div className='index_c_item md-whiteframe-z1'>
+            <img src={c.avatar} />
+            <div className="index_c_item_name">{c.name}</div>
+        </div>
+      </Link>;
+    });
     return <div id="content">
         <div className="page_wrapper page_section">
         <div className="wrapper">

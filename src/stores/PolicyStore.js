@@ -28,7 +28,6 @@ var PolicyStore = assign({}, EventEmitter.prototype, {
 
   get (query) {
     var {cid, index} = query;
-
     return {
       policy: _policies[cid][index],
       next: ~~index + 1,

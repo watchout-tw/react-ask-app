@@ -17,16 +17,60 @@ var template = fs.readFileSync(__dirname + "/../../public/app.html", {encoding:'
 //wildcard route to pass to react client app
 
 
-router.get('*', function(req, res) {
-  if(req.url == '/favicon.ico'){
-    return res.status(404).end();
-  }
 
+router.get(['/','/qa', 'terms', '/contact'], function(req, res) {
   Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
     var html = template.replace(/\{\{body\}\}/, string);
     html = html.replace(/\{\{initialData\}\}/, JSON.stringify({}));
-    res.send(html);
+    return res.send(html);
   });
+});
+
+router.get('/candidates/:candidateId/policies', function (req, res) {
+  var candidateId = req.param('candidateId');
+  if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
+    Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
+      var html = template.replace(/\{\{body\}\}/, string);
+      html = html.replace(/\{\{initialData\}\}/, JSON.stringify({}));
+      return res.send(html);
+    });
+  } else {
+    return res.redirect('/');
+  }
+
+});
+
+router.get('/candidates/:candidateId/policies/:policyId', function (req, res) {
+  var candidateId = req.param('candidateId');
+  var policyId = ~~req.param('policyId');
+  switch(candidateId) {
+    case '5':
+      console.log(policyId);
+      if (policyId < 1 || policyId > 27) {
+        return res.redirect('/');
+      }
+      break;
+    case '6':
+      if (policyId < 1 || policyId > 34) {
+        return res.redirect('/');
+      }
+      break;
+    case '7':
+      if (policyId < 1 || policyId > 30) {
+        return res.redirect('/');
+      }
+      break;
+    default:
+      Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
+        var html = template.replace(/\{\{body\}\}/, string);
+        html = html.replace(/\{\{initialData\}\}/, JSON.stringify({}));
+        return res.send(html);
+      });
+  }
+});
+
+router.get('*', function (req, res) {
+  return res.redirect('/');
 });
 
 module.exports = router;
