@@ -47,6 +47,10 @@ app.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/candidate.html',
       controller: 'CandidateCtrl'
     }).
+      when('/how-to-ask',{
+      templateUrl: 'partials/how-to-ask.html',
+      controller: 'IndexCtrl'
+    }).
       otherwise({
       redirectTo:'/',
       templateUrl: 'partials/index.html',
@@ -153,7 +157,7 @@ app.controller('NavCtrl', ['$scope', 'DataService', '$location', '$sce', functio
 
 }]);
 app.controller('IndexCtrl', ['$scope', 'DataService', '$location', '$sce', function ($scope, DataService, $location, $sce){
-
+  
   $scope.go = function(path){
       $("body").scrollTop(0);
       $location.path(path);
