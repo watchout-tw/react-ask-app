@@ -18,17 +18,9 @@ module.exports = React.createClass({
     return this._render(this.props, this.state);
   },
 
-  _onChange () {
-    var cid = CandidateStore.getCurrentCandidate();
-    this.setState({
-      policies: PolicyStore.getAllFrom(cid)
-    });
-  },
-
   _render (props, state) {
-    var cid = CandidateStore.getCurrentCandidate();
+    var cid = props.cid;
     var policies = PolicyStore.getAllFrom(cid);
-    // this.setState({ policies });
     var result = policies.map((p) => {
       var {id, title, indexTitle} = p;
       return <Link key={id}

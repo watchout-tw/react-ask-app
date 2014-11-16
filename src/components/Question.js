@@ -89,6 +89,9 @@ module.exports = React.createClass({
       }
     });
 
+    if (!props.status) {
+      signButton = '';
+    }
 
     var formatedDate = new moment(createdAt).fromNow();
 

@@ -32,7 +32,6 @@ module.exports = React.createClass({
 
   _render (props, state) {
     var {data, candidate} = state;
-    CandidateActionCreators.chooseCandidate(candidate.id);
     return <div id="content">
       <div className="wrapper l_center">
         <div><h2>{ candidate.name + '的政見'}</h2></div>

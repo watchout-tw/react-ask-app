@@ -7,6 +7,7 @@ var config = require("../config/config");
 var User = require("./models/User");
 var Question = require("./models/Question");
 
+
 passport.serializeUser(function(user, done) {
   return done(null, user);
 });
@@ -39,6 +40,12 @@ passport.use(new FacebookStrategy({
   }
 ));
 
+
+var allClosedAt = {
+  '5': { closedAt: new Date('2014','10','17','23','59','59').getTime() },
+  '6': { closedAt: new Date('2014','10','20','23','59','59').getTime() },
+  '7': { closedAt: new Date('2014','9','29','23','59','59').getTime() }
+};
 
 api.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
@@ -121,6 +128,13 @@ api
 
     var newQuestion = req.body.question;
     var createdAt = new Date();
+    var closedAt = allClosedAt[newQuestion.cid].closedAt;
+    if( createdAt.getTime() > closedAt) {
+      return res.json({
+        status: 'failed',
+        message: 'Event was closed'
+      });
+    }
     Question.findOrCreate({title: newQuestion.title, cid: newQuestion.cid, pid: newQuestion.pid}, {
       id: uid(16),
       cid: newQuestion.cid,
@@ -137,6 +151,21 @@ api
       if (err) {
         return res.error(err.stack);
       }
+      // save signatures in user
+      User.findOne({id: newQuestion.author.id}, function (err, user) {
+        if (err) {
+          return res.error(err.stack);
+        }
+        user.signatures.push({
+          id: question.id,
+          timestamp: createdAt.getTime()
+        });
+        return user.save(function (err) {
+          if (err) {
+            return res.error(err.stack);
+          }
+        });
+      });
       var signs = question.signatures.map(function (s) {
         return s.user.id;
       });
@@ -162,13 +191,44 @@ api
         message: 'Not authenticated'
       });
     }
-
     var signQuestion = req.body.question;
     var createdAt = new Date();
+    var closedAt = allClosedAt[signQuestion.cid].closedAt;
+    if( createdAt.getTime() > closedAt) {
+      return res.json({
+        status: 'failed',
+        message: 'Event was closed'
+      });
+    }
+
     Question.where({id: signQuestion.id}).findOne(function (err, question) {
       if (err) {
         return res.error(err.stack);
       }
+      question.signatures.map(function (s) {
+        if (signQuestion.sginer.name === s.user.name) {
+          return res.json({
+            status: "failed",
+            message: "already signed"
+          });
+        }
+      });
+      // save signature in user
+      User.findOne({id: signQuestion.signer.id}, function (err, user) {
+        if (err) {
+          return res.error(err.stack);
+        }
+        user.signatures.push({
+          id: signQuestion.id,
+          timestamp: createdAt.getTime()
+        });
+        return user.save(function (err) {
+          if (err) {
+            return res.error(err.stack);
+          }
+        });
+      });
+
       question.signatures.push({
         user: signQuestion.signer,
         timestamp: createdAt.getTime()
@@ -185,5 +245,17 @@ api
     });
   });
 
+api
+  .get('/status', function (req, res) {
+
+    var result = Object.keys(allClosedAt).map(function (key) {
+      var  candidate = allClosedAt[key];
+      return (new Date().getTime() > candidate.closedAt)? false: true;
+    });
+    return res.json({
+      status: "success",
+      data: result
+    });
+  });
 
 module.exports = api;

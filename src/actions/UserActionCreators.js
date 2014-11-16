@@ -8,7 +8,7 @@ module.exports = {
 
   checkLogin () {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.IS_LOGIN,
+      type: ActionTypes.IS_LOGIN
     });
   },
 

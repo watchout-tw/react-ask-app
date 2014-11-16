@@ -11,7 +11,6 @@ var UserStore = require("../stores/UserStore");
 var CandidateActionCreators = require("../actions/CandidateActionCreators");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
 var WebAPIUtils = require("../utils/WebAPIUtils");
-// var {transitionTo} = RouteNavigation;
 
 module.exports = React.createClass({
   displayName: "PolicyPage",
@@ -40,6 +39,7 @@ module.exports = React.createClass({
       questions: QuestionStore.getAllFrom(candidateId, policyId),
       hideComposer: true,
       loggedIn: this.props.loggedIn,
+      status: CandidateStore.getStatus()
     };
   },
 
@@ -75,6 +75,7 @@ module.exports = React.createClass({
 
   componentDidMount () {
     QuestionStore.addChangeListener(this._onChange);
+    CandidateStore.addChangeListener(this._onCandidateChange);
     setTimeout( (function () {
       var {candidateId, policyId} = this.props.params;
       var {new_question} = this.state;
@@ -91,6 +92,7 @@ module.exports = React.createClass({
 
   componentWillUnmount () {
     QuestionStore.removeChangeListener(this._onChange);
+    CandidateStore.removeChangeListener(this._onCandidateChange);
   },
 
   render () {
@@ -106,6 +108,12 @@ module.exports = React.createClass({
     this.setState({
       questions: QuestionStore.getAllFrom(candidate.id, policy.id),
       new_question: new_question
+    });
+  },
+
+  _onCandidateChange () {
+    this.setState({
+      status: CandidateStore.getStatus()
     });
   },
 
@@ -142,7 +150,6 @@ module.exports = React.createClass({
 
   _render (props, state) {
     var {candidateId} = this.props.params;
-    CandidateActionCreators.chooseCandidate(candidateId);
     var { name } = CandidateStore.get(candidateId);
     var {policy, questions} = state;
     var {loggedIn} = props;
@@ -152,6 +159,14 @@ module.exports = React.createClass({
                                                                  question={state.new_question}
                                                                  policy={state.policy}
                                                                  candidate={state.candidate} />);
+
+    var ask_item = (state.status[candidateId])? <div className='ask_item' onClick={this._toggleComposer}>
+          <i className='fa fa-plus ask_icon'></i>
+        </div> : '';
+    if(!state.status[candidateId]) {
+      composer = '';
+    }
+
     var prevButton = (state.prev > 0)?<Link to="policy" params={{candidateId: candidateId, policyId: state.prev}}>
       <div className="page_button page_left" ><i className="fa fa-chevron-left"></i></div></Link> : '';
     var nextButton = (state.next <= state.limit)? <Link to="policy" params={{candidateId: candidateId, policyId: state.next}}>
@@ -164,16 +179,15 @@ module.exports = React.createClass({
           <h2>{ name + '的政見'}</h2>
         </div>
         <Policy data={policy} />
-        <div className='ask_item' onClick={this._toggleComposer}>
-          <i className='fa fa-plus ask_icon'></i>
-        </div>
+        {ask_item}
         {composer}
       </div>
       <div className='wrapper'>
         <QuestionList items={questions}
                       loggedIn={props.loggedIn}
                       policy={state.policy}
-                      candidate={state.candidate} />
+                      candidate={state.candidate}
+                      status={state.status[candidateId] } />
       </div>
     </div></div>;
   }

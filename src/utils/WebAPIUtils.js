@@ -60,6 +60,15 @@ module.exports = {
       .end(function (err, res) {
         return cb(err, res);
       });
+  },
+
+  checkStatus (cb) {
+    request
+      .get(makeURL('/status'))
+      .timeout(TIMEOUT)
+      .end(function (err, res) {
+        return cb(err, res);
+      });
   }
 
 };
