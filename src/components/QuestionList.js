@@ -54,6 +54,9 @@ module.exports = React.createClass({
     var result = items.map((item, index) => {
       var boundClick = this._handleClick.bind(this, index);
       var selected = (index === state.selectedIndex)? true: false;
+      if(props.selected && -1 === state.selectedIndex) {
+        selected = true;
+      }
       return <Question key={item.id}
                        selected={selected}
                        index={index}

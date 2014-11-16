@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 "use strict";
 var React = require("react/addons");
+var {Link} = require("react-router");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
 var UserStore = require("../stores/UserStore");
 var QuestionStore = require("../stores/QuestionStore");
@@ -11,13 +12,13 @@ module.exports = React.createClass({
   displayName: "Question",
 
   getInitialState () {
-    var {cid, pid } = this.props;
+    // var {cid, pid } = this.props;
     return {
       loggedIn: this.props.loggedIn,
       count: this.props.question.signatures.length,
       // question: this.props.question,
       hideSignButton: false,
-      hideContent: true
+      hideContent: !this.props.selected
     };
   },
 
@@ -112,6 +113,7 @@ module.exports = React.createClass({
     var titleClass = (state.hideContent)? 'q_title l_inline' : 'q_title l_inline q_title_active';
     var toggleIcon = (state.hideContent)? 'fa fa-angle-double-down': 'fa fa-angle-double-up';
 
+    // console.log(String(props.cid));
     return <div className={itemClass}>
       <div className={titleClass} onClick={props._handleClick}>
         <div className='q_order l_inline'>{index + 1}</div>
