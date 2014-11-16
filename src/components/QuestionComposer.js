@@ -32,13 +32,16 @@ module.exports = React.createClass({
 
   _render (props, state) {
 
-    var {question, policy, candidate} = props;
+    var {question, policy, candidate, minimizeComposer} = props;
     var {title, content} = question;
-    return <div className='ask_form'>
-      <div className='ask_form_title'>
+
+    var minimizeComposerClass = (minimizeComposer)? 'ask_form_minimize' : '';
+
+    return <div className={ 'ask_form ' + minimizeComposerClass}>
+      <div className='ask_form_title' onClick={props._handleCloseComposer}>
         <i className='fa fa-paper-plane-o'></i>
         { '  對' + candidate.name + '的政策提問：'}
-        <div className='ask_form_remove' onClick={props._handleCloseComposer}>
+        <div className='ask_form_remove'>
           <i className='fa fa-minus'></i>
         </div>
       </div>

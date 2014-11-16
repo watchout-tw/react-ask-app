@@ -749,6 +749,7 @@ a.nav_item_sidebar:hover {
 }
 .ask_form_minimize {
   height: 40px;
+  width: 300px;
 }
 .ask_form_title {
   background: #2196F3;
@@ -810,6 +811,9 @@ a.nav_item_sidebar:hover {
     background: white;
     position: fixed;
 
+  }
+  .ask_form_remove {
+    display: none;
   }
   .ask_form_listitem input {
     width: 100%;

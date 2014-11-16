@@ -39,6 +39,7 @@ module.exports = React.createClass({
       candidate: CandidateStore.get(candidateId),
       questions: QuestionStore.getAllFrom(candidateId, policyId),
       hideComposer: true,
+      minimizeComposer: false,
       loggedIn: this.props.loggedIn,
     };
   },
@@ -105,7 +106,8 @@ module.exports = React.createClass({
     new_question.pid = policy.id;
     this.setState({
       questions: QuestionStore.getAllFrom(candidate.id, policy.id),
-      new_question: new_question
+      new_question: new_question,
+      minimizeComposer: false
     });
   },
 
@@ -118,12 +120,22 @@ module.exports = React.createClass({
     });
   },
 
+   _minimizeComposer () {
+    if (!this.state.loggedIn) {
+      return;
+    }
+    this.setState({
+      minimizeComposer: !this.state.minimizeComposer
+    });
+  },
+
   _handleDrop () {
     var {new_question} = this.state;
     new_question.title = null;
     new_question.content = null;
     this.setState({
       hideComposer: !this.state.hideComposer,
+      minimizeComposer: false,
       new_question: new_question
     });
   },
@@ -144,11 +156,13 @@ module.exports = React.createClass({
     var {candidateId} = this.props.params;
     CandidateActionCreators.chooseCandidate(candidateId);
     var { name } = CandidateStore.get(candidateId);
-    var {policy, questions} = state;
+    var {policy, questions, minimizeComposer} = state;
     var {loggedIn} = props;
-    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer}
+    var composeButton = (minimizeComposer)? '' : (<div className='ask_item' onClick={this._toggleComposer}><i className='fa fa-plus ask_icon'></i></div>);
+    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._minimizeComposer}
                                                                  _handleComposerChange={this._handleComposerChange}
                                                                  _handleDrop={this._handleDrop}
+                                                                 minimizeComposer={state.minimizeComposer}
                                                                  question={state.new_question}
                                                                  policy={state.policy}
                                                                  candidate={state.candidate} />);
@@ -164,9 +178,7 @@ module.exports = React.createClass({
           <h2>{ name + '的政見'}</h2>
         </div>
         <Policy data={policy} />
-        <div className='ask_item' onClick={this._toggleComposer}>
-          <i className='fa fa-plus ask_icon'></i>
-        </div>
+        {composeButton}
         {composer}
       </div>
       <div className='wrapper'>
