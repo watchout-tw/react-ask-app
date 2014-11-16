@@ -47,6 +47,25 @@ var allClosedAt = {
   '7': { closedAt: new Date('2014','9','29','23','59','59').getTime() }
 };
 
+function filterSignatures(questions) {
+  var result = questions.map(function (q) {
+    var signs = q.signatures.map(function (s) {
+      return s.user.id;
+    });
+    return {
+      id: q.id,
+      cid: q.cid,
+      pid: q.pid,
+      title: q.title,
+      content: q.content,
+      createdAt: q.createdAt,
+      author: q.author,
+      signatures: signs
+    };
+  });
+  return result;
+}
+
 api.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
 api.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -87,36 +106,48 @@ api
   .get('/questions', function (req, res) {
     var cid = req.query.cid;
     var pid = req.query.pid;
+    var qid = req.query.qid;
+    var skip = req.query.skip;
+    var selected = false;
+
     if (!cid && !pid) {
       return res.json({
         status: 'failed',
         message: 'Must include cid and pid'
       });
     }
-    Question.find({cid: cid, pid:pid}, function (err, questions) {
-      if (err) {
-        return res.error(err.stack);
-      }
-      var result = questions.map(function (q) {
-        var signs = q.signatures.map(function (s) {
-          return s.user.id;
+    Question
+      .find({cid: cid, pid:pid})
+      .limit(2)
+      .skip(skip)
+      .sort('-createdAt')
+      .exec(function (err, questions) {
+        if (err) {
+          return res.error(err.stack);
+        }
+        questions.map(function (q) {
+          if(qid === q.id){
+            selected = true;
+          }
         });
-        return {
-          id: q.id,
-          cid: q.cid,
-          pid: q.pid,
-          title: q.title,
-          content: q.content,
-          createdAt: q.createdAt,
-          author: q.author,
-          signatures: signs
-        };
+
+        if(qid && !selected) {
+          Question.findOne({id: qid}, function (err, question){
+            questions.unshift(question);
+            var result = filterSignatures(questions);
+            return res.json({
+              status: 'success',
+              data: result
+            });
+          });
+        } else {
+          var result = filterSignatures(questions);
+          return res.json({
+            status: 'success',
+            data: result
+          });
+        }
       });
-      return res.json({
-        status: 'success',
-        data: result
-      });
-    });
   })
   .post('/questions', function (req, res) {
     if(!req.user) {

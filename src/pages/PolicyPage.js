@@ -50,11 +50,13 @@ module.exports = React.createClass({
         cid: candidateId,
         index: policyId
       });
+    var qid = this.props.query.qid;
     // avoid calling api multiple times
     if (policyId !== this.state.policy.id) {
       QuestionActionCreators.getQuestions({
           cid: candidateId,
           pid: policyId,
+          qid: qid
       });
     }
     this.setState({
@@ -80,6 +82,7 @@ module.exports = React.createClass({
     setTimeout( (function () {
       var {candidateId, policyId} = this.props.params;
       var {new_question} = this.state;
+      var qid = this.props.query.qid;
       new_question.author = this.props.user;
       new_question.cid = candidateId;
       new_question.pid = policyId;
@@ -87,6 +90,7 @@ module.exports = React.createClass({
       QuestionActionCreators.getQuestions({
         cid: candidateId,
         pid: policyId,
+        qid: qid
       });
     }).bind(this) , 1000);
   },
@@ -186,24 +190,28 @@ module.exports = React.createClass({
       <div className="page_button page_left" ><i className="fa fa-chevron-left"></i></div></Link> : '';
     var nextButton = (state.next <= state.limit)? <Link to="policy" params={{candidateId: candidateId, policyId: state.next}}>
       <div className="page_button page_right" ><i className="fa fa-chevron-right"></i></div></Link>: '';
-    return <div id='content'><div id='page_content'>
-      {prevButton}
-      {nextButton}
-      <div className='wrapper' id='policy'>
-        <div>
-          <h2>{ name + '的政見'}</h2>
+
+    return <div id='content'>
+      <div id='page_content'>
+        {prevButton}
+        {nextButton}
+        <div className='wrapper' id='policy'>
+          <div>
+            <h2>{ name + '的政見'}</h2>
+          </div>
+          <Policy data={policy} />
+          {ask_item}
+          {composer}
         </div>
-        <Policy data={policy} />
-        {ask_item}
-        {composer}
+        <div className='wrapper'>
+          <QuestionList items={questions}
+                        loggedIn={props.loggedIn}
+                        policy={state.policy}
+                        candidate={state.candidate}
+                        status={state.status[candidateId]}
+                        selected={props.query.qid} />
+        </div>
       </div>
-      <div className='wrapper'>
-        <QuestionList items={questions}
-                      loggedIn={props.loggedIn}
-                      policy={state.policy}
-                      candidate={state.candidate}
-                      status={state.status[candidateId] } />
-      </div>
-    </div></div>;
+    </div>;
   }
 });

@@ -3,8 +3,6 @@
 var React = require("react/addons");
 var ReactRouter = require("react-router");
 var {Routes, Route, DefaultRoute, NotFoundRoute} = ReactRouter;
-// var App = require("./App");
-// var {IndexPage, PolicyPage, PolicyListPage} = require("./pages");
 var App = React.createFactory(require("./App"));
 var IndexPage = React.createFactory(require("./pages/IndexPage"));
 var TermsPage = React.createFactory(require("./pages/TermsPage"));
@@ -12,12 +10,6 @@ var ContactPage = React.createFactory(require("./pages/ContactPage"));
 var QAPage = React.createFactory(require("./pages/QAPage"));
 var PolicyPage = React.createFactory(require("./pages/PolicyPage"));
 var PolicyListPage = React.createFactory(require("./pages/PolicyListPage"));
-
-var Auth = React.createClass({
-  render () {
-    return <h1>Test</h1>;
-  }
-});
 
 var app_router = <Routes location="history">
     <Route handler={App} >
