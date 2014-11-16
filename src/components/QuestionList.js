@@ -54,7 +54,7 @@ module.exports = React.createClass({
     var result = items.map((item, index) => {
       var boundClick = this._handleClick.bind(this, index);
       var selected = (index === state.selectedIndex)? true: false;
-      if(props.selected && -1 === state.selectedIndex) {
+      if(props.selected === item.id && -1 === state.selectedIndex) {
         selected = true;
       }
       return <Question key={item.id}
@@ -73,7 +73,7 @@ module.exports = React.createClass({
         <div className="question_menu_meta">{'共有 ' + items.length + ' 題'}</div>
         <div className="sorting_menu" >
             <label className="radio" >
-               <input id="sortBySign" type="radio" name="radios" checked="" onClick={this._handleSort} />
+               <input id="sortBySign" type="radio" name="radios" defaultChecked={true} onClick={this._handleSort} />
                <span className="outer"><span className="inner"></span></span>
                <span className="radio_text">票數排序</span>
             </label>
