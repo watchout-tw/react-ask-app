@@ -92,7 +92,9 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
         var {cid, pid} = query;
         if (res.body.data) {
           if (0 === res.body.data.length) {
-            _counts[cid][pid]= Object.keys(_questions[cid][pid]).length;
+            // workaround right now
+            // _counts[cid][pid]= Object.keys(_questions[cid][pid]).length;
+            _counts[cid][pid] = 1;
           } else {
             res.body.data.map( (q) => {
               if (!_questions[cid][pid]) {
