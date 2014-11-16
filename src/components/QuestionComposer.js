@@ -36,7 +36,7 @@ module.exports = React.createClass({
     var {title, content} = question;
 
     var minimizeComposerClass = (minimizeComposer)? 'ask_form_minimize' : '';
-    var tips = '您可以在此進一步說明您的問題\n\n發問小提醒：\n1. 提問送出後無法修改或刪除\n2. 切換頁面時，系統會自動刪除尚未送出的問題\n3. 提問會顯示您的臉書使用者名稱及照片';
+    var tips = '您可以在此進一步說明您的問題。\n\n發問小提醒：\n1. 提問送出後無法修改或刪除。\n2. 切換頁面時，系統會自動刪除尚未送出的問題。\n3. 提問會顯示您的臉書使用者名稱及照片。';
 
     return <div className={ 'ask_form ' + minimizeComposerClass}>
       <div className='ask_form_title' onClick={props._handleMinimizeComposer}>
