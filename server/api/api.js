@@ -135,7 +135,7 @@ api
         .sort(SORT)
         .exec(function (err, questions) {
           if (err) {
-            return res.error(err.stack);
+            return console.log(err.stack);
           }
           var result = filterSignatures(questions);
           return res.json({
@@ -176,12 +176,12 @@ api
       createdAt: createdAt
     }, function (err, question) {
       if (err) {
-        return res.error(err.stack);
+        return console.log(err.stack);
       }
       // save signatures in user
       User.findOne({id: newQuestion.author.id}, function (err, user) {
         if (err) {
-          return res.error(err.stack);
+          return console.log(err.stack);
         }
         user.signatures.push({
           id: question.id,
@@ -189,7 +189,7 @@ api
         });
         return user.save(function (err) {
           if (err) {
-            return res.error(err.stack);
+            return console.log(err.stack);
           }
         });
       });
@@ -230,7 +230,7 @@ api
 
     Question.where({id: signQuestion.id}).findOne(function (err, question) {
       if (err) {
-        return res.error(err.stack);
+        return console.log(err.stack);
       }
       question.signatures.map(function (s) {
         if (signQuestion.signer.name === s.user.name) {
@@ -243,7 +243,7 @@ api
       // save signature in user
       User.findOne({id: signQuestion.signer.id}, function (err, user) {
         if (err) {
-          return res.error(err.stack);
+          return console.log(err.stack);
         }
         user.signatures.push({
           id: signQuestion.id,
@@ -251,7 +251,7 @@ api
         });
         return user.save(function (err) {
           if (err) {
-            return res.error(err.stack);
+            return console.log(err.stack);
           }
         });
       });
@@ -263,7 +263,7 @@ api
 
       question.save(function (err) {
         if (err) {
-          return res.error(err.stack);
+          return console.log(err.stack);
         }
         return res.json({
           status: "success"
