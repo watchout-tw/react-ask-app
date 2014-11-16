@@ -4,18 +4,12 @@ var AppConstants = require('../constants/AppConstants');
 var WebAPIUtils = require("../utils/WebAPIUtils");
 var {EventEmitter} = require('events');
 var assign = require('object-assign');
-// var localStorage = require("localStorage");
 
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
 
-// if (!localStorage.questions) {
-//   localStorage.questions = JSON.stringify({ '5': {}, '6': {}, '7': {} });
-// }
-
-// var _questions = JSON.parse(localStorage.questions);
-
 var _questions = { '5': {}, '6': {}, '7': {} };
+var _counts = { '5': {}, '6': {}, '7': {} };
 
 var QuestionStore = assign({}, EventEmitter.prototype, {
 
@@ -48,6 +42,14 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
     return Object.keys(_questions[cid][pid]).map((q) => {
       return _questions[cid][pid][q];
     });
+  },
+
+  getCount (query) {
+    var {cid, pid} = query;
+    if (!_counts[cid][pid]) {
+      return -1;
+    }
+    return _counts[cid][pid];
   },
 
   save () {
@@ -88,12 +90,19 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
         }
         var {query} = action;
         var {cid, pid} = query;
-        res.body.data.map( (q) => {
-          if (!_questions[cid][pid]) {
-            _questions[cid][pid]= {};
+        if (res.body.data) {
+          if (0 === res.body.data.length) {
+            _counts[cid][pid]= Object.keys(_questions[cid][pid]).length;
+          } else {
+            res.body.data.map( (q) => {
+              if (!_questions[cid][pid]) {
+                _questions[cid][pid]= {};
+              }
+              _counts[cid][pid]= -1;
+              _questions[cid][pid][q.id] = q;
+            });
           }
-          _questions[cid][pid][q.id] = q;
-        });
+        }
         QuestionStore.emitChange();
       });
       break;

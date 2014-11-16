@@ -68,6 +68,7 @@ module.exports = React.createClass({
                        loggedIn={props.loggedIn}
                        status={props.status} />;
     });
+
     return <div >
       <div className="question_menu">
         <div className="question_menu_meta">{'共有 ' + items.length + ' 題'}</div>
@@ -85,9 +86,6 @@ module.exports = React.createClass({
         </div>
       </div>
       {result}
-      <div className="question_bottom">
-       <a className="button"><i className="fa fa-bullhorn"></i>{ ' 更多'}</a>
-      </div>
     </div>;
   }
 });

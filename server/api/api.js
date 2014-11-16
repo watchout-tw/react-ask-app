@@ -117,38 +117,33 @@ api
         message: 'Must include cid and pid'
       });
     }
-    Question
-      .find({cid: cid, pid:pid})
-      .limit(LIMIT)
-      .skip(skip)
-      .sort(SORT)
-      .exec(function (err, questions) {
-        if (err) {
-          return res.error(err.stack);
-        }
-        questions.map(function (q) {
-          if(qid === q.id){
-            selected = true;
-          }
-        });
 
-        if(qid && !selected) {
-          Question.findOne({id: qid}, function (err, question){
-            questions.unshift(question);
-            var result = filterSignatures(questions);
-            return res.json({
-              status: 'success',
-              data: result
-            });
-          });
-        } else {
+    if(qid && !skip) {
+      Question.findOne({id: qid}, function (err, question){
+        var result = filterSignatures([question]);
+        return res.json({
+          status: 'success',
+          data: result
+        });
+      });
+    } else {
+      Question
+        .find({cid: cid, pid:pid })
+        .ne('id', qid)
+        .limit(LIMIT)
+        .skip(skip)
+        .sort(SORT)
+        .exec(function (err, questions) {
+          if (err) {
+            return res.error(err.stack);
+          }
           var result = filterSignatures(questions);
           return res.json({
             status: 'success',
             data: result
           });
-        }
-      });
+        });
+    }
   })
   .post('/questions', function (req, res) {
     if(!req.user) {

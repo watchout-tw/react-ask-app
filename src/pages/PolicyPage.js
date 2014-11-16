@@ -40,7 +40,8 @@ module.exports = React.createClass({
       hideComposer: true,
       minimizeComposer: false,
       loggedIn: this.props.loggedIn,
-      status: CandidateStore.getStatus()
+      status: CandidateStore.getStatus(),
+      hideMore: false
     };
   },
 
@@ -59,6 +60,7 @@ module.exports = React.createClass({
           qid: qid
       });
     }
+
     this.setState({
       loggedIn: nextProps.loggedIn,
       policy: policy,
@@ -106,14 +108,21 @@ module.exports = React.createClass({
 
   _onChange () {
     var {candidate, policy, new_question} = this.state;
+    var questions = QuestionStore.getAllFrom(candidate.id, policy.id);
+    var hideMore = false;
     new_question.title = null;
     new_question.content = null;
     new_question.cid = candidate.id;
     new_question.pid = policy.id;
+    if (-1 !== QuestionStore.getCount({cid: candidate.id, pid: policy.id})) {
+      hideMore = true;
+    }
+    console.log(QuestionStore.getCount({cid: candidate.id, pid: policy.id}));
     this.setState({
-      questions: QuestionStore.getAllFrom(candidate.id, policy.id),
+      questions: questions,
       new_question: new_question,
-      minimizeComposer: false
+      minimizeComposer: false,
+      hideMore: hideMore
     });
   },
 
@@ -164,6 +173,22 @@ module.exports = React.createClass({
     this.setState({ new_question });
   },
 
+  _handleMore () {
+    var {candidateId, policyId} = this.props.params;
+    var {questions} = this.state;
+    var {qid} = this.props.query;
+    var skip = questions.length;
+    if(qid) {
+      skip = questions.length - 1;
+    }
+    QuestionActionCreators.getQuestions({
+      cid: candidateId,
+      pid: policyId,
+      qid: qid,
+      skip: skip
+    });
+  },
+
   _render (props, state) {
     var {candidateId} = this.props.params;
     var { name } = CandidateStore.get(candidateId);
@@ -191,6 +216,10 @@ module.exports = React.createClass({
     var nextButton = (state.next <= state.limit)? <Link to="policy" params={{candidateId: candidateId, policyId: state.next}}>
       <div className="page_button page_right" ><i className="fa fa-chevron-right"></i></div></Link>: '';
 
+    var moreButton = (state.hideMore)? '' : <div className="question_bottom" onClick={this._handleMore}>
+       <a className="button"><i className="fa fa-bullhorn"></i>{ ' 更多'}</a>
+      </div>;
+
     return <div id='content'>
       <div id='page_content'>
         {prevButton}
@@ -209,7 +238,10 @@ module.exports = React.createClass({
                         policy={state.policy}
                         candidate={state.candidate}
                         status={state.status[candidateId]}
-                        selected={props.query.qid} />
+                        selected={props.query.qid}
+                        _handleMore={this._handleMore}
+                        hideMore={state.hideMore}/>
+          {moreButton}
         </div>
       </div>
     </div>;
