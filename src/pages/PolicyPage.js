@@ -156,7 +156,7 @@ module.exports = React.createClass({
       <div className="page_button page_left" ><i className="fa fa-chevron-left"></i></div></Link> : '';
     var nextButton = (state.next <= state.limit)? <Link to="policy" params={{candidateId: candidateId, policyId: state.next}}>
       <div className="page_button page_right" ><i className="fa fa-chevron-right"></i></div></Link>: '';
-    return <div id='content'>
+    return <div id='content'><div id='page_content'>
       {prevButton}
       {nextButton}
       <div className='wrapper' id='policy'>
@@ -175,6 +175,6 @@ module.exports = React.createClass({
                       policy={state.policy}
                       candidate={state.candidate} />
       </div>
-    </div>;
+    </div></div>;
   }
 });
