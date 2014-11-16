@@ -83,7 +83,7 @@ CandidateStore.dispatchToken = AppDispatcher.register((payload) => {
         }
         Object.keys(_candidates).map(function(c, i){
           var allStatus = res.body.data;
-          if(allStatus)
+          if(allStatus)//this is a workaround
              _candidates[c]['status'] = allStatus[i];
         });
         CandidateStore.emitChange();
