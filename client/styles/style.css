@@ -325,6 +325,7 @@ a.q_postmeta:hover {
 }
 .q_text {
   padding: 0px 20px 0px 10px;
+  white-space: pre-wrap;
 }
 .q_content {
   position: relative;
