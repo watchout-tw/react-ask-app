@@ -6,7 +6,7 @@ var uid = require("uid2");
 var config = require("../config/config");
 var User = require("./models/User");
 var Question = require("./models/Question");
-var LIMIT = 2;
+var LIMIT = 10;
 var SORT = '-signatures';
 
 passport.serializeUser(function(user, done) {
@@ -127,6 +127,9 @@ api
         });
       });
     } else {
+      if(!qid) {
+        qid = '';
+      }
       Question
         .find({cid: cid, pid:pid })
         .ne('id', qid)
