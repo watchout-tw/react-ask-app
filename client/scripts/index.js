@@ -4,7 +4,7 @@ require("../styles/style.css");
 require("../styles/font-awesome.min.css");
 require.context("../images", true, /\.(jpg|png)$/);
 require("es5-shim");
-require("html5shiv");
+require("../../node_modules/html5shiv/dist/html5shiv.js");
 
 var React = require("react/addons");
 var app_router = require("../../src/AppRouter");
