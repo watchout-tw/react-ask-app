@@ -206,7 +206,7 @@ api
         return res.error(err.stack);
       }
       question.signatures.map(function (s) {
-        if (signQuestion.sginer.name === s.user.name) {
+        if (signQuestion.signer.name === s.user.name) {
           return res.json({
             status: "failed",
             message: "already signed"
