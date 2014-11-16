@@ -12,24 +12,22 @@ var router = require('express').Router({caseSensitive: true, strict: true});
 var template = fs.readFileSync(__dirname + "/../../public/app.html", {encoding:'utf8'});
 //wildcard route to pass to react client app
 
-
-
-router.get(['/','/qa', 'terms', '/contact'], function(req, res) {
+function _render(req, res) {
   Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
     var html = template.replace(/\{\{body\}\}/, string);
     html = html.replace(/\{\{initialData\}\}/, JSON.stringify({}));
     return res.send(html);
   });
+}
+
+router.get(['/','/qa', 'terms', '/contact'], function(req, res) {
+  return _render(req, res);
 });
 
 router.get('/candidates/:candidateId/policies', function (req, res) {
   var candidateId = req.param('candidateId');
   if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
-    Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
-      var html = template.replace(/\{\{body\}\}/, string);
-      html = html.replace(/\{\{initialData\}\}/, JSON.stringify({}));
-      return res.send(html);
-    });
+    return _render(req, res);
   } else {
     return res.redirect('/');
   }
@@ -54,11 +52,7 @@ router.get('/candidates/:candidateId/policies/:policyId', function (req, res) {
         return res.redirect('/');
       }
     default:
-      Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
-        var html = template.replace(/\{\{body\}\}/, string);
-        html = html.replace(/\{\{initialData\}\}/, JSON.stringify({}));
-        return res.send(html);
-      });
+      return _render(req, res);
   }
 });
 

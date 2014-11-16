@@ -74,6 +74,24 @@ module.exports = React.createClass({
     });
   },
 
+  _handleShare () {
+    var {cid, pid, qid, question} = this.props;
+    var user = UserStore.get();
+    var name = (user.name)? user.name : '我';
+
+    if(FB) {
+      var link = location.origin + '/candidates/' + cid + '/policies/' + pid + '?qid=' + qid;
+      FB.ui({
+        method: 'feed',
+        name: question.title,
+        link: link,
+        picture: 'http://taipei.wethepeople.tw/images/fb-img.jpg',
+        caption: name + '在市長給問嗎！最後一役',
+        description: question.content
+      });
+    }
+  },
+
   _render (props, state) {
     var {index, question} = props;
     var {count} = state;
@@ -105,7 +123,7 @@ module.exports = React.createClass({
         </div>
         <div className='q_action'>
           {signButton}{ ' '}
-          <Button className='facebook' name='分享' icon='fa-facebook' />
+          <Button className='facebook' name='分享' icon='fa-facebook' _handleClick={this._handleShare}/>
         </div>
       </div>;
 
