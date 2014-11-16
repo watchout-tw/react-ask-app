@@ -37,26 +37,23 @@ router.get('/candidates/:candidateId/policies', function (req, res) {
 router.get('/candidates/:candidateId/policies/:policyId', function (req, res) {
   var candidateId = req.param('candidateId');
   var policyId = ~~req.param('policyId');
-  switch(candidateId) {
-    case '5':
-      if (policyId < 1 || policyId > 27) {
-        return res.redirect('/');
-      }
-    case '6':
-      if (policyId < 1 || policyId > 34) {
-        return res.redirect('/');
-      }
-    case '7':
-      console.log(policyId < 1 || policyId > 30);
-      if (policyId < 1 || policyId > 30) {
-        return res.redirect('/');
-      }
-    default:
-      return _render(req, res);
-  }
-});
 
+  if ('5' === candidateId && policyId >= 1 && policyId <= 27) {
+    return _render(req, res);
+  }
+  if ('6' === candidateId && policyId >= 1 && policyId <= 34) {
+    return _render(req, res);
+  }
+  if ('7' === candidateId && policyId >=1 && policyId <= 30) {
+    return _render(req, res);
+  }
+  return res.redirect("/");
+});
+// http://localhost:8080/candidates/6/policies/34?qid=Tb4nkJ8C4SxjxKlV
 router.get('*', function (req, res) {
+  if(req.originalUrl.match(/qid/)) {
+    return _render(req, res);
+  }
   return res.redirect('/');
 });
 
