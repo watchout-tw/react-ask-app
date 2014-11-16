@@ -177,6 +177,7 @@ module.exports = React.createClass({
     var ask_item = (state.status[candidateId]&&!minimizeComposer)? <div className='ask_item' onClick={this._toggleComposer}>
           <i className='fa fa-plus ask_icon'></i>
         </div> : '';
+
     if(!state.status[candidateId]) {
       composer = '';
     }
