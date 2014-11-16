@@ -117,7 +117,6 @@ module.exports = React.createClass({
     if (-1 !== QuestionStore.getCount({cid: candidate.id, pid: policy.id})) {
       hideMore = true;
     }
-    console.log(QuestionStore.getCount({cid: candidate.id, pid: policy.id}));
     this.setState({
       questions: questions,
       new_question: new_question,
@@ -190,6 +189,7 @@ module.exports = React.createClass({
   },
 
   _render (props, state) {
+
     var {candidateId} = this.props.params;
     var { name } = CandidateStore.get(candidateId);
     var {policy, questions, minimizeComposer} = state;
