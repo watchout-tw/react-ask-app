@@ -159,7 +159,8 @@ module.exports = React.createClass({
     var {policy, questions, minimizeComposer} = state;
     var {loggedIn} = props;
     var composeButton = (minimizeComposer)? '' : (<div className='ask_item' onClick={this._toggleComposer}><i className='fa fa-plus ask_icon'></i></div>);
-    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._minimizeComposer}
+    var composer = (state.hideComposer)? '' : (<QuestionComposer _handleCloseComposer={this._toggleComposer}
+                                                                 _handleMinimizeComposer={this._minimizeComposer}
                                                                  _handleComposerChange={this._handleComposerChange}
                                                                  _handleDrop={this._handleDrop}
                                                                  minimizeComposer={state.minimizeComposer}

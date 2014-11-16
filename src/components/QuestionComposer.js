@@ -36,9 +36,10 @@ module.exports = React.createClass({
     var {title, content} = question;
 
     var minimizeComposerClass = (minimizeComposer)? 'ask_form_minimize' : '';
+    var tips = '您可以在此進一步說明您的問題\n\n發問小提醒：\n1. 提問送出後無法修改或刪除\n2. 切換頁面時，系統會自動刪除尚未送出的問題\n3. 提問會顯示您的臉書使用者名稱及照片';
 
     return <div className={ 'ask_form ' + minimizeComposerClass}>
-      <div className='ask_form_title' onClick={props._handleCloseComposer}>
+      <div className='ask_form_title' onClick={props._handleMinimizeComposer}>
         <i className='fa fa-paper-plane-o'></i>
         { '  對' + candidate.name + '的政策提問：'}
         <div className='ask_form_remove'>
@@ -54,7 +55,8 @@ module.exports = React.createClass({
         <input placeholder="請在此輸入簡短清楚的問題簡述" value={title} onChange={props._handleComposerChange} />
       </div>
       <div className='ask_form_content'>
-        <textarea placeholder="問題說明：您可以在此進一步說明您的問題" value={content} onChange={props._handleComposerChange} />
+        <span className="ask_form_subtitle_composearea" >{'問題說明'}</span>
+        <textarea placeholder={tips} value={content} onChange={props._handleComposerChange} />
       </div>
       <div className="ask_form_functions">
          <Button icon='fa-bullhorn' name=' 送出' _handleClick={this._handleCreateQuestion} />

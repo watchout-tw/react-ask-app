@@ -773,6 +773,13 @@ a.nav_item_sidebar:hover {
   font-weight: 700;
   margin-right: 10px;
 }
+.ask_form_subtitle_composearea {
+  color: #2196F3;
+  font-weight: 700;
+  margin-right: 10px;
+  display: inline-block;
+  padding: 10px 10px 0px 10px;
+}
 .ask_form_listitem input {
   width: 400px;
   border: 0;
