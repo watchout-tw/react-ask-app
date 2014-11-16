@@ -1,8 +1,4 @@
 require('node-jsx').install({harmony: true});
-var passport =require("passport");
-var FacebookStrategy = require('passport-facebook').Strategy;
-var FACEBOOK_APP_ID = '374167926074848';
-var FACEBOOK_APP_SECRET = '8797ff88c0f5c73a112d7d507666d262';
 
 var fs = require("fs");
 var React = require("react/addons");
@@ -45,21 +41,18 @@ router.get('/candidates/:candidateId/policies/:policyId', function (req, res) {
   var policyId = ~~req.param('policyId');
   switch(candidateId) {
     case '5':
-      console.log(policyId);
       if (policyId < 1 || policyId > 27) {
         return res.redirect('/');
       }
-      break;
     case '6':
       if (policyId < 1 || policyId > 34) {
         return res.redirect('/');
       }
-      break;
     case '7':
+      console.log(policyId < 1 || policyId > 30);
       if (policyId < 1 || policyId > 30) {
         return res.redirect('/');
       }
-      break;
     default:
       Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
         var html = template.replace(/\{\{body\}\}/, string);

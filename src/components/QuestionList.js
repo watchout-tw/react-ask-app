@@ -62,7 +62,8 @@ module.exports = React.createClass({
                        cid={props.candidate.id}
                        pid={props.policy.id}
                        qid={item.id}
-                       loggedIn={props.loggedIn} />;
+                       loggedIn={props.loggedIn}
+                       status={props.status} />;
     });
     return <div >
       <div className="question_menu">

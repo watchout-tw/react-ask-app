@@ -11,6 +11,12 @@ module.exports = {
       type: ActionTypes.CHOOSE_CANDIDATE,
       id: id
     });
+  },
+
+  checkStatus () {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.STATUS
+    });
   }
 
 };

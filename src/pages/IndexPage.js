@@ -28,7 +28,6 @@ module.exports = React.createClass({
         </div>
       </Link>;
     });
-    CandidateActionCreators.chooseCandidate(null);
     return <div id="content">
     <div className="page_wrapper index_section">
     <div className="wrapper">
