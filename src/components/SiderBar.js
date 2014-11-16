@@ -21,7 +21,7 @@ module.exports = React.createClass({
   _render (props, state) {
     var cid = props.cid;
     var policies = PolicyStore.getAllFrom(cid);
-    var result = policies.map((p) => {
+    var list = policies.map((p) => {
       var {id, title, indexTitle} = p;
       return <Link key={id}
                    className='nav_item_sidebar'
@@ -30,9 +30,10 @@ module.exports = React.createClass({
        {indexTitle} {title}
       </Link>;
     });
+
     var toggleClass = (props.hideSiderBar)? '': 'show';
-    return <div id='sidebar-container' className={toggleClass} >
-      {result}
-    </div>;
+    var result = (props.cid)? <div id='sidebar-container' className={toggleClass} > {list} </div> : <div></div>;
+
+    return result;
   }
 });

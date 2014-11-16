@@ -84,18 +84,24 @@ module.exports = React.createClass({
       candidateName = (CandidateStore.get(cid)).name;
     }
 
+    var slider = (<div id="toggleCtrl" onClick={this._handleCheck}>
+          <div className="slider_wrap" >
+            <input type="checkbox" id="s1" checked={state.checked} />
+            <label className="slider" for="s1"></label>
+          </div>
+        </div>);
+    var search = (<div className="nav_search">
+        <div className="nav_search_inner">
+         <input className="fs" ng-model="query" /><i className="fa fa-search"></i>
+        </div>
+      </div>);
+
     return <header className='md-whiteframe-z1'>
       <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
         <i className="fa fa-align-justify"></i>
       </div>
       <Link to='/'><div className="nav_list_home">市長給問嗎! 最後一役</div></Link>
       <div className="nav_list_function">
-        <div id="toggleCtrl" onClick={this._handleCheck}>
-          <div className="slider_wrap" >
-            <input type="checkbox" id="s1" checked={state.checked} />
-            <label className="slider" for="s1"></label>
-          </div>
-        </div>
         <div className="nav_list_function_item l_inline" id="candidateTopMenu">
             <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> {candidateName}</div>
             <div className={"tri-up " + toggleCandidateClass}></div>
@@ -106,12 +112,6 @@ module.exports = React.createClass({
               <i className="fa fa-facebook"></i> {user}
             </div>
             {userMenu}
-        </div>
-      </div>
-
-      <div className="nav_search">
-        <div className="nav_search_inner">
-         <input className="fs" ng-model="query" /><i className="fa fa-search"></i>
         </div>
       </div>
     </header>;
