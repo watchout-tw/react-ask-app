@@ -6,7 +6,8 @@ var uid = require("uid2");
 var config = require("../config/config");
 var User = require("./models/User");
 var Question = require("./models/Question");
-
+var LIMIT = 2;
+var SORT = '-signatures';
 
 passport.serializeUser(function(user, done) {
   return done(null, user);
@@ -118,9 +119,9 @@ api
     }
     Question
       .find({cid: cid, pid:pid})
-      .limit(2)
+      .limit(LIMIT)
       .skip(skip)
-      .sort('-createdAt')
+      .sort(SORT)
       .exec(function (err, questions) {
         if (err) {
           return res.error(err.stack);
