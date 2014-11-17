@@ -1,5 +1,7 @@
 
-.PHONY: build test run start stop
+.PHONY: all build test rm run deploy clean
+
+all: build rm run deploy
 
 build:
 	docker build -t react-ask-app .
