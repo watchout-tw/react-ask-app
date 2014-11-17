@@ -8,6 +8,7 @@ var QuestionStore = require("../stores/QuestionStore");
 var PolicyStore = require("../stores/PolicyStore");
 var CandidateStore = require("../stores/CandidateStore");
 var UserStore = require("../stores/UserStore");
+var AppActionCreators = require("../actions/AppActionCreators");
 var CandidateActionCreators = require("../actions/CandidateActionCreators");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
 var WebAPIUtils = require("../utils/WebAPIUtils");
@@ -133,6 +134,7 @@ module.exports = React.createClass({
 
   _toggleComposer () {
     if (!this.state.loggedIn) {
+      AppActionCreators.notify('請先登入，才能發問');
       return;
     }
     this.setState({

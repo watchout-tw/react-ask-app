@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 "use strict";
-var QuestionActionCreators = require('../actions/QuestionActionCreators');
-var UserStore = require("../stores/UserStore");
 var React = require('react/addons');
+var QuestionActionCreators = require('../actions/QuestionActionCreators');
+var AppActionCreators = require('../actions/AppActionCreators');
+var UserStore = require("../stores/UserStore");
 var Button = require('./Button');
-// var ENTER_KEY_CODE = 13;
 
 module.exports = React.createClass({
   displayName: "QuestionComposer",

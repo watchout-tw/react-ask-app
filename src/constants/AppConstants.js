@@ -9,7 +9,8 @@ module.exports = {
     GET_QUESTIONS: null,
     IS_LOGIN: null,
     LOGOUT: null,
-    STATUS: null
+    STATUS: null,
+    NOTIFY_MESSAGE: null
   }),
   PayloadSources: keyMirror({
     SERVER_ACTION: null,

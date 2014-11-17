@@ -7,3 +7,4 @@ exports.QuestionList = require("./QuestionList");
 exports.QuestionComposer = require("./QuestionComposer");
 exports.SiderBar = require("./SiderBar");
 exports.Footer = require("./Footer");
+exports.Notification = require("./Notification");

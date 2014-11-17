@@ -3,13 +3,12 @@
 var React = require("react");
 var Router = require("react-router");
 var {Route, Routes, CurrentPath} = Router;
-var {Navigation, SiderBar, Footer, Button} = require("./components");
+var {Navigation, SiderBar, Footer, Button, Notification} = require("./components");
 var CandidateStore = require("./stores/CandidateStore");
+var NotificationStore = require("./stores/NotificationStore");
 var UserActionCreators = require("./actions/UserActionCreators");
 var CandidateActionCreators = require("./actions/CandidateActionCreators");
 var UserStore = require("./stores/UserStore");
-var {Promise} = require("es6-shim");
-// var WebAPIUtils = require("./utils/WebAPIUtils");
 
 module.exports = React.createClass({
   displayName: "App",
@@ -22,12 +21,15 @@ module.exports = React.createClass({
     return {
       hideSiderBar: true,
       loggedIn: false,
-      user: {}
+      user: {},
+      hideNotification: true,
+      message: NotificationStore.getMessage()
     };
   },
 
   componentDidMount () {
     UserStore.addChangeListener(this._onChange);
+    NotificationStore.addChangeListener(this._onNotify);
     setTimeout((function () {
       this.setState({
         loggedIn: UserStore.loggedIn(),
@@ -55,6 +57,18 @@ module.exports = React.createClass({
     }
   },
 
+  _onNotify () {
+    this.setState({
+      hideNotification: !this.state.hideNotification,
+      message: NotificationStore.getMessage()
+    });
+    setTimeout((function () {
+      this.setState({
+        hideNotification: !this.state.hideNotification
+      });
+    }).bind(this), 3000);
+  },
+
   _render (props, state) {
     var cid = null;
     if (this.getCurrentPath().match(/^\/candidates/)){
@@ -63,6 +77,8 @@ module.exports = React.createClass({
 
     var {hideSiderBar} = state;
     return <div>
+      <Notification hideNotification={state.hideNotification}
+                    message={state.message} />
       <SiderBar hideSiderBar={hideSiderBar}
                 cid={cid} 
                 _toggleSiderBar={this._toggleSiderBar}/>
