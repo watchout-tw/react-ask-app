@@ -47,11 +47,12 @@ module.exports = React.createClass({
     });
   },
 
-  // TODO: handle null SiderBar and need to be closed when clicking
   _toggleSiderBar () {
-    this.setState({
-      hideSiderBar: !this.state.hideSiderBar
-    });
+    if (this.getCurrentPath().match(/^\/candidates/)){
+      this.setState({
+        hideSiderBar: !this.state.hideSiderBar
+      });
+    }
   },
 
   _render (props, state) {
@@ -63,7 +64,8 @@ module.exports = React.createClass({
     var {hideSiderBar} = state;
     return <div>
       <SiderBar hideSiderBar={hideSiderBar}
-                cid={cid} />
+                cid={cid} 
+                _toggleSiderBar={this._toggleSiderBar}/>
       <Navigation _toggleSiderBar={this._toggleSiderBar}
                   loggedIn={state.loggedIn}
                   user={state.user} />

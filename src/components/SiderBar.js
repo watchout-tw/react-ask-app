@@ -26,7 +26,8 @@ module.exports = React.createClass({
       return <Link key={id}
                    className='nav_item_sidebar'
                    to="policy"
-                   params={{candidateId: cid, policyId: id}}>
+                   params={{candidateId: cid, policyId: id}}
+                   onClick={props._toggleSiderBar}>
        {indexTitle} {title}
       </Link>;
     });
