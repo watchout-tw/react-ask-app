@@ -303,4 +303,39 @@ api
     });
   });
 
+api
+  .get('/policies', function (req, res) {
+    var cid = req.query.cid;
+    var policies = {
+      '5': [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27],
+      '6': [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34],
+      '7': [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+    }
+    if(!cid) {
+      return res.json({
+        status: "success",
+        message: "Must include cid"
+      });
+    }
+    Question
+      .find({cid: cid})
+      .exec(function (err, questions){
+        var result = policies[cid].map(function (pid) {
+          return 0;
+        });
+        policies[cid].map(function (pid, index) {
+          questions.map(function (q) {
+            if(~~q.pid === pid) {
+              result[index] += 1;
+            }
+          });
+        });
+        return res.json({
+          status: "success",
+          data: result,
+          counts: result.length
+        });
+      });
+  });
+
 module.exports = api;
