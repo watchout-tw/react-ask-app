@@ -1,6 +1,7 @@
 {
   "name": "react-ask-app",
   "version": "0.1.0",
+  "private": true,
   "scripts": {
     "postinstall": "bower install",
     "build": "make clean && webpack --config ./client/webpack.config.js",

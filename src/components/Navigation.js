@@ -84,17 +84,17 @@ module.exports = React.createClass({
       candidateName = (CandidateStore.get(cid)).name;
     }
 
-    var slider = (<div id="toggleCtrl" onClick={this._handleCheck}>
-          <div className="slider_wrap" >
-            <input type="checkbox" id="s1" checked={state.checked} />
-            <label className="slider" for="s1"></label>
-          </div>
-        </div>);
-    var search = (<div className="nav_search">
-        <div className="nav_search_inner">
-         <input className="fs" ng-model="query" /><i className="fa fa-search"></i>
-        </div>
-      </div>);
+    // var slider = <div id="toggleCtrl" onClick={this._handleCheck}>
+    //       <div className="slider_wrap" >
+    //         <input type="checkbox" id="s1" checked={state.checked} />
+    //         <label className="slider" for="s1"></label>
+    //       </div>
+    //     </div>;
+    // var search = <div className="nav_search">
+    //     <div className="nav_search_inner">
+    //      <input className="fs" ng-model="query" /><i className="fa fa-search"></i>
+    //     </div>
+    //   </div>;
 
     return <header className='md-whiteframe-z1'>
       <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
