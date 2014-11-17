@@ -34,6 +34,17 @@ var QuestionStore = assign({}, EventEmitter.prototype, {
     return _questions;
   },
 
+  //TODO: refactor
+  getQuestionsFrom (cid) {
+    var result = [];
+    Object.keys(_questions[cid]).map((p)=> {
+      result = result.concat(Object.keys(_questions[cid][p]).map((q) => {
+        return _questions[cid][p][q];
+      }));
+    });
+    return result;
+  },
+
   getAllFrom (cid, pid) {
     if (!_questions[cid][pid]) {
       return [];
@@ -97,11 +108,11 @@ QuestionStore.dispatchToken = AppDispatcher.register((payload) => {
             _counts[cid][pid] = 1;
           } else {
             res.body.data.map( (q) => {
-              if (!_questions[cid][pid]) {
-                _questions[cid][pid]= {};
+              if (!_questions[cid][q.pid]) {
+                _questions[cid][q.pid]= {};
               }
-              _counts[cid][pid]= -1;
-              _questions[cid][pid][q.id] = q;
+              _counts[cid][q.pid]= -1;
+              _questions[cid][q.pid][q.id] = q;
             });
           }
         }

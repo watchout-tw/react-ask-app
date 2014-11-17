@@ -10,6 +10,7 @@ var ContactPage = React.createFactory(require("./pages/ContactPage"));
 var QAPage = React.createFactory(require("./pages/QAPage"));
 var PolicyPage = React.createFactory(require("./pages/PolicyPage"));
 var PolicyListPage = React.createFactory(require("./pages/PolicyListPage"));
+var QuestionListPage = React.createFactory(require("./pages/QuestionListPage"));
 
 var app_router = <Routes location="history">
     <Route handler={App} >
@@ -19,6 +20,7 @@ var app_router = <Routes location="history">
       <Route name="qa" path="/qa" handler={QAPage} />
       <Route name="policies" path="/candidates/:candidateId/policies" handler={PolicyListPage} />
       <Route name="policy" path="/candidates/:candidateId/policies/:policyId" handler={PolicyPage} />
+      <Route name="question" path="/candidates/:candidateId/questions" handler={QuestionListPage} />
       <NotFoundRoute handler={IndexPage} />
     </Route>
 </Routes>;

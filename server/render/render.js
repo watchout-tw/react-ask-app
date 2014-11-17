@@ -49,11 +49,18 @@ router.get('/candidates/:candidateId/policies/:policyId', function (req, res) {
   }
   return res.redirect("/");
 });
-// http://localhost:8080/candidates/6/policies/34?qid=Tb4nkJ8C4SxjxKlV
-router.get('*', function (req, res) {
-  if(req.originalUrl.match(/qid/)) {
+
+router.get('/candidates/:candidateId/questions', function (req, res) {
+  var candidateId = req.param('candidateId');
+
+  if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
     return _render(req, res);
   }
+  return res.redirect("/");
+});
+
+
+router.get('*', function (req, res) {
   return res.redirect('/');
 });
 

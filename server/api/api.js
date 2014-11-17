@@ -111,15 +111,30 @@ api
     var skip = req.query.skip;
     var selected = false;
 
-    if (!cid && !pid) {
+    if (!cid) {
       return res.json({
         status: 'failed',
-        message: 'Must include cid and pid'
+        message: 'Must include cid'
+      });
+    }
+
+    if(!pid) {
+      return Question
+        .find({cid: cid})
+        .sort(SORT)
+        .exec(function (err, questions) {
+        if (err) {
+          return console.log(err);
+        }
+        return res.json({
+          status: "success",
+          data: filterSignatures(questions)
+        });
       });
     }
 
     if(qid && !skip) {
-      Question.findOne({id: qid}, function (err, question){
+      return Question.findOne({id: qid}, function (err, question){
         var result = filterSignatures([question]);
         return res.json({
           status: 'success',

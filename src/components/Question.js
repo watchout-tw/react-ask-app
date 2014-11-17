@@ -5,6 +5,7 @@ var {Link} = require("react-router");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
 var AppActionCreators = require("../actions/AppActionCreators");
 var UserStore = require("../stores/UserStore");
+var PolicyStore = require("../stores/PolicyStore");
 var QuestionStore = require("../stores/QuestionStore");
 var Button = require("./Button");
 var moment = require("moment");
@@ -13,11 +14,15 @@ module.exports = React.createClass({
   displayName: "Question",
 
   getInitialState () {
-    // var {cid, pid } = this.props;
+    var {cid, pid } = this.props;
+    var {policy} = PolicyStore.get({
+        cid: cid,
+        index: pid
+      });
     return {
       loggedIn: this.props.loggedIn,
       count: this.props.question.signatures.length,
-      // question: this.props.question,
+      policy: policy,
       hideSignButton: false,
       hideContent: !this.props.selected
     };
@@ -135,7 +140,7 @@ module.exports = React.createClass({
     var titleClass = (state.hideContent)? 'q_title l_inline' : 'q_title l_inline q_title_active';
     var toggleIcon = (state.hideContent)? 'fa fa-angle-double-down': 'fa fa-angle-double-up';
 
-    // console.log(String(props.cid));
+    console.log(state.policy);
     return <div className={itemClass}>
       <div className={titleClass} onClick={props._handleClick}>
         <div className='q_order l_inline'>{index + 1}</div>
