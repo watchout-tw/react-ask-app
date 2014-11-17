@@ -46,15 +46,15 @@ module.exports = React.createClass({
                 <p>提問日期：
                     <ul>
                     <li>馮光遠：即日起～ 11/18 18:00</li>
-                    <li>連勝文：即日起～ （時間確定中）</li>
-                    <li>柯文哲：即日起～ （時間未定）</li>
+                    <li>連勝文：即日起～ （邀約中，時間確定中）</li>
+                    <li>柯文哲：即日起～ （邀約中，時間未定）</li>
                     </ul>
                 </p>
                 <p>直播日期：
                     <ul>
                     <li>馮光遠：11/18 21:00</li>
-                    <li>連勝文：（時間確定中）</li>
-                    <li>柯文哲：（時間未定）</li>
+                    <li>連勝文：（邀約中，時間確定中）</li>
+                    <li>柯文哲：（邀約中，時間未定）</li>
                     </ul>
                 </p>
                 <p><div>直播頻道：</div><a className="live-link" href="http://live.appledaily.com.tw/livechannel/subject/108" target="_blank">http://live.appledaily.com.tw/livechannel/subject/108</a>
