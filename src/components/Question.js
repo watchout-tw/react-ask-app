@@ -85,7 +85,7 @@ module.exports = React.createClass({
         method: 'feed',
         name: question.title,
         link: link,
-        picture: 'http://taipei.wethepeople.tw/images/fb-img.jpg',
+        picture: 'http://2014final.wethepeople.tw/assets/images/fb_img.jpg',
         caption: name + '市長給問嗎！最後一役',
         description: question.content
       });
