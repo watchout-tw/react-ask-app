@@ -372,6 +372,10 @@ a.button.facebook{
 .policy {
   text-align: left;
 }
+.policy_title_link, .policy_title_link:visited {
+  color: #009688;
+  margin-left: 18px;
+}
 .p_item {
   background: white;
   padding: 20px;
