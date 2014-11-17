@@ -66,7 +66,7 @@ module.exports = React.createClass({
       this.setState({
         hideNotification: !this.state.hideNotification
       });
-    }).bind(this), 3000);
+    }).bind(this), 2000);
   },
 
   _render (props, state) {
@@ -80,7 +80,7 @@ module.exports = React.createClass({
       <Notification hideNotification={state.hideNotification}
                     message={state.message} />
       <SiderBar hideSiderBar={hideSiderBar}
-                cid={cid} 
+                cid={cid}
                 _toggleSiderBar={this._toggleSiderBar}/>
       <Navigation _toggleSiderBar={this._toggleSiderBar}
                   loggedIn={state.loggedIn}

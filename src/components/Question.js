@@ -3,6 +3,7 @@
 var React = require("react/addons");
 var {Link} = require("react-router");
 var QuestionActionCreators = require("../actions/QuestionActionCreators");
+var AppActionCreators = require("../actions/AppActionCreators");
 var UserStore = require("../stores/UserStore");
 var QuestionStore = require("../stores/QuestionStore");
 var Button = require("./Button");
@@ -56,12 +57,11 @@ module.exports = React.createClass({
   },
 
   _handleSignClick (event) {
-    // console.log(this.state.loggedIn);
     if (!this.state.loggedIn) {
+      AppActionCreators.notify('請先登入，才能連署');
       return;
     }
     var {cid, pid, qid} = this.props;
-    // var {question} = this.state;
     var user = UserStore.get();
     QuestionActionCreators.signQuestion({
       cid: cid,
