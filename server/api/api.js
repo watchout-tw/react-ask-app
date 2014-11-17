@@ -61,7 +61,8 @@ function filterSignatures(questions) {
       content: q.content,
       createdAt: q.createdAt,
       author: q.author,
-      signatures: signs
+      signatures: signs,
+      signaturesCount: q.signaturesCount
     };
   });
   return result;
@@ -123,13 +124,13 @@ api
         .find({cid: cid})
         .sort(SORT)
         .exec(function (err, questions) {
-        if (err) {
-          return console.log(err);
-        }
-        return res.json({
-          status: "success",
-          data: filterSignatures(questions)
-        });
+          if (err) {
+            return console.log(err);
+          }
+          return res.json({
+            status: "success",
+            data: filterSignatures(questions)
+          });
       });
     }
 
