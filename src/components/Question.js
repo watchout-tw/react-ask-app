@@ -24,7 +24,8 @@ module.exports = React.createClass({
       count: this.props.question.signatures.length,
       policy: policy,
       hideSignButton: false,
-      hideContent: !this.props.selected
+      hideContent: !this.props.selected,
+      index: this.props.index
     };
   },
 
@@ -37,9 +38,10 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps (nextProps) {
-    var {selected, question} = nextProps;
+    var {selected, question, index} = nextProps;
     this.setState({
       hideContent: !selected,
+      index: index
     });
   },
 
@@ -142,7 +144,7 @@ module.exports = React.createClass({
 
     return <div className={itemClass}>
       <div className={titleClass} onClick={props._handleClick}>
-        <div className='q_order l_inline'>{index + 1}</div>
+        <div className='q_order l_inline'>{state.index + 1}</div>
         <div className='q_vote l_inline'>{count}</div>
         {title}
         <div className='q_function l_inline'>

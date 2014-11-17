@@ -3,6 +3,12 @@
 var React = require("react/addons");
 var Question = require("./Question");
 
+function sortBySign (a, b) {
+  if (b.signatures.length === a.signatures.length) {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  }
+  return b.signatures.length - a.signatures.length;
+}
 module.exports = React.createClass({
   displayName: "QuestionList",
 
@@ -36,9 +42,7 @@ module.exports = React.createClass({
     var {items, sortBy} = this.state;
     switch(event.target.id) {
       case 'sortBySign':
-        items.sort(function (a, b) {
-          return b.signatures.length - a.signatures.length;
-        });
+        items.sort(sortBySign);
         sortBy = 'sign';
         break;
       case 'sortByTime':
@@ -55,7 +59,7 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = state;
     if('sign' === state.sortBy) {
-      items = items.sort(function (a, b) { return b.signatures.length - a.signatures.length; });
+      items = items.sort(sortBySign);
     }
     var result = items.map((item, index) => {
       var boundClick = this._handleClick.bind(this, item.id);
