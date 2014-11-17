@@ -140,7 +140,6 @@ module.exports = React.createClass({
     var titleClass = (state.hideContent)? 'q_title l_inline' : 'q_title l_inline q_title_active';
     var toggleIcon = (state.hideContent)? 'fa fa-angle-double-down': 'fa fa-angle-double-up';
 
-    console.log(state.policy);
     return <div className={itemClass}>
       <div className={titleClass} onClick={props._handleClick}>
         <div className='q_order l_inline'>{index + 1}</div>
