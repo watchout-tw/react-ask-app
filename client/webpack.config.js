@@ -37,6 +37,7 @@ var webpackConfig = module.exports = {
 
 if (IS_PRODUCTION) {
   webpackConfig.plugins.push(
-    new webpack.optimize.DedupePlugin()
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
   );
 }

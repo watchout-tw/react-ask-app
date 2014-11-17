@@ -4,6 +4,7 @@
   "scripts": {
     "postinstall": "bower install",
     "build": "webpack --config ./client/webpack.config.js",
+    "demo": "webpack-dev-server --content-base ./demo",
     "dev": "webpack --config ./client/webpack.config.js && webpack-dev-server --config ./client/webpack.config.js --inline --hot --content-base ./public",
     "start": "npm run build && node server/server"
   },

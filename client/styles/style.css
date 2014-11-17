@@ -858,14 +858,14 @@ a.nav_item_sidebar:hover {
   background: white;
 }
 .page_section {
-  background: url('/assets/images/cover_banner.jpg');
+  background-image: url('/assets/images/cover_banner.jpg');
   background-size: 100% auto;
   background-repeat: no-repeat;
   padding-top: 50px;
 }
 .index_section {
   position: relative;
-  background: url('/assets/images/cover.jpg');
+  background-image: url('/assets/images/cover.jpg');
   background-size: 100% auto;
   background-repeat: no-repeat;
   padding-top: 50%;
