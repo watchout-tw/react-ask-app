@@ -9,7 +9,8 @@ module.exports = React.createClass({
   getInitialState () {
     return {
       selectedIndex: -1,
-      items: this.props.items
+      items: this.props.items,
+      sortBy: 'sign'
     };
   },
 
@@ -32,25 +33,30 @@ module.exports = React.createClass({
   },
 
   _handleSort (event) {
-    var {items} = this.state;
+    var {items, sortBy} = this.state;
     switch(event.target.id) {
       case 'sortBySign':
         items.sort(function (a, b) {
           return b.signatures.length - a.signatures.length;
         });
+        sortBy = 'sign';
         break;
       case 'sortByTime':
         items.sort(function (a, b) {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         });
+        sortBy = 'time';
         break;
       default:
     }
-    this.setState({items});
+    this.setState({items, sortBy});
   },
 
   _render (props, state) {
     var {items} = state;
+    if('sign' === state.sortBy) {
+      items = items.sort(function (a, b) { return b.signatures.length - a.signatures.length; });
+    }
     var result = items.map((item, index) => {
       var boundClick = this._handleClick.bind(this, item.id);
       var selected = (item.id === state.selectedIndex)? true: false;
