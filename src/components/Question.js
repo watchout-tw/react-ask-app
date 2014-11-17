@@ -86,7 +86,7 @@ module.exports = React.createClass({
         name: question.title,
         link: link,
         picture: 'http://2014final.wethepeople.tw/assets/images/fb_img.jpg',
-        caption: name + '市長給問嗎！最後一役',
+        caption: name + '在市長給問嗎！最後一役',
         description: question.content
       });
     }
