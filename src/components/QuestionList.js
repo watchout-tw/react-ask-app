@@ -68,11 +68,7 @@ module.exports = React.createClass({
                        loggedIn={props.loggedIn}
                        status={props.status} />;
     });
-
-    return <div >
-      <div className="question_menu">
-        <div className="question_menu_meta">{'共有 ' + items.length + ' 題'}</div>
-        <div className="sorting_menu" >
+    var sortingMenu = <div className="sorting_menu" >
             <label className="radio" >
                <input id="sortBySign" type="radio" name="radios" defaultChecked={true} onClick={this._handleSort} />
                <span className="outer"><span className="inner"></span></span>
@@ -83,7 +79,11 @@ module.exports = React.createClass({
                <span className="outer"><span className="inner"></span></span>
                <span className="radio_text">時間排序</span>
             </label>
-        </div>
+        </div>;
+
+    return <div >
+      <div className="question_menu">
+        <div className="question_menu_meta">{'共有 ' + items.length + ' 題'}</div>
       </div>
       {result}
     </div>;
