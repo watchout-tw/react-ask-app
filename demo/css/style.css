@@ -431,6 +431,8 @@ a.button.facebook{
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
+  padding-bottom: 20px;
+  
 }
 @media screen and (max-width: 440px){
   .c_item {
@@ -443,6 +445,31 @@ a.button.facebook{
   font-size: 22px;
   font-weight: 600;
 }
+.c_count {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #EEEEEE;
+  border-radius: 100%;
+  padding: 11px;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #9E9E9E;
+  font-weight: 800;
+  font-size: 14px;
+}
+@media screen and (max-width: 440px){
+  .c_count {
+    bottom: 5px;
+    right: 5px;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
 /* ------------------------------------------------------------ */
 /* sidebar
 /* ------------------------------------------------------------ */

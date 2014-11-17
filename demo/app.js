@@ -187,6 +187,9 @@ app.controller('CandidateCtrl', ['$scope', 'DataService', '$location', '$sce', '
 
       if(validID.indexOf($routeParams.cid)!== -1){
         $scope.policy = Object.keys(data[cid]).map(function(o){ return data[cid][o];});
+        $scope.policy.map(function (value, index) {
+           value.count = Math.round(Math.random()*100) % 30 + 1;
+        })
 
       }else{
         $location.path('/');
