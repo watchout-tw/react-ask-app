@@ -79,6 +79,10 @@ module.exports = React.createClass({
     var user = UserStore.get();
     var name = (user.name)? user.name : '我';
 
+    if (name[name.length-1].match(/[a-zA-Z]/)) {
+      name += ' ';
+    }
+
     if(FB) {
       var link = location.origin + '/candidates/' + cid + '/policies/' + pid + '?qid=' + qid;
       FB.ui({
