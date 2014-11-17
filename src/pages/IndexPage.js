@@ -57,7 +57,7 @@ module.exports = React.createClass({
                     <li>柯文哲：（時間未定）</li>
                     </ul>
                 </p>
-                <p>直播頻道：<a href="http://live.appledaily.com.tw/livechannel/subject/108" target="_blank">http://live.appledaily.com.tw/livechannel/subject/108</a>
+                <p><div>直播頻道：</div><a className="live-link" href="http://live.appledaily.com.tw/livechannel/subject/108" target="_blank">http://live.appledaily.com.tw/livechannel/subject/108</a>
                 </p>
             </div>
             <div className="index_subsection">

@@ -943,6 +943,9 @@ a.nav_item_sidebar:hover {
   }
 
 }
+.live-link {
+  word-wrap: break-word;
+}
 
 /* ------------------------------------------------------------ */
 /* page button left & right

@@ -100,7 +100,7 @@ module.exports = React.createClass({
       <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
         <i className="fa fa-align-justify"></i>
       </div>
-      <Link to='/'><div className="nav_list_home">市長給問嗎! 最後一役</div></Link>
+      <Link to='/'><div className="nav_list_home">市長給問嗎！最後一役</div></Link>
       <div className="nav_list_function">
         <div className="nav_list_function_item l_inline" id="candidateTopMenu">
             <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> {candidateName}</div>
