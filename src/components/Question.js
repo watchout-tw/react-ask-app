@@ -128,7 +128,7 @@ module.exports = React.createClass({
         <div className='q_postmeta'>
         <img src={author.avatar} className='q_author_img' />
           <div className='q_author_meta'>{'提問人：' + author.name }</div>
-          <div className='q_time_meta'>{'提問時間：' + formatedDate }</div>
+          <div className='q_time_meta'><Link to="policy" params={{candidateId: question.cid, policyId: question.pid}} query={{qid: question.id}}>{'提問時間：' + formatedDate }</Link></div>
         </div>
         <div className='q_action'>
           {signButton}{ ' '}
