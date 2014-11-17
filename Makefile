@@ -1,7 +1,7 @@
 
-.PHONY: all build test rm run deploy clean
+.PHONY: all build test rm run deploy clean clean-docker
 
-all: build rm run deploy clean
+all: build rm run deploy clean-docker
 
 build:
 	docker build -t react-ask-app .
@@ -21,5 +21,7 @@ deploy:
 clean:
 	rm -rf public/assets
 	rm -rf public/app.html
+
+clean-docker:
 	docker rm $(docker ps -a -q) || true
 	docker rmi $(docker images -q --filter "dangling=true") || true
