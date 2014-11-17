@@ -52,8 +52,8 @@ module.exports = React.createClass({
   _render (props, state) {
     var {items} = state;
     var result = items.map((item, index) => {
-      var boundClick = this._handleClick.bind(this, index);
-      var selected = (index === state.selectedIndex)? true: false;
+      var boundClick = this._handleClick.bind(this, item.id);
+      var selected = (item.id === state.selectedIndex)? true: false;
       if(props.selected === item.id && -1 === state.selectedIndex) {
         selected = true;
       }
@@ -84,6 +84,7 @@ module.exports = React.createClass({
     return <div >
       <div className="question_menu">
         <div className="question_menu_meta">{'共有 ' + items.length + ' 題'}</div>
+        {sortingMenu}
       </div>
       {result}
     </div>;
