@@ -23,5 +23,5 @@ clean:
 	rm -rf public/app.html
 
 clean-docker:
-	docker rm -f `docker ps -a -q` || true
-#	docker rmi `docker images -q --filter "dangling=true"` || true
+	docker rm `docker ps -a -q` || true
+	docker rmi `docker images -q --filter "dangling=true"` || true
