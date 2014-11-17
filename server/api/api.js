@@ -7,7 +7,7 @@ var config = require("../config/config");
 var User = require("./models/User");
 var Question = require("./models/Question");
 var LIMIT = 10;
-var SORT = '-signatures';
+var SORT = '-signaturesCount';
 
 passport.serializeUser(function(user, done) {
   return done(null, user);
@@ -191,6 +191,7 @@ api
         user: newQuestion.author,
         timestamp: createdAt.getTime()
       }],
+      signaturesCount: 1,
       createdAt: createdAt
     }, function (err, question) {
       if (err) {
@@ -278,6 +279,8 @@ api
         user: signQuestion.signer,
         timestamp: createdAt.getTime()
       });
+
+      question.signaturesCount = question.signatures.length;
 
       question.save(function (err) {
         if (err) {

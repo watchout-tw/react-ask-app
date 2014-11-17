@@ -9,7 +9,8 @@ var QuestionSchema = new Schema({
   content: String,
   author: Schema.Types.Mixed,
   createdAt: Date,
-  signatures: [Schema.Types.Mixed]
+  signatures: [Schema.Types.Mixed],
+  signaturesCount: Number
 });
 
 QuestionSchema.plugin(supergoose);
