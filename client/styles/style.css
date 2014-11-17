@@ -15,6 +15,10 @@ a {
   text-decoration: none;
   color: rgb(0,191,198);
 }
+img {
+  text-decoration: none;
+  border: 0px;
+}
 @media screen and (min-width: 1000px){
   .wrapper{
      width: 1000px;
@@ -576,6 +580,7 @@ a.nav_item_sidebar:hover {
   transition-property: all;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
 }
 .nav_list_function_item_inner {
   background: white;
@@ -971,6 +976,7 @@ a.nav_item_sidebar:hover {
 @media screen and (max-width: 1000px){
   .page_button {
     opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
   }
 }
 /* ------------------------------------------------------------ */
@@ -996,11 +1002,13 @@ a.nav_item_sidebar:hover {
 }
 .notification_hide {
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
   -webkit-transition: opacity .2s cubic-bezier(.4,0,.2,1);
   transition: opacity .2s cubic-bezier(.4,0,.2,1);
 }
 .notification_show {
   opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; 
 }
 
 /* ------------------------------------------------------------ */
@@ -1035,6 +1043,7 @@ a.nav_item_sidebar:hover {
 /* Native input control and checked events */
 .radio input {
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
 }
 .radio input:checked + .outer {
   border: 2px solid #009688;
@@ -1074,6 +1083,7 @@ a.nav_item_sidebar:hover {
   border-radius: 50%;
   background-color: #009688;
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
   -webkit-transform: scale(0);
   transform: scale(0);
 }
@@ -1109,6 +1119,7 @@ a.nav_item_sidebar:hover {
 .slider_wrap input {
   position: absolute;
   opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; 
 }
 .slider {
   position: relative;
