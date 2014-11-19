@@ -9,26 +9,12 @@ var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
 var _current = null;
 var _candidates = {
-  '5': {
-    id: 5,
-    name: '馮光遠',
-    avatar: '/assets/images/candidates/5.jpg', //require("../../client/images/candidates/5.jpg")
-    avatar_square: '/assets/images/candidates_avatar/5.jpg',
-    status: false
-  },
-  '6': {
-    id: 6,
-    name: '連勝文',
-    avatar: '/assets/images/candidates/6.jpg', //require("../../client/images/candidates/6.jpg")
-    avatar_square: '/assets/images/candidates_avatar/6.jpg',
-    status: false
-  },
-  '7': {
-    id: 7,
-    name: '柯文哲',
-    avatar: '/assets/images/candidates/7.jpg', //require("../../client/images/candidates/7.jpg")
-    avatar_square: '/assets/images/candidates_avatar/7.jpg',
-    status: false
+  "1": {
+    id: 1,
+    name: '李登輝',
+    avatar: '/assets/images/candidates/1.jpg', //require("../../client/images/candidates/5.jpg")
+    avatar_square: '/assets/images/candidates_avatar/1.jpg',
+    status: true
   }
 };
 

@@ -97,15 +97,16 @@ module.exports = React.createClass({
     //   </div>;
 
     return <header className='md-whiteframe-z1'>
-      <div className='nav_list_toggle l_inline' onClick={props._toggleSiderBar}>
-        <i className="fa fa-align-justify"></i>
-      </div>
-      <Link to='/'><div className="nav_list_home">市長給問嗎！最後一役</div></Link>
+      
+      <Link to='/'>
+        <img id="watchout_nav_logo" src="/assets/images/watchout_logo.png" />
+        <div className="nav_list_home">李前市長給問嗎？</div>
+      </Link>
       <div className="nav_list_function">
         <div className="nav_list_function_item l_inline" id="candidateTopMenu">
-            <div className="nav_list_function_item_select" onClick={this._handleCandidate}><i className="fa fa-eye"></i> {candidateName}</div>
-            <div className={"tri-up " + toggleCandidateClass}></div>
-            {candidateMenu}
+            <div className="nav_list_function_item_select" >
+                  <Link to="policies" params={{candidateId: 1}} className="nav_list_function_item">提問去</Link>
+            </div>
         </div>
         <div className="nav_list_function_item_user l_inline" onClick={this._handleAuth} id="userMenu">
             <div className="nav_list_function_item_select">

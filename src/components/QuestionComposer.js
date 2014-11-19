@@ -41,13 +41,13 @@ module.exports = React.createClass({
     return <div className={ 'ask_form ' + minimizeComposerClass}>
       <div className='ask_form_title' onClick={props._handleMinimizeComposer}>
         <i className='fa fa-paper-plane-o'></i>
-        { '  對' + candidate.name + '的政策提問：'}
+        { '  對' + candidate.name + '先生提問：'}
         <div className='ask_form_remove'>
           <i className='fa fa-minus'></i>
         </div>
       </div>
       <div className='ask_form_listitem'>
-        <span className="ask_form_subtitle">{'提問政策'}</span>
+        <span className="ask_form_subtitle">{'提問主題'}</span>
         {'  ' + policy.title }
       </div>
       <div className='ask_form_listitem'>

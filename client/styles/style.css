@@ -448,7 +448,6 @@ a.button.facebook{
 /* ------------------------------------------------------------ */
 .c_item {
   background: white;
-  width: 200px;
   height: 200px;
   padding: 10px;
   margin: 5px;
@@ -456,16 +455,23 @@ a.button.facebook{
   position: relative;
   cursor: pointer;
   color: rgb(55,53,54);
+  width: 250px;
+  height: 200px;
+  padding: 10px;
+  padding-top: 64px;
+  text-align: center;
 }
 @media screen and (max-width: 440px){
   .c_item {
     width: 100%;
     height: auto;
     min-height: 100px;
+    padding: 26px;
+
   }
 }
 .c_title {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 600;
 }
 .c_count {
@@ -590,6 +596,7 @@ a.nav_item_sidebar:hover {
   vertical-align: top;
   position: relative;
   width: 130px;
+  color: white;
 }
 .nav_list_function_item_user {
   height: 50px;
@@ -711,9 +718,10 @@ a.nav_item_sidebar:hover {
 .nav_list_home {
   position: absolute;
   cursor: pointer;
-  /* top: 20px; */
-  top: 13px;
-  left: 60px;
+  top: 20px;
+  /* top: 13px;  */
+  /* left: 60px; */
+  left: 10px;
   font-weight: 700;
   color: white;
 }
@@ -721,7 +729,7 @@ a.nav_item_sidebar:hover {
   width: 80px;
   position: absolute;
   top: -18px;
-  left: 62px;
+  left: 12px;
 
 }
 
@@ -903,6 +911,9 @@ a.nav_item_sidebar:hover {
   background-repeat: no-repeat;
   padding-top: 50%;
 }
+.index_subsection {
+  margin-top: 20px;
+}
 .index_content {
   width: 100%;
   position: relative;
@@ -947,7 +958,7 @@ a.nav_item_sidebar:hover {
   background: white;
   display: inline-block;
   cursor: pointer;
-  width: 33%;
+  width: 49.5%;
   margin: 1px;
   position: relative;
   text-align: center;

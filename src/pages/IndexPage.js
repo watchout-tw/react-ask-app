@@ -24,62 +24,57 @@ module.exports = React.createClass({
       return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
         <div className='index_c_item md-whiteframe-z1'>
             <img src={c.avatar} />
-            <div className="index_c_item_name">{c.name}</div>
+            <div className="index_c_item_name">我要問阿輝伯</div>
         </div>
-      </Link>;
+      </Link>
+      ;
     });
+    var answer = (<Link to="answer" >
+        <div className='index_c_item md-whiteframe-z1'>
+            <img src="assets/images/candidates/1.jpg" />
+            <div className="index_c_item_name">我要回答阿輝伯</div>
+        </div>
+      </Link>);
     return <div id="content">
     <div className="page_wrapper index_section">
     <div className="wrapper">
             <div className="index_content md-whiteframe-z1">
             <div className="index_subsection">
                 <div className="index_maintitle">
-                   <h1>市長給問嗎！最後一役 政策問答大亂鬥</h1>
-                   <h3>[蘋果 x 沃草 x Google] 共同主辦</h3>
+                   <h1>李前市長給問嗎？</h1>
                 </div>
-                <p>選戰進入倒數，問題還沒問完嗎？看了政見有滿腹疑問，想要進一步追問或釐清？覺得政策不可行，想要挑戰候選人？</p>
-                <p>「市長給問嗎！最後一役」，邀請你把所有還來不及說出口的疑問和質疑一次提出！</p>
+                <p>台北市長選舉在即，你/妳準備好要投給誰了嗎？沃草特別為大家邀請到「前」台北市長，也是前總統李登輝先生來接受網友們的提問挑戰！這是李登輝先生首次接受網路提問以及直播的邀約。兩個小時的問答，讓你/妳了解台北城發展的歷史脈絡以及李登輝先生經營城市的理念，也讓我們看看高齡九十一歲的李前總統如何應對新世代網友的提問挑戰！</p>
             </div>
             <div className="index_subsection">
                 <div className="index_title">活動說明</div>
-                <p>即日起，於網站上提問、連署，候選人將依連署票數高低回答市民提問。</p>
-                <p>提問日期：
-                    <ul>
-                    <li>馮光遠：即日起～ 11/18 17:00</li>
-                    <li>連勝文：即日起～ （邀約中，時間確定中）</li>
-                    <li>柯文哲：即日起～ （邀約中，時間未定）</li>
-                    </ul>
-                </p>
-                <p>直播日期：
-                    <ul>
-                    <li>馮光遠：11/18 21:00</li>
-                    <li>連勝文：（邀約中，時間確定中）</li>
-                    <li>柯文哲：（邀約中，時間未定）</li>
-                    </ul>
-                </p>
-                <p><div>直播頻道：</div><a className="live-link" href="http://live.appledaily.com.tw/livechannel/subject/108" target="_blank">http://live.appledaily.com.tw/livechannel/subject/108</a>
-                </p>
+                <p>即日起，針對五大主題：「城市發展、市政經營、國家前途思維、領導能力、世代正義」，在網站上提出你的問題，直播節目中，將依照連署數多寡，來讓李登輝先生現場回答鄉民的挑戰！</p>
+                <ul>
+                  <li>提問時間：即日起～ 11/23 23:59</li>
+                  <li>直播時間：11/26 19:00</li>
+                  <li>直播連結：</li>
+                </ul>
             </div>
             <div className="index_subsection">
                 <div className="index_title">提問規範</div>
-                <ol>
-                    <li><b>本次提問僅針對政策，請勿詢問與政策無關之提問</b></li>
+                <p>下列事項為本網站提問規範，若經網友檢舉並經管理員確認明顯符合者，將不經警告逕行刪文：</p>
+                <ul>
                     <li>請勿發表廣告、商業宣傳或競選文案</li>
                     <li>請勿留下任何自己或他人之電話、聯絡方式等私人資訊</li>
                     <li>請勿發表涉及人身攻擊、謾罵、惡意攻訐與恐嚇等之言論</li>
+                    <li>請勿詢問無關公共權益與社會議題之私人問題</li>
                     <li>請勿進行洗版與重複發問</li>
                     <li>請勿使用有關性別、民族、族群或國籍等歧視性用語</li>
-                </ol>
-                <p>註：若候選人團隊認為提問不符上述規範，可拒絕回答該題。</p>
+                    <li>本次活動內容設定於市政討論、國家前途、理念等公眾或普遍議題。為使活動順利進行，請勿針對特定候選人的政見或私人狀態進行提問</li>
+                </ul>
             </div>
             <div className="index_subsection">
                 <div className="index_title">考前惡補</div>
                 <p>一個好的提問至關重要！沒有頭緒？請看我們為你準備的<Link to="qa">發問指南</Link>。</p>
             </div>
         </div>
-        <div className="l_center"><h2>開始發問</h2></div>
         <div className="l_center">
                 {result}
+                {answer} 
         </div>
 
     </div>

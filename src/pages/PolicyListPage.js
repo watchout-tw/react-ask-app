@@ -34,7 +34,7 @@ module.exports = React.createClass({
     var {data, candidate} = state;
     return <div id="content">
       <div className="wrapper l_center">
-        <div><h2>{ candidate.name + '的政見'}</h2></div>
+        <div><h2>李前市長給問嗎？ 5 大主題向李登輝先生提問！</h2></div>
         <PolicyList data={data} cid={candidate.id} />
       </div>
     </div>;

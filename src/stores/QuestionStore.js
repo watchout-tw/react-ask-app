@@ -8,8 +8,10 @@ var assign = require('object-assign');
 var {ActionTypes} = AppConstants;
 var CHANGE_EVENT = 'change';
 
-var _questions = { '5': {}, '6': {}, '7': {} };
-var _counts = { '5': {}, '6': {}, '7': {} };
+//var _questions = { '5': {}, '6': {}, '7': {} };
+//var _counts = { '5': {}, '6': {}, '7': {} };
+var _questions = { '1': {} };
+var _counts = { '1': {} };
 
 var QuestionStore = assign({}, EventEmitter.prototype, {
 

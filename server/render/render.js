@@ -14,8 +14,8 @@ var template = fs.readFileSync(__dirname + "/../../public/app.html", {encoding:'
 //wildcard route to pass to react client app
 
 function _render(req, res, options) {
-  var title = (options && options.title) || '市長給問嗎！最後一役 政策問答大亂鬥';
-  var description = (options && options.description) || '看了政見有滿腹疑問，想要進一步追問或釐清？覺得政策不可行，想要挑戰候選人？「市長給問嗎！最後一役」，邀請你把所有還來不及說出口的疑問和質疑一次提出！' ;
+  var title = (options && options.title) || '李前市長給問嗎？';
+  var description = (options && options.description) || '台北市長選舉在即，你/妳準備好要投給誰了嗎？沃草特別為大家邀請到「前」台北市長，也是前總統李登輝先生來接受網友們的提問挑戰！這是李登輝先生首次接受網路提問以及直播的邀約。兩個小時的問答，讓你/妳了解台北城發展的歷史脈絡以及李登輝先生經營城市的理念，也讓我們看看高齡九十一歲的李前總統如何應對新世代網友的提問挑戰！' ;
 
   Router.renderRoutesToString(app_router, req.originalUrl, function(error, abortReason, string){
     var html = template.replace(/\{\{body\}\}/, string);

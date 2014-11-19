@@ -228,7 +228,7 @@ module.exports = React.createClass({
         {nextButton}
         <div className='wrapper' id='policy'>
           <div>
-            <h2><Link className='policy_title_link' key={candidateId} to="policies" params={{candidateId: candidateId}}>{ name + '的政見'}</Link></h2>
+            <h2><Link className='policy_title_link' key={candidateId} to="policies" params={{candidateId: candidateId}}>李前市長給問嗎？ 5 大主題向李登輝先生提問</Link></h2>
           </div>
           <Policy data={policy} />
           {ask_item}

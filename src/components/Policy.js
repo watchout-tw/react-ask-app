@@ -28,10 +28,12 @@ module.exports = React.createClass({
 
   _render (props, state) {
 
-    var {indexTitle, title, content} = props.data;
+    var {indexTitle, title, content, id} = props.data;
     var preview= this._handlePreview(content);
-    var contentClass = (state.hideContent)? 'p_fullcontent_hide': '';
+    var contentClass = '';//(state.hideContent)? 'p_fullcontent_hide': '';
     var toggleIcon = (state.hideContent)? 'fa fa-angle-double-down': 'fa fa-angle-double-up';
+    
+    /*
     var togglePreview = (state.hideContent)? (<div className='p_preview'>
         {preview}
         <span className='p_seeall' onClick={this._handleClick}>{'（繼續閱讀）'}</span>
@@ -39,13 +41,13 @@ module.exports = React.createClass({
     var toggle = (state.hideContent)? '' : (<div className="l_center">
         <span className="p_seeall" onClick={this._handleClick}><i className="fa fa-angle-double-up"></i> 摺疊</span>
       </div>);
+    */
+    var togglePreview = '';
+    var toggle = '';
 
     return <div className='md-whiteframe-z1 p_item'>
       <div className='p_title' onClick={this._handleClick}>
-        {indexTitle} {title}
-        <div className='p_actionicon l_inline'>
-          {'　'}<i className={toggleIcon}></i>
-        </div>
+        主題 {id + '：' + title}
       </div>
       {togglePreview}
       <div className={contentClass} dangerouslySetInnerHTML={{__html: content}} onDoubleClick={this._handleClick}/>
