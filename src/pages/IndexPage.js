@@ -45,7 +45,7 @@ module.exports = React.createClass({
                 <ul>
                   <li>提問時間：即日起～ 11/23 23:59</li>
                   <li>直播時間：11/26 19:00</li>
-                  <li>直播連結：</li>
+                  <li>直播連結：（即將公告）</li>
                 </ul>
             </div>
             <div className="index_subsection">
@@ -58,7 +58,7 @@ module.exports = React.createClass({
                     <li>請勿詢問無關公共權益與社會議題之私人問題</li>
                     <li>請勿進行洗版與重複發問</li>
                     <li>請勿使用有關性別、民族、族群或國籍等歧視性用語</li>
-                    <li>本次活動內容設定於市政討論、國家前途、理念等公眾或普遍議題。為使活動順利進行，請勿針對特定候選人的政見或私人狀態進行提問</li>
+                    <li><b>本次活動內容設定於市政討論、國家前途、理念等公眾或普遍議題。為使活動順利進行，請勿針對特定候選人的政見或私人狀態進行提問</b></li>
                 </ul>
             </div>
             <div className="index_subsection">
