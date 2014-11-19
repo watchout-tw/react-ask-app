@@ -19,10 +19,10 @@ var app_router = <Routes location="history">
       <Route name="iterms" path="/terms" handler={TermsPage} />
       <Route name="contact" path="/contact" handler={ContactPage} />
       <Route name="qa" path="/qa" handler={QAPage} />
-      <Route name="policies" path="ask/:candidateId/topics" handler={PolicyListPage} />
-      <Route name="policy" path="ask/:candidateId/topics/:policyId" handler={PolicyPage} />
-      <Route name="question" path="ask/:candidateId/questions" handler={QuestionListPage} />
-      <Route name="answer" path="answer/" handler={AnswerPage} />
+      <Route name="policies" path="/ask/:candidateId/topics" handler={PolicyListPage} />
+      <Route name="policy" path="/ask/:candidateId/topics/:policyId" handler={PolicyPage} />
+      <Route name="question" path="/ask/:candidateId/questions" handler={QuestionListPage} />
+      <Route name="answer" path="/answer" handler={AnswerPage} />
       <NotFoundRoute handler={IndexPage} />
     </Route>
 </Routes>;
