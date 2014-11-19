@@ -508,6 +508,7 @@ a.button.facebook{
 #sidebar-container.show{
   top: 50px;
   height: 100%;
+  overflow: scroll;
 
 }
 a.nav_item_sidebar {
