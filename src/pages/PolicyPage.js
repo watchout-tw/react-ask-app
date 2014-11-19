@@ -244,7 +244,11 @@ module.exports = React.createClass({
                         _handleMore={this._handleMore}
                         hideMore={state.hideMore}/>
           {moreButton}
+
         </div>
+      </div>
+      <div className='wrapper'>
+          <div className='policy_bottom_info'><a href="https://www.facebook.com/WatchOutTW/posts/380939828730903" target="_new">問完阿輝伯了嗎？換你回答阿輝伯問題，Let's GO!</a></div>
       </div>
     </div>;
   }

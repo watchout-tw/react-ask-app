@@ -59,6 +59,7 @@ img {
 }
 #page_content {
   min-height: 600px;
+  position: relative;
 }
 hr {
   border: 0;
@@ -442,7 +443,19 @@ a.button.facebook{
   transition-duration: 1.5s;
 
 }
-
+.policy_bottom_info {
+  position: absolute;
+  right: 10px;
+  bottom: -45px;
+  text-align: center;
+  width: 100%;
+}
+.policy_bottom_info a, .policy_bottom_info a:visited {
+  color: rgb(55,53,54);
+}
+.policy_bottom_info a:hover {
+  text-decoration: underline;
+}
 /* ------------------------------------------------------------ */
 /* index / policy list
 /* ------------------------------------------------------------ */
