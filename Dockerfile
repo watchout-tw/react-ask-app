@@ -9,4 +9,4 @@ ADD . /app
 WORKDIR /app
 RUN npm install || exit 0
 RUN npm run build
-CMD npm start
+CMD NODE_ENV=production npm start
