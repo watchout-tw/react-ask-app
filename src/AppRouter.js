@@ -11,7 +11,7 @@ var QAPage = React.createFactory(require("./pages/QAPage"));
 var PolicyPage = React.createFactory(require("./pages/PolicyPage"));
 var PolicyListPage = React.createFactory(require("./pages/PolicyListPage"));
 var QuestionListPage = React.createFactory(require("./pages/QuestionListPage"));
-var AnswerPage = React.createFactory(require("./pages/AnswerPage"));
+
 
 var app_router = <Routes location="history">
     <Route handler={App} >
@@ -19,10 +19,9 @@ var app_router = <Routes location="history">
       <Route name="iterms" path="/terms" handler={TermsPage} />
       <Route name="contact" path="/contact" handler={ContactPage} />
       <Route name="qa" path="/qa" handler={QAPage} />
-      <Route name="policies" path="ask/:candidateId/topics" handler={PolicyListPage} />
-      <Route name="policy" path="ask/:candidateId/topics/:policyId" handler={PolicyPage} />
-      <Route name="question" path="ask/:candidateId/questions" handler={QuestionListPage} />
-      <Route name="answer" path="answer/" handler={AnswerPage} />
+      <Route name="policies" path="/:candidateId/topics" handler={PolicyListPage} />
+      <Route name="policy" path="/:candidateId/topics/:policyId" handler={PolicyPage} />
+      <Route name="question" path="/:candidateId/questions" handler={QuestionListPage} />
       <NotFoundRoute handler={IndexPage} />
     </Route>
 </Routes>;

@@ -24,17 +24,11 @@ module.exports = React.createClass({
       return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
         <div className='index_c_item md-whiteframe-z1'>
             <img src={c.avatar} />
-            <div className="index_c_item_name">我要問阿輝伯</div>
+            <div className="index_c_item_name">開始發問</div>
         </div>
       </Link>
       ;
     });
-    var answer = (<Link to="answer" >
-        <div className='index_c_item md-whiteframe-z1'>
-            <img src="assets/images/candidates/1.jpg" />
-            <div className="index_c_item_name">我要回答阿輝伯</div>
-        </div>
-      </Link>);
     return <div id="content">
     <div className="page_wrapper index_section">
     <div className="wrapper">
@@ -74,7 +68,6 @@ module.exports = React.createClass({
         </div>
         <div className="l_center">
                 {result}
-                {answer} 
         </div>
 
     </div>
