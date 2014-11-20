@@ -248,7 +248,7 @@ module.exports = React.createClass({
         </div>
       </div>
       <div className='wrapper'>
-          <div className='policy_bottom_info'><a href="https://www.facebook.com/WatchOutTW/posts/380939828730903" target="_new">▶ 問完阿輝伯，換你接招阿輝伯 3 大問！ ◀</a></div>
+          <div className='policy_bottom_info'><a href="https://www.facebook.com/WatchOutTW/posts/381686961989523" target="_new">▶ 問完阿輝伯，換你接招阿輝伯 3 大問！ ◀</a></div>
       </div>
     </div>;
   }
