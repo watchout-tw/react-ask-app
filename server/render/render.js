@@ -30,7 +30,7 @@ router.get(['/','/qa', 'terms', '/contact'], function(req, res) {
   return _render(req, res);
 });
 
-router.get('/candidates/:candidateId/policies', function (req, res) {
+router.get('/:candidateId/topics', function (req, res) {
   var candidateId = req.param('candidateId');
   if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
     return _render(req, res);
@@ -40,7 +40,7 @@ router.get('/candidates/:candidateId/policies', function (req, res) {
 
 });
 
-router.get('/candidates/:candidateId/policies/:policyId?', function (req, res) {
+router.get('/:candidateId/topics/:policyId?', function (req, res) {
   var candidateId = req.param('candidateId');
   var policyId = ~~req.param('policyId');
   var qid = req.query.qid;
@@ -78,7 +78,7 @@ router.get('/candidates/:candidateId/policies/:policyId?', function (req, res) {
   return res.redirect("/");
 });
 
-router.get('/candidates/:candidateId/questions', function (req, res) {
+router.get('/:candidateId/questions', function (req, res) {
   var candidateId = req.param('candidateId');
 
   if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
