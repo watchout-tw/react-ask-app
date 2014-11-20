@@ -382,6 +382,11 @@ a.button.facebook{
   color: #009688;
   margin-left: 18px;
 }
+@media screen and (max-width: 500px){
+  .policy_title_link, .policy_title_link:visited {
+      margin-left: 0px;
+  }
+}
 .p_item {
   background: white;
   padding: 20px;
@@ -951,13 +956,19 @@ a.nav_item_sidebar:hover {
   font-weight: 700;
   margin-bottom: 10px;
   text-align: center;
-
+}
+.index_maintitle_sub {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0px;
+  
 }
 .index_maintitle h3{
   font-size: 20px;
   font-weight: 600;
   margin: 0px;
   text-align: center;
+  padding-right: 15px;
 }
 @media screen and (max-width: 500px){
   .index_maintitle h1, .index_maintitle h3{
@@ -970,7 +981,11 @@ a.nav_item_sidebar:hover {
   font-weight: 700;
   margin-bottom: 20px;
 }
-
+.index_title h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
 .index_c_item {
   background: white;
   display: inline-block;
