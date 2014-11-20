@@ -36,7 +36,7 @@ module.exports = React.createClass({
                 </div>
             </div>
             <div className="index_subsection">
-                <h2>92歲高齡 VS. 92年次首投族</h2>
+                <div className="index_title"><h2>活動說明</h2></div>
                 <p>台北市長選舉在即，你/妳準備好要投給誰了嗎？沃草特別為大家邀請到「前」台北市長，也是前總統李登輝先生來接受網友們的提問挑戰！這是李登輝先生首次接受網路提問以及直播的邀約。兩個小時的問答，讓你/妳了解台北城發展的歷史脈絡以及李登輝先生經營城市的理念，也讓我們看看高齡九十一歲的李前總統如何應對新世代網友的提問挑戰！</p>
             </div>
             <div className="index_subsection">

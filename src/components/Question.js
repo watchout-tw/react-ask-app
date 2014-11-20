@@ -96,8 +96,8 @@ module.exports = React.createClass({
         method: 'feed',
         name: question.title,
         link: link,
-        picture: 'http://2014final.wethepeople.tw/assets/images/fb_img.jpg',
-        caption: name + '在市長給問嗎！最後一役',
+        picture: 'http://lee.wethepeople.tw/assets/images/fb_img.jpg',
+        caption: name + '在「李前市長給問嗎？」',
         description: question.content
       });
     }
