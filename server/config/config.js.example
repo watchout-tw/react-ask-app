@@ -1,8 +1,0 @@
-module.exports = {
-  FACEBOOK_APP_ID: 'put your facebook client id here',
-  FACEBOOK_APP_SECRET: 'put your facebook client secret here',
-  FACEBOOK_APP_CALLBACK: 'http://localhost:8080/api/auth/facebook/callback',
-  database: 'mongodb://<user>:<password>@<host>:<port>/<dbname>',
-  sessionSecret: 'PutYourSessionSecretHere',
-  tokenSecret: 'HereForYourTokenSecret'
-}
