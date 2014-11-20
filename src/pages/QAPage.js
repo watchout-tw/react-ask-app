@@ -21,10 +21,7 @@ module.exports = React.createClass({
     var {candidates} = state;
     var result = candidates.map((c) => {
       return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
-        <div className='index_c_item md-whiteframe-z1'>
-            <img src={c.avatar} />
-            <div className="index_c_item_name">{c.name}</div>
-        </div>
+        <div className='index_button'>開始發問</div>
       </Link>;
     });
     return <div id="content">
