@@ -32,7 +32,7 @@ router.get(['/','/qa', 'terms', '/contact'], function(req, res) {
 
 router.get('/:candidateId/topics', function (req, res) {
   var candidateId = req.param('candidateId');
-  if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
+  if ('1' === candidateId) {
     return _render(req, res);
   } else {
     return res.redirect('/');
@@ -57,19 +57,7 @@ router.get('/:candidateId/topics/:policyId?', function (req, res) {
   }
   var policies = JSON.parse(fs.readFileSync(__dirname + '/policies.json', {encoding:'utf8'}));
   var policy = policies[candidateId][policyId];
-  if ('5' === candidateId && policyId >= 1 && policyId <= 27) {
-    return _render(req, res, {
-      title: policy.title,
-      description: String(policy.content).replace(/<[^>]+>/gm, '').replace(/&nbsp;/gi,' ').substring(0,200)
-    });
-  }
-  if ('6' === candidateId && policyId >= 1 && policyId <= 34) {
-    return _render(req, res, {
-      title: policy.title,
-      description: String(policy.content).replace(/<[^>]+>/gm, '').replace(/&nbsp;/gi,' ').substring(0,200)
-    });
-  }
-  if ('7' === candidateId && policyId >=1 && policyId <= 30) {
+  if ('1' === candidateId && policyId >= 1 && policyId <= 5) {
     return _render(req, res, {
       title: policy.title,
       description: String(policy.content).replace(/<[^>]+>/gm, '').replace(/&nbsp;/gi,' ').substring(0,200)
@@ -81,7 +69,7 @@ router.get('/:candidateId/topics/:policyId?', function (req, res) {
 router.get('/:candidateId/questions', function (req, res) {
   var candidateId = req.param('candidateId');
 
-  if ('5' === candidateId || '6' === candidateId || '7' === candidateId) {
+  if ('1' === candidateId) {
     return _render(req, res);
   }
   return res.redirect("/");
