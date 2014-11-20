@@ -43,6 +43,7 @@
     "html5shiv": "^3.7.2",
     "jsonwebtoken": "^1.1.2",
     "keymirror": "^0.1.0",
+    "loader-utils": "^0.2.5",
     "localStorage": "^1.0.3",
     "moment": "^2.8.3",
     "mongoose": "^3.8.19",
@@ -53,6 +54,7 @@
     "passport-facebook": "^1.0.3",
     "react": "^0.12.0",
     "react-router": "^0.10.2",
+    "source-map": "^0.1.40",
     "superagent": "^0.21.0",
     "supergoose": "^0.2.3",
     "uid2": "0.0.3"
