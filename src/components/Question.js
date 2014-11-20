@@ -91,7 +91,7 @@ module.exports = React.createClass({
     }
 
     if(FB) {
-      var link = location.origin + '/candidates/' + cid + '/policies/' + pid + '?qid=' + qid;
+      var link = location.origin + '/' + cid + '/topics/' + pid + '?qid=' + qid;
       FB.ui({
         method: 'feed',
         name: question.title,
