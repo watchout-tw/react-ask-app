@@ -450,9 +450,12 @@ a.button.facebook{
   bottom: -45px;
   text-align: center;
   width: 100%;
+  color: #db4437;
+  font-weight: 700;
+  padding-left: 20px;
 }
 .policy_bottom_info a, .policy_bottom_info a:visited {
-  color: rgb(55,53,54);
+  color: #db4437;
 }
 .policy_bottom_info a:hover {
   text-decoration: underline;
