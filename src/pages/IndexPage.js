@@ -23,7 +23,7 @@ module.exports = React.createClass({
     var result = candidates.map((c) => {
       return <Link key={c.id} to="policies" params={{candidateId: c.id}}>
         <div className='index_c_item md-whiteframe-z1'>
-            <img src={c.avatar} />
+            <img className='index_c_item_img' src={c.avatar} />
             <div className="index_c_item_name">開始發問</div>
         </div>
       </Link>

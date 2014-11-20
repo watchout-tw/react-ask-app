@@ -26,9 +26,7 @@ module.exports = React.createClass({
       </div>
       <div className="footer_logo">
       <ul>
-          <li className="footer_img"><a href="http://goo.gl/2vlnVR" target="_new"><img id="footer_apple" src="/assets/images/apple_logo.png" /></a></li>
-          <li className="footer_img"><a href="http://goo.gl/du71aO" target="_new"><img id="footer_watchout" src="/assets/images/watchout_logo_black.png" /></a></li>
-          <li className="footer_img"><a href="http://goo.gl/LB3KC9" target="_new"><img src="/assets/images/google_logo_color.png" /></a></li>
+          <li className="footer_img"><a href="http://goo.gl/L3SXn4" target="_new"><img id="footer_watchout" src="/assets/images/watchout_logo_black.png" /></a></li>
       </ul>
       </div>
     </div>;

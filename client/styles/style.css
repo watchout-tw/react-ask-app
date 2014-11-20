@@ -89,6 +89,7 @@ hr {
 .footer_logo {
   width: 100%;
   text-align: center;
+  padding-bottom: 50px;
 }
 .footer_text {
   display: inline-block;
@@ -980,10 +981,12 @@ a.nav_item_sidebar:hover {
   padding-left: 100px;
 
 }
-.index_c_item img {
+.index_c_item_img {
   position: absolute;
   left: 0px;
   top: 0px;
+  width: 100px;
+  height: 112px;
 }
 .index_c_item_name {
   font-size: 30px;
