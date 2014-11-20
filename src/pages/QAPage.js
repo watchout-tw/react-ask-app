@@ -126,7 +126,6 @@ module.exports = React.createClass({
                    <div className="l_center"><img className="article_img" src="/assets/images/how-to-ask-4.png" /></div>
                 </div>
             </div>
-            <div className="l_center"><h2>開始發問</h2></div>
             <div className="l_center">
                     {result}
             </div>
