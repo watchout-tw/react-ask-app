@@ -4,3 +4,4 @@ node_modules/
 public/
 *.log
 server/config/config.js
+settings.rc
