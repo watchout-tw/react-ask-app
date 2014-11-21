@@ -50,8 +50,9 @@ module.exports = React.createClass({
                 <ul>
                   <li>提問時間：即日起～ 11/24 08:00</li>
                   <li>直播時間：11/26 19:00</li>
-                  <li>直播連結：（即將公告）</li>
                 </ul>
+                <p><div>直播頻道：</div><a className="live-link" href="http://live.appledaily.com.tw/livechannel/subject/108" target="_blank">http://live.appledaily.com.tw/livechannel/subject/108</a>
+                </p>
             </div>
             <div className="index_subsection">
                 <div className="index_title">提問規範</div>
