@@ -49,10 +49,19 @@ router.get('/:candidateId/topics/:policyId?', function (req, res) {
     return Question
       .findOne({id: qid})
       .exec(function (err, question) {
-        return _render(req, res, {
-          title: question.title,
-          description: question.content
-        });
+
+        //TO DO: why is question can be null?
+        if(question){
+          return _render(req, res, {
+              title: question.title,
+              description: question.content
+          });
+
+        }else{
+          return res.redirect("/");
+
+        }
+        
       });
   }
   var policies = JSON.parse(fs.readFileSync(__dirname + '/policies.json', {encoding:'utf8'}));
