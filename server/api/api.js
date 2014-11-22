@@ -269,28 +269,30 @@ api
           id: signQuestion.id,
           timestamp: createdAt.getTime()
         });
-        return user.save(function (err) {
+
+        user.save(function (err) {
           if (err) {
             return console.log(err.stack);
           }
         });
-      });
 
-      question.signatures.push({
-        user: signQuestion.signer,
-        timestamp: createdAt.getTime()
-      });
+        question.signatures.push({
+          user: signQuestion.signer,
+          timestamp: createdAt.getTime()
+        });
 
-      question.signaturesCount = question.signatures.length;
+        question.signaturesCount = question.signatures.length;
 
-      question.save(function (err) {
-        if (err) {
-          return console.log(err.stack);
-        }
-        return res.json({
-          status: "success"
+        return question.save(function (err) {
+          if (err) {
+            return console.log(err.stack);
+          }
+          return res.json({
+            status: "success"
+          });
         });
       });
+
     });
   });
 
