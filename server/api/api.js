@@ -306,7 +306,7 @@ api
       data: result
     });
   });
-
+/*
 api
   .get('/policies', function (req, res) {
     var cid = req.query.cid;
@@ -341,5 +341,5 @@ api
         });
       });
   });
-
+*/
 module.exports = api;
