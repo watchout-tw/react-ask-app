@@ -43,7 +43,7 @@ passport.use(new FacebookStrategy({
 
 
 var allClosedAt = {
-  '1': { closedAt: new Date('2014','10','24','07','59','59').getTime() }
+  '1': { closedAt: new Date('2014','10','24','7','59','59').getTime() }
 };
 
 function filterSignatures(questions) {
