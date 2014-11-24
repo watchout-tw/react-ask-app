@@ -23,7 +23,7 @@ module.exports = React.createClass({
       loggedIn: this.props.loggedIn,
       count: this.props.question.signatures.length,
       policy: policy,
-      hideSignButton: true,//false, TO DO: this is a temporary fix
+      hideSignButton: false, 
       hideContent: !this.props.selected,
       index: this.props.index
     };
@@ -133,7 +133,7 @@ module.exports = React.createClass({
           <div className='q_time_meta'><Link to="policy" params={{candidateId: question.cid, policyId: question.pid}} query={{qid: question.id}}>{'提問時間：' + formatedDate }</Link></div>
         </div>
         <div className='q_action'>
-          {signButton}{ ' '}
+         
           <Button className='facebook' name='分享' icon='fa-facebook' _handleClick={this._handleShare}/>
         </div>
       </div>;
