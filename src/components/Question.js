@@ -133,7 +133,7 @@ module.exports = React.createClass({
           <div className='q_time_meta'><Link to="policy" params={{candidateId: question.cid, policyId: question.pid}} query={{qid: question.id}}>{'提問時間：' + formatedDate }</Link></div>
         </div>
         <div className='q_action'>
-         
+          {signButton}{ ' '}
           <Button className='facebook' name='分享' icon='fa-facebook' _handleClick={this._handleShare}/>
         </div>
       </div>;

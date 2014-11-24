@@ -299,7 +299,8 @@ api
 
     var result = Object.keys(allClosedAt).map(function (key) {
       var  candidate = allClosedAt[key];
-      return (new Date().getTime() > candidate.closedAt)? false: true;
+      return false; // TODO: server's timezone isn't correct. set false manully
+      //return (new Date().getTime() > candidate.closedAt)? false: true;
     });
     return res.json({
       status: "success",
