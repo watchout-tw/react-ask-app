@@ -23,7 +23,7 @@ module.exports = React.createClass({
       loggedIn: this.props.loggedIn,
       count: this.props.question.signatures.length,
       policy: policy,
-      hideSignButton: false,
+      hideSignButton: true,//false, TO DO: this is a temporary fix
       hideContent: !this.props.selected,
       index: this.props.index
     };
